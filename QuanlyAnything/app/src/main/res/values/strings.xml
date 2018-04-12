@@ -9,4 +9,13 @@
     <string name="api_err_time_out">Request time out</string>
     <string name="api_err_unknown_error">Unknown error</string>
     <string name="api_err_request_failed">Request server failed. Please try later.</string>
+    <string name="login">Đăng Nhập</string>
+    <string name="name_account">Tên tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="title_screen_login">Ứng dụng giúp bạn quản lý mọi thứ trở lên dễ dàng hơn.</string>
+    <string name="title_screen_option">Hãy chọn một trình quản lý bạn muốn</string>
+    <string name="text_kiot">Tiệm tạp hóa</string>
+    <string name="text_shop_clothes">Shop quần áo</string>
+    <string name="text_logout">Thoát</string>
+
 </resources>

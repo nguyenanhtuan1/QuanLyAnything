@@ -13,34 +13,19 @@ import quanly_anything_you_want.manage.com.quanlyanything.model.User;
 import static android.content.Context.MODE_PRIVATE;
 
 public class PreferManager {
-
-    SharedPreferences mPreferences;
+    private SharedPreferences mPreferences;
 
     @SuppressLint("CommitPrefEdits")
-    public PreferManager() {
+    private PreferManager() {
+        mPreferences = MainApplication.context.getSharedPreferences("MY_DATA_PREFER", MODE_PRIVATE);
     }
-    Context context;
 
-    public synchronized static final PreferManager getInstance() {
+    public synchronized static PreferManager getInstance() {
         return INSTANCE;
     }
 
     private static final PreferManager INSTANCE = new PreferManager();
 
-    // FCM token
-    private static final String KEY_FCM_TOKEN = "KEY_FCM_TOKEN";
-
-    public String getFcmToken() {
-        return mPreferences.getString(KEY_FCM_TOKEN, null);
-    }
-
-    public void setFcmToken(String fcmToken) {
-        SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(KEY_FCM_TOKEN, fcmToken);
-        editor.apply();
-    }
-
-    // Token
     private static final String KEY_TOKEN = "TOKEN";
 
     public String getToken() {
@@ -53,7 +38,6 @@ public class PreferManager {
         editor.apply();
     }
 
-    //User
     private static final String KEY_USER = "KEY_USER";
 
     public void setUser(User user) {

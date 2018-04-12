@@ -24,7 +24,6 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.DialogUtils;
 
 abstract public class BaseFragment extends Fragment implements IBaseView {
 
-    private BasePresenter mPresenter;
     private Unbinder unbinder;
 
     @Override
@@ -36,9 +35,6 @@ abstract public class BaseFragment extends Fragment implements IBaseView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        if (mPresenter != null)
-            mPresenter.onCreate(this, unbinder);
-
         onInitData();
         onInitListener();
     }
@@ -50,16 +46,7 @@ abstract public class BaseFragment extends Fragment implements IBaseView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null)
-            mPresenter.onDestroy();
-    }
-
-    public BasePresenter getPresenter() {
-        return mPresenter;
-    }
-
-    public void setPresenter(BasePresenter mPresenter) {
-        this.mPresenter = mPresenter;
+        unbinder.unbind();
     }
 
     abstract protected int getLayoutId();

@@ -2,13 +2,10 @@ package quanly_anything_you_want.manage.com.quanlyanything.interactor.api.respon
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.horical.gito.chat.model.User;
 
 import java.io.Serializable;
 
-/**
- * Created by thien on 9/6/17.
- */
+import quanly_anything_you_want.manage.com.quanlyanything.model.User;
 
 public class DataResultLogin implements Serializable {
     @SerializedName("user")

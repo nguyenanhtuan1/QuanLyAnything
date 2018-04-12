@@ -1,9 +1,9 @@
 package quanly_anything_you_want.manage.com.quanlyanything.base;
 
 
+
 import org.greenrobot.eventbus.Subscribe;
 
-import butterknife.Unbinder;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.ApiManager;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.caches.CachesManager;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.EventManager;
@@ -29,7 +29,7 @@ public abstract class BasePresenter {
     public BasePresenter() {
     }
 
-    public ApiManager getApiManager() {
+    protected ApiManager getApiManager() {
         return ApiManager.getInstance();
     }
 
@@ -45,8 +45,7 @@ public abstract class BasePresenter {
         return CachesManager.getInstance();
     }
 
-
-    public void onCreate(IBaseView view, Unbinder binder) {
+    public void onCreate(IBaseView view) {
         mView = view;
     }
 

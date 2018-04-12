@@ -10,8 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.horical.gito.chat.R;
-
+import quanly_anything_you_want.manage.com.quanlyanything.R;
 
 public class DialogOk extends Dialog {
 

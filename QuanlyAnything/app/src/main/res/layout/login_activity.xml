@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cs_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_login_2"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/padding_left_right_screen_login"
+    android:paddingStart="@dimen/padding_left_right_screen_login">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/title_screen_login"
+        android:textColor="@color/white_color"
+        android:textSize="@dimen/text_size_title_small_login"
+        app:layout_constraintTop_toTopOf="@+id/cs_container" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/cs_container"
+        app:layout_constraintTop_toTopOf="@+id/cs_container">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/name_account"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_title_small_login" />
+
+        <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_name_account"
+            android:layout_marginEnd="@dimen/padding_left_right_screen_login"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_edt_input_login"
+            android:digits="0,1,2,3,4,5,6,7,8,9,qwertzuiopasdfghjklyxcvbnm_@."
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:padding="6dp"
+            android:singleLine="true"
+            android:scrollbars="horizontal"
+            android:text="nguyenanhtuan081193@gmail.com"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_input_login" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/password"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_title_small_login" />
+
+        <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_left_right_screen_login"
+            android:layout_marginStart="@dimen/padding_left_right_screen_login"
+            android:id="@+id/edt_password"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_edt_input_login"
+            android:digits="0,1,2,3,4,5,6,7,8,9,qwertzuiopasdfghjklyxcvbnm"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword|text"
+            android:singleLine="true"
+            android:padding="6dp"
+            android:scrollbars="horizontal"
+            android:text="aadsafdaf"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_input_login" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/btn_login"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_login"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

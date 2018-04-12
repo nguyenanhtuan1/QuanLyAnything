@@ -20,20 +20,20 @@ import android.widget.EditText;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 
 @SuppressLint("AppCompatCustomView")
-public class CTEditText extends EditText {
+public class QLEditText extends EditText {
     private boolean isShowClear = true;
 
-    public CTEditText(Context context) {
+    public QLEditText(Context context) {
         super(context);
         init();
     }
 
-    public CTEditText(Context context, AttributeSet attrs) {
+    public QLEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public CTEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public QLEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -50,7 +50,7 @@ public class CTEditText extends EditText {
                     setText("");
 
                     if (listenerClear != null) {
-                        listenerClear.onClearText(CTEditText.this);
+                        listenerClear.onClearText(QLEditText.this);
                         return true;
                     }
                 }
@@ -95,7 +95,9 @@ public class CTEditText extends EditText {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
         if (focused) {
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);
+            if (imm != null) {
+                imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);
+            }
 
             if (getText().length() > 0) {
                 final Drawable x = ContextCompat.getDrawable(getContext(), R.drawable.ic_clear_text);
@@ -109,7 +111,9 @@ public class CTEditText extends EditText {
                 listener.onDismissKeyBoard(this);
             }
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
+            }
         }
     }
 
@@ -148,11 +152,11 @@ public class CTEditText extends EditText {
     }
 
     public interface KeyboardListener {
-        void onDismissKeyBoard(CTEditText keyboardEditText);
+        void onDismissKeyBoard(QLEditText keyboardEditText);
     }
 
     public interface ClearTextListener {
-        void onClearText(CTEditText keyboardEditText);
+        void onClearText(QLEditText keyboardEditText);
     }
 
 }
