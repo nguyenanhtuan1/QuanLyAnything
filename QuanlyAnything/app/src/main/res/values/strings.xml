@@ -15,7 +15,17 @@
     <string name="title_screen_login">Ứng dụng giúp bạn quản lý mọi thứ trở lên dễ dàng hơn.</string>
     <string name="title_screen_option">Hãy chọn một trình quản lý bạn muốn</string>
     <string name="text_kiot">Tiệm tạp hóa</string>
-    <string name="text_shop_clothes">Shop quần áo</string>
+    <string name="text_shop_fashion">Shop thời trang</string>
     <string name="text_logout">Thoát</string>
+    <string name="text_back">Trở lại</string>
+    <string name="text_report">Báo cáo</string>
+    <string name="text_history">Lịch sử</string>
+    <string name="text_sell">Bán hàng</string>
+    <string name="text_store">Kho hàng</string>
+    <string name="add_product">Thêm</string>
+    <string name="new_product">Tạo mới</string>
+    <string name="name_product">Tên: </string>
+    <string name="text_soluong">Số lượng: </string>
+    <string name="price_product">Giá bán:</string>
 
 </resources>

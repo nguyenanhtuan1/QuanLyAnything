@@ -28,7 +28,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network
 import quanly_anything_you_want.manage.com.quanlyanything.screen.login.LoginActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.DialogUtils;
 
-public class BaseActivity extends AppCompatActivity implements IBaseView {
+abstract public class BaseActivity extends AppCompatActivity implements IBaseView {
 
     private Unbinder unbinder;
     private boolean hideKeyBoard = true;
@@ -51,13 +51,9 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
         onInitListener();
     }
 
-    public void onInitData() {
+    abstract public void onInitData();
 
-    }
-
-    public void onInitListener() {
-
-    }
+    abstract public void onInitListener();
 
     public void setHideKeyBoard(boolean state) {
         this.hideKeyBoard = state;

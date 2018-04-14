@@ -22,4 +22,9 @@ public class ExamActivity extends BaseActivity implements ExamContact.View {
 
     }
 
+    @Override
+    public void onInitListener() {
+
+    }
+
 }

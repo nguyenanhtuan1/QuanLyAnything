@@ -34,6 +34,11 @@ public class LoginActivity extends BaseActivity implements LoginContact.View {
 
     }
 
+    @Override
+    public void onInitListener() {
+
+    }
+
 
     @Override
     public void loginSuccess() {

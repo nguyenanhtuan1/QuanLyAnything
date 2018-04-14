@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_title_default">30sp</dimen>
+    <dimen name="text_size_title_default">16sp</dimen>
     <dimen name="text_size_normal_default">14sp</dimen>
+    <dimen name="text_size_title_option">16sp</dimen>
     <dimen name="text_size_input_login">18sp</dimen>
     <dimen name="text_size_title_screen_option">18sp</dimen>
     <dimen name="text_size_title_small_login">12sp</dimen>
     <dimen name="padding_left_right_screen_login">10dp</dimen>
-    <dimen name="with_icon_type_manage">100dp</dimen>
-    <dimen name="height_icon_type_manage">80dp</dimen>
+    <dimen name="with_icon_type_manage">120dp</dimen>
+    <dimen name="height_icon_type_manage">100dp</dimen>
+    <dimen name="padding_top_bar">20dp</dimen>
+    <dimen name="with_button_function">80dp</dimen>
+    <dimen name="height_button_function">36dp</dimen>
 </resources>
