@@ -13,4 +13,5 @@
     <dimen name="with_button_function">80dp</dimen>
     <dimen name="height_button_function">36dp</dimen>
     <dimen name="margin_left_right_default">10dp</dimen>
+    <dimen name="with_btn_choose">44dp</dimen>
 </resources>

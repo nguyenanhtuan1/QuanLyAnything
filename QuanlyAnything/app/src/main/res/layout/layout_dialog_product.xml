@@ -17,7 +17,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/white_color"
             android:orientation="vertical">
 
@@ -28,6 +31,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_cancel"
                     android:layout_width="56dp"
                     android:layout_height="30dp"
                     android:background="@drawable/bg_btn_logout"
@@ -37,11 +41,12 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <Button
+                    android:id="@+id/btn_save"
                     android:layout_width="56dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/bg_btn_pressed_green_greentrans"
-                    android:text="Lưu lại"
+                    android:text="@string/text_save"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -72,14 +77,15 @@
 
 
                 <Button
-                    android:layout_width="42dp"
+                    android:id="@+id/btn_choose_image"
+                    android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/v_carview"
+                    android:layout_toEndOf="@+id/v_carview"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Chọn"
+                    android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -103,6 +109,7 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_name_product"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:background="@drawable/bg_edt_input_product"
@@ -131,20 +138,18 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="Đơn vị tiền:"
+                    android:text="@string/text_unit_price"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-
                 <TextView
+                    android:id="@+id/tv_unit_currency"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:imeOptions="actionDone"
                     android:paddingEnd="10dp"
-
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textAllCaps="true"
@@ -153,12 +158,13 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <Button
-                    android:layout_width="42dp"
+                    android:id="@+id/btn_choose_currency"
+                    android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
                     android:layout_marginStart="100dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Chọn"
+                    android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -181,6 +187,7 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_total_quantity"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
@@ -194,26 +201,26 @@
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                <TextView
+                    android:id="@+id/tv_unit_of_total_quantity"
                     android:layout_width="80dp"
                     android:layout_height="36dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="đơn vị"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapSentences"
+                    android:hint="@string/text_hint_unit"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <Button
-                    android:layout_width="42dp"
+                    android:id="@+id/btn_choose_unit_sl"
+                    android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
                     android:layout_marginStart="6dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Chọn"
+                    android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -233,18 +240,19 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="Tổng giá mua:"
+                    android:text="@string/text_total_price"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_total_purchase_price"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="giá / tổng số lượng"
+                    android:hint="@string/text_hint_total_quantity"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:paddingEnd="10dp"
@@ -255,6 +263,7 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
+                    android:id="@+id/tv_unit_currency_total_price"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -278,14 +287,14 @@
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_price_wholesale"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="giá"
+                    android:hint="@string/text_hint_price"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:paddingEnd="4dp"
@@ -296,31 +305,42 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
+                    android:id="@+id/tv_unit_currency_wholesale"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_unit_of_wholesale"
                     android:layout_width="70dp"
                     android:layout_height="36dp"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="đơn vị"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapSentences"
+                    android:hint="@string/text_hint_unit"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <Button
-                    android:layout_width="42dp"
+                    android:id="@+id/btn_choose_unit_wholesale"
+                    android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
                     android:layout_marginStart="6dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Chọn"
+                    android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -340,14 +360,14 @@
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_price_retail"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="giá"
+                    android:hint="@string/text_hint_price"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:paddingEnd="4dp"
@@ -358,18 +378,30 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
+                    android:id="@+id/tv_unit_currency_retail"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
+
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/tv_unit_of_retail"
                     android:layout_width="70dp"
                     android:layout_height="36dp"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="đơn vị"
+                    android:hint="@string/text_hint_unit"
                     android:imeOptions="actionDone"
                     android:inputType="textCapSentences"
                     android:textColor="@color/black_color"
@@ -377,12 +409,13 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <Button
-                    android:layout_width="42dp"
+                    android:id="@+id/btn_choose_unit_retail"
+                    android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
                     android:layout_marginStart="6dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Chọn"
+                    android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -400,12 +433,12 @@
                 <TextView
                     android:layout_width="94dp"
                     android:layout_height="wrap_content"
-                    android:text="Mã sản phẩm:"
+                    android:text="@string/text_code_product"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_code_product"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
@@ -420,14 +453,14 @@
                     android:textColorHint="@color/transparent_dialog"
                     android:textSize="@dimen/text_size_normal_default" />
 
-
                 <Button
+                    android:id="@+id/btn_scan_product"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="6dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
-                    android:text="Quoét"
+                    android:text="@string/text_scan_code"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />

@@ -25,12 +25,21 @@
     <string name="add_product">Thêm</string>
     <string name="new_product">Tạo mới</string>
     <string name="name_product">Tên: </string>
-    <string name="text_soluong">Số lượng: </string>
+    <string name="text_soluong">Tổng số lượng: </string>
     <string name="price_product">Giá bán:</string>
     <string name="retail_price_product">Bán lẻ:</string>
     <string name="wholesale_price_product">Bán buôn:</string>
     <string name="text_search">Tìm kiếm</string>
     <string name="text_unit">Đơn vị:</string>
+    <string name="text_hint_unit">đơn vị</string>
     <string name="text_exam_unit">ví dụ kg,tấn,tạ,hộp,thùng</string>
+    <string name="text_save">Lưu lại</string>
+    <string name="text_choose">Chọn</string>
+    <string name="text_scan_code">Quoét</string>
+    <string name="text_hint_price">giá</string>
+    <string name="text_code_product">Mã sản phẩm:</string>
+    <string name="text_unit_price">Đơn vị tiền:</string>
+    <string name="text_hint_total_quantity">giá / tổng số lượng</string>
+    <string name="text_total_price">Tổng giá mua:</string>
 
 </resources>
