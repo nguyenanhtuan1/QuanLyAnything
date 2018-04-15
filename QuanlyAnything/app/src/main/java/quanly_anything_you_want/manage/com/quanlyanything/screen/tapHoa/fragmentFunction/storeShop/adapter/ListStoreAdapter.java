@@ -69,8 +69,8 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         void setUpdateData(ProductTapHoa data) {
             ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
-            tvQuantity.setText(data.quantity + " " + data.unit);
-            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceExport));
+            tvQuantity.setText(data.quantityAll + " " + data.unit);
+            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceExport) + "/" + data.quantityExport + data.unit);
         }
 
         @OnClick(R.id.tv_add_quantity)

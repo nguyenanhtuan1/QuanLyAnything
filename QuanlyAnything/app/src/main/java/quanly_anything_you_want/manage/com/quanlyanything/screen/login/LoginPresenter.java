@@ -22,7 +22,7 @@ public class LoginPresenter extends BasePresenter implements LoginContact.Presen
                 getView().hideLoading();
                 getView().loginSuccess();
             }
-        }, 500);
+        }, 200);
     }
 
     @Override

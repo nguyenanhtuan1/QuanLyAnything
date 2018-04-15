@@ -18,10 +18,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import quanly_anything_you_want.manage.com.quanlyanything.R;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 @SuppressLint("AppCompatCustomView")
 public class QLEditText extends EditText {
     private boolean isShowClear = true;
+    boolean isInputPrice;
 
     public QLEditText(Context context) {
         super(context);
@@ -90,6 +92,10 @@ public class QLEditText extends EditText {
         isShowClear = showClear;
     }
 
+    public void setInputPrice(boolean inputPrice) {
+        isInputPrice = inputPrice;
+    }
+
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
@@ -108,7 +114,11 @@ public class QLEditText extends EditText {
         } else {
             setCompoundDrawables(null, null, null, null);
             if (listener != null) {
+                if (isInputPrice) {
+                    setText(CommonUtil.showPriceNotCurrency(getText().toString()));
+                }
                 listener.onDismissKeyBoard(this);
+
             }
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {

@@ -2,7 +2,7 @@
     <string name="app_name">QuanlyAnything</string>
     <string name="ok">Ok</string>
     <string name="error">error</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Hủy bỏ</string>
     <string name="success">Success</string>
     <string name="no_internet_network">No internet!</string>
     <string name="api_err_no_network">No internet connection</string>
@@ -27,5 +27,10 @@
     <string name="name_product">Tên: </string>
     <string name="text_soluong">Số lượng: </string>
     <string name="price_product">Giá bán:</string>
+    <string name="retail_price_product">Bán lẻ:</string>
+    <string name="wholesale_price_product">Bán buôn:</string>
+    <string name="text_search">Tìm kiếm</string>
+    <string name="text_unit">Đơn vị:</string>
+    <string name="text_exam_unit">ví dụ kg,tấn,tạ,hộp,thùng</string>
 
 </resources>

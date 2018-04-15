@@ -3,7 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
 
-public class HistoryTapHoaFragment extends BaseFragment {
+public class HistoryTapHoaFragment extends BaseFragment implements HistoryTapHoaContact.View{
     HistoryTapHoaPresenter mPresenter;
 
     @Override

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogOk.DialogOk;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogProgress.DialogProgress;
@@ -20,6 +21,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected abstract void initData();
 
     protected abstract void initListener();
+
+    Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         initData();
         initListener();
@@ -75,4 +78,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
         showErrorDialog(getContext().getString(R.string.no_internet_network));
     }
 
+    @Override
+    public void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
+    }
 }

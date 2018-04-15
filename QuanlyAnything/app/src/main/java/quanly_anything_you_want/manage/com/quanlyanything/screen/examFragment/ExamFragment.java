@@ -3,7 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.examFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
 
-public class ExamFragment extends BaseFragment {
+public class ExamFragment extends BaseFragment implements ExamFragmentContact.View {
     ExamFragmentPresenter mPresenter;
 
     @Override

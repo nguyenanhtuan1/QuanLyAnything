@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
 
     @BindView(R.id.btn_history)
     Button btnHistory;
+
     @BindView(R.id.view_pager_tap_hoa)
     ViewPager vPager;
 
@@ -48,7 +50,7 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
 
     @Override
     public void onInitData() {
-        btnStore.performClick();
+        btnStore.setSelected(true);
         listFragment = new ArrayList<>();
         listFragment.add(new StoreShopTapHoaFragment());
         listFragment.add(new SellTapHoaFragment());
@@ -60,7 +62,23 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
 
     @Override
     public void onInitListener() {
+        vPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setOnSelectButton(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @OnClick(R.id.btn_back)
@@ -71,32 +89,54 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
     @OnClick(R.id.btn_store)
     void onClickStore() {
         if (!btnStore.isSelected())
-            setOnSelectButton(true, false, false, false);
+            setOnSelectButton(true, false, false, false, 0);
     }
 
     @OnClick(R.id.btn_sell)
     void onClickSell() {
         if (!btnSell.isSelected())
-            setOnSelectButton(false, true, false, false);
+            setOnSelectButton(false, true, false, false, 1);
     }
 
     @OnClick(R.id.btn_report)
     void onClickReport() {
         if (!btnReport.isSelected())
-            setOnSelectButton(false, false, true, false);
+            setOnSelectButton(false, false, true, false, 2);
     }
 
     @OnClick(R.id.btn_history)
     void onClickHistory() {
         if (!btnHistory.isSelected())
-            setOnSelectButton(false, false, false, true);
+            setOnSelectButton(false, false, false, true, 3);
     }
 
-    private void setOnSelectButton(boolean selectStore, boolean selectSell, boolean selectReport, boolean selectHistory) {
+    private void setOnSelectButton(boolean selectStore, boolean selectSell, boolean selectReport, boolean selectHistory, int position) {
         btnStore.setSelected(selectStore);
         btnSell.setSelected(selectSell);
         btnReport.setSelected(selectReport);
         btnHistory.setSelected(selectHistory);
+        vPager.setCurrentItem(position, true);
+    }
+
+    private void setOnSelectButton(int position) {
+        btnStore.setSelected(false);
+        btnSell.setSelected(false);
+        btnReport.setSelected(false);
+        btnHistory.setSelected(false);
+        switch (position) {
+            case 0:
+                btnStore.setSelected(true);
+                break;
+            case 1:
+                btnSell.setSelected(true);
+                break;
+            case 2:
+                btnReport.setSelected(true);
+                break;
+            case 3:
+                btnHistory.setSelected(true);
+                break;
+        }
     }
 
 }

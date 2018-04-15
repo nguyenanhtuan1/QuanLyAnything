@@ -18,6 +18,9 @@
     <color name="color_blue_normal">#0090ff</color>
     <color name="green_color_banana">#affc49</color>
     <color name="green_color_banana2">#d0f4a2</color>
+    <color name="background_list_product">#5068b6ff</color>
+    <color name="orange_color">#fbff1e</color>
+    <color name="hint_color">#90000000</color>
 
 
 </resources>
