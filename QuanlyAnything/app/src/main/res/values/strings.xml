@@ -28,7 +28,7 @@
     <string name="text_soluong">Tổng số lượng: </string>
     <string name="price_product">Giá bán lẻ:</string>
     <string name="retail_price_product">Bán lẻ:</string>
-    <string name="wholesale_price_product">Bán buôn:</string>
+    <string name="wholesale_price_product">Bán sỉ:</string>
     <string name="text_search">Tìm kiếm</string>
     <string name="text_unit">Đơn vị:</string>
     <string name="text_hint_unit">đơn vị</string>
@@ -43,5 +43,10 @@
     <string name="text_total_price">Tổng giá mua:</string>
     <string name="text_custom">tự nhập</string>
     <string name="text_input_unit">Nhập đơn vị</string>
+    <string name="text_flash_on">Flash On</string>
+    <string name="text_flash_off">Flash Off</string>
+    <string name="status_product">Trạng thái:</string>
+    <string name="text_status_sell">Có bán</string>
+    <string name="text_status_not_sell">Tạm dừng</string>
 
 </resources>

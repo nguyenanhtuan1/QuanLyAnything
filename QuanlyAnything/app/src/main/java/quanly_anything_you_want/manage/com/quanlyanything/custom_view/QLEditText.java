@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
@@ -94,6 +95,15 @@ public class QLEditText extends EditText {
 
     public void setInputPrice(boolean inputPrice) {
         isInputPrice = inputPrice;
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        if (isInputPrice) {
+            text = CommonUtil.showPriceNotCurrencyNotRoundValue(text.toString().replace(".", "").replace(",", ""));
+        }
+        super.setText(text, type);
+
     }
 
     @Override

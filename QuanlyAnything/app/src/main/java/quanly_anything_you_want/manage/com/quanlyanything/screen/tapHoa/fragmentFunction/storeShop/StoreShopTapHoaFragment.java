@@ -11,6 +11,7 @@ import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
+import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ListStoreAdapter;
 
 public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTapHoaContact.View {
@@ -22,6 +23,7 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
 
     ListStoreAdapter adapter;
     StoreShopTapHoaPresenter mPresenter;
+    ProductDialog dialogProduct;
 
     @Override
     protected void onInitData() {
@@ -29,15 +31,26 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
 
         adapter = new ListStoreAdapter(getContext(), mPresenter.getListProduct(), new ListStoreAdapter.OnItemClickListener() {
             @Override
-            public void onAddMoreQuantity(int position) {
+            public void onAddMoreQuantity(final int position) {
 
+            }
+
+            @Override
+            public void onClickDetail(final int position) {
+                dialogProduct = new ProductDialog(mPresenter.getListProduct().get(position), new ProductDialog.OnSaveListener() {
+                    @Override
+                    public void onSaveValue(ProductTapHoa product) {
+                        mPresenter.getListProduct().set(position, product);
+                        adapter.notifyItemChanged(position);
+                    }
+                });
+                dialogProduct.show(getFragmentManager(), "ProductDialog");
             }
         });
 
         lvProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
         lvProduct.setHasFixedSize(true);
         lvProduct.setAdapter(adapter);
-
     }
 
     @Override
@@ -67,8 +80,19 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
 
     @OnClick(R.id.btn_new_product)
     void onClickNewProduct() {
-        ProductDialog dialog = new ProductDialog();
-        dialog.show(getFragmentManager(), "ProductDialog");
+        dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
+            @Override
+            public void onSaveValue(ProductTapHoa product) {
+                mPresenter.getListProduct().add(product);
+                adapter.notifyDataSetChanged();
+            }
+        });
+        dialogProduct.show(getFragmentManager(), "ProductDialog");
+    }
+
+    @Override
+    public void setValueBarcode(String barcode) {
+        dialogProduct.setValueBarcode(barcode);
     }
 
     @Override

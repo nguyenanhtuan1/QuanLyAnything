@@ -47,7 +47,7 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         return listProduct != null ? listProduct.size() : 0;
     }
 
-    class ViewItemHolder extends RecyclerView.ViewHolder {
+    class ViewItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.imv_photo_product)
         ImageView imvPhoto;
@@ -64,22 +64,33 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         ViewItemHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
+
 
         void setUpdateData(ProductTapHoa data) {
             ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
-            tvQuantity.setText(data.quantityAll + " " + data.unit);
-            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceExport) + "/ 1"  + data.unit);
+            tvQuantity.setText(data.totalQuantity + " " + data.unitTotalQuantity);
+            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceRetail) + "/ 1" + data.unitRetail);
         }
 
         @OnClick(R.id.tv_add_quantity)
         void onClickAddQuantity() {
             mCallBack.onAddMoreQuantity(getAdapterPosition());
         }
+
+        @Override
+        public void onClick(View v) {
+            if (v == itemView) {
+                mCallBack.onClickDetail(getAdapterPosition());
+            }
+        }
     }
 
     public interface OnItemClickListener {
         void onAddMoreQuantity(int position);
+
+        void onClickDetail(int position);
     }
 }

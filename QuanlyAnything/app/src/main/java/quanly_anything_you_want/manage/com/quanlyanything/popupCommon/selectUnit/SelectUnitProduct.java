@@ -1,7 +1,9 @@
 package quanly_anything_you_want.manage.com.quanlyanything.popupCommon.selectUnit;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,7 +28,7 @@ public class SelectUnitProduct extends PopupWindow {
         super(context);
         mContext = context;
         setOutsideTouchable(true);
-        setBackgroundDrawable(new BitmapDrawable());
+        setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setFocusable(true);
         ScrollView scrollView = (ScrollView) LayoutInflater.from(context).inflate(R.layout.layout_popup_pick_unit, null, false);
         layoutParent = (LinearLayout) scrollView.getChildAt(0);

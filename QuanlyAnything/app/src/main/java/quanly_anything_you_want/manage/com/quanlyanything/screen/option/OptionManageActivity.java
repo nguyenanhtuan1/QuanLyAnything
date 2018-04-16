@@ -85,18 +85,18 @@ public class OptionManageActivity extends BaseActivity implements OptionManageCo
     }
 
     private void setOnStartAnimation(final ImageView view, final Class activity) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "rotationY", 0f, 360f);
-        objectAnimator.setDuration(500);
-        objectAnimator.addListener(new AnimatorListenerAdapter() {
-        });
-        objectAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "rotationY", 0f, 360f);
+//        objectAnimator.setDuration(500);
+//        objectAnimator.addListener(new AnimatorListenerAdapter() {
+//        });
+//        objectAnimator.addListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
                 Intent intent = new Intent(OptionManageActivity.this, activity);
                 startActivity(intent);
-            }
-        });
-        objectAnimator.start();
+//            }
+//        });
+//        objectAnimator.start();
     }
 
     @OnClick(R.id.btn_logout)

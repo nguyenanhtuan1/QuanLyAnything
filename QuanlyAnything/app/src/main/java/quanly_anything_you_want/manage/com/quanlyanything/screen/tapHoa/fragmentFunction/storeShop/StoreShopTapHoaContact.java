@@ -6,6 +6,8 @@ import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
 public interface StoreShopTapHoaContact {
 
     interface View extends IBaseView {
+        void setValueBarcode(String barcode);
+
         void onNotifyAdapterProduct();
     }
 

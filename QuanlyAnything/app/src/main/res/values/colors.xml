@@ -11,6 +11,7 @@
     <color name="transparent_dialog">#50000000</color>
     <color name="semi_black">#80000000</color>
     <color name="white_color">#ffffff</color>
+    <color name="red_color">#ff5c54</color>
     <color name="black_color">#000000</color>
     <color name="grey_default_color">#F2F2F2</color>
 

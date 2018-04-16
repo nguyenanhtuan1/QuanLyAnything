@@ -1,11 +1,14 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.Button;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +49,15 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
         setContentView(R.layout.tap_hoa_activity);
         super.onCreate(savedInstanceState);
         optionManagePresenter = new TapHoaPresenter(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null && result.getContents() != null) {
+            ((StoreShopTapHoaFragment) listFragment.get(0)).setValueBarcode(result.getContents());
+        }
     }
 
     @Override

@@ -26,11 +26,13 @@ public class CommonUtil {
         return dp * (metrics.densityDpi / 160f);
     }
 
-    public static boolean isCurrencyVND(String vnd){
-        return vnd.equalsIgnoreCase("vnd");
+    public static boolean isCurrencyVND(String vnd) {
+        return vnd != null && vnd.equalsIgnoreCase("vnd");
     }
 
     public static String showPrice(String currency, double amount) {
+        if (currency == null)
+            currency = "";
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
         formatter.applyPattern("#,###,###");
         return formatter.format(setRoundAmount(amount, 2)) + currency;
