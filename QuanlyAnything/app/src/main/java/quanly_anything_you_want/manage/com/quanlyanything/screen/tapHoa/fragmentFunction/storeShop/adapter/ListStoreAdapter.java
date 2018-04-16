@@ -70,7 +70,7 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
             ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
             tvQuantity.setText(data.quantityAll + " " + data.unit);
-            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceExport) + "/" + data.quantityExport + data.unit);
+            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceExport) + "/ 1"  + data.unit);
         }
 
         @OnClick(R.id.tv_add_quantity)

@@ -59,7 +59,6 @@ public class QLEditText extends EditText {
                 return false;
             }
         });
-
         addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
@@ -74,6 +73,7 @@ public class QLEditText extends EditText {
 
             @Override
             public void afterTextChanged(Editable s) {
+
             }
 
             @Override
@@ -114,11 +114,10 @@ public class QLEditText extends EditText {
         } else {
             setCompoundDrawables(null, null, null, null);
             if (listener != null) {
-                if (isInputPrice) {
-                    setText(CommonUtil.showPriceNotCurrency(getText().toString()));
-                }
                 listener.onDismissKeyBoard(this);
-
+            }
+            if (isInputPrice) {
+                setText(CommonUtil.showPriceNotCurrencyNotRoundValue(getText().toString().replace(".", "").replace(",", "")));
             }
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {

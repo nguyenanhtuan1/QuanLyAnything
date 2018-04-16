@@ -26,7 +26,7 @@
     <string name="new_product">Tạo mới</string>
     <string name="name_product">Tên: </string>
     <string name="text_soluong">Tổng số lượng: </string>
-    <string name="price_product">Giá bán:</string>
+    <string name="price_product">Giá bán lẻ:</string>
     <string name="retail_price_product">Bán lẻ:</string>
     <string name="wholesale_price_product">Bán buôn:</string>
     <string name="text_search">Tìm kiếm</string>
@@ -41,5 +41,7 @@
     <string name="text_unit_price">Đơn vị tiền:</string>
     <string name="text_hint_total_quantity">giá / tổng số lượng</string>
     <string name="text_total_price">Tổng giá mua:</string>
+    <string name="text_custom">tự nhập</string>
+    <string name="text_input_unit">Nhập đơn vị</string>
 
 </resources>

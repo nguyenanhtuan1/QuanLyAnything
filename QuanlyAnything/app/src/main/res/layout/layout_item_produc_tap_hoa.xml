@@ -90,7 +90,7 @@
                         android:gravity="center"
                         android:text="@string/add_product"
                         android:textAllCaps="false"
-                        android:textColor="@color/white_color"
+                        android:textColor="@color/color_blue_normal"
                         android:textSize="@dimen/text_size_title_small_login" />
                 </LinearLayout>
 
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:text="@string/price_product"
+                        android:text="@string/retail_price_product"
                         android:textSize="@dimen/text_size_normal_default" />
 
                     <TextView
