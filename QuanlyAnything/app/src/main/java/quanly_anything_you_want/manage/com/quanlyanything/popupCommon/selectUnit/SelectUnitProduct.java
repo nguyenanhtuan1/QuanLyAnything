@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 import static android.widget.ListPopupWindow.WRAP_CONTENT;
 
@@ -36,7 +37,7 @@ public class SelectUnitProduct extends PopupWindow {
     }
 
     public void showViewPopupUnitCurrency(View anchorView, final TextView key, final View.OnClickListener mListener) {
-        setWidth(200);
+        setWidth(WRAP_CONTENT);
         setHeight(WRAP_CONTENT);
 
         for (int i = 0; i < getListUnitCurrency().size(); i++) {
@@ -54,11 +55,11 @@ public class SelectUnitProduct extends PopupWindow {
             });
             layoutParent.addView(ln);
         }
-        showAsDropDown(anchorView, -200, -anchorView.getHeight());
+        showAsDropDown(anchorView, -(anchorView.getWidth() * 2 - 20), -anchorView.getHeight());
     }
 
     public void showViewPopupUnitProduct(View anchorView, final TextView key, final View.OnClickListener mListener) {
-        setWidth(200);
+        setWidth(WRAP_CONTENT);
         setHeight(WRAP_CONTENT);
 
         for (int i = 0; i < getListUnitProduct().size(); i++) {
@@ -78,7 +79,7 @@ public class SelectUnitProduct extends PopupWindow {
             });
             layoutParent.addView(ln);
         }
-        showAsDropDown(anchorView, -200, -anchorView.getHeight());
+        showAsDropDown(anchorView, -(anchorView.getWidth() * 2 - 20), -anchorView.getHeight());
     }
 
     private List<String> getListUnitCurrency() {

@@ -1,6 +1,7 @@
 package quanly_anything_you_want.manage.com.quanlyanything.dialog;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -106,9 +107,10 @@ public class ProductDialog extends BaseDialogFragment {
         edtPriceRetail.setShowClear(false);
         edtCodeProduct.setShowClear(false);
 
-        edtTotalPrice.setInputPrice(CommonUtil.isCurrencyVND(mProduct.currency));
-        edtPriceWholesale.setInputPrice(CommonUtil.isCurrencyVND(mProduct.currency));
-        edtPriceRetail.setInputPrice(CommonUtil.isCurrencyVND(mProduct.currency));
+        edtTotalPrice.setInputPrice(true);
+        edtPriceWholesale.setInputPrice(true);
+        edtPriceRetail.setInputPrice(true);
+        setCurrencyValueToEdt(mProduct.currency);
 
         edtNameProduct.setText(mProduct.name != null ? mProduct.name : "");
         tvUnitCurrency.setText(mProduct.currency != null ? mProduct.currency : "");
@@ -117,9 +119,9 @@ public class ProductDialog extends BaseDialogFragment {
         tvUnitCurrencyRetail.setText(mProduct.currency != null ? mProduct.currency : "");
         edtTotalQuantity.setText(mProduct.totalQuantity != 0 ? String.valueOf(mProduct.totalQuantity) : "");
         tvUnitTotalQuantity.setText(mProduct.unitTotalQuantity != null ? mProduct.unitTotalQuantity : "");
-        edtTotalPrice.setText(mProduct.totalPrice != 0 ? String.valueOf(mProduct.totalPrice) : "");
-        edtPriceWholesale.setText(mProduct.priceWholesale != 0 ? String.valueOf(mProduct.priceWholesale) : "");
-        edtPriceRetail.setText(mProduct.priceRetail != 0 ? String.valueOf(mProduct.priceRetail) : "");
+        edtTotalPrice.setText(mProduct.totalPrice != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.totalPrice) : "");
+        edtPriceWholesale.setText(mProduct.priceWholesale != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.priceWholesale) : "");
+        edtPriceRetail.setText(mProduct.priceRetail != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.priceRetail) : "");
         tvUnitOfWholesale.setText(mProduct.unitWholesale);
         tvUnitOfRetail.setText(mProduct.unitRetail);
         edtCodeProduct.setText(mProduct.codeProduct);
@@ -152,21 +154,32 @@ public class ProductDialog extends BaseDialogFragment {
         if (edtTotalPrice.getText().toString().isEmpty()) {
             mProduct.totalPrice = 0;
         } else {
-            mProduct.totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", ""));
+            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
+                mProduct.totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", ""));
+            } else {
+                mProduct.totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", "").replace(",", "."));
+            }
         }
 
         if (edtPriceWholesale.getText().toString().isEmpty()) {
             mProduct.priceWholesale = 0;
         } else {
-            mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", ""));
+            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
+                mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", ""));
+            } else {
+                mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", "").replace(",", "."));
+            }
         }
 
         if (edtPriceRetail.getText().toString().isEmpty()) {
             mProduct.priceRetail = 0;
         } else {
-            mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", ""));
+            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
+                mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", ""));
+            } else {
+                mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", "").replace(",", "."));
+            }
         }
-
         mProduct.unitTotalQuantity = tvUnitTotalQuantity.getText().toString();
         mProduct.unitWholesale = tvUnitOfWholesale.getText().toString();
         mProduct.unitRetail = tvUnitOfRetail.getText().toString();
@@ -184,18 +197,30 @@ public class ProductDialog extends BaseDialogFragment {
     @OnClick(R.id.btn_choose_currency)
     void onClickChooseCurrency() {
         SelectUnitProduct selectUnitProduct = new SelectUnitProduct(getContext());
+
+        final String unit = tvUnitCurrency.getText().toString();
         selectUnitProduct.showViewPopupUnitCurrency(btnChooseCurrency, tvUnitCurrency, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvUnitCurrencyTotalPrice.setText(((TextView) v).getText());
-                tvUnitCurrencyWholesale.setText(((TextView) v).getText());
-                tvUnitCurrencyRetail.setText(((TextView) v).getText());
+                String currency = ((TextView) v).getText().toString();
+                if (!unit.equalsIgnoreCase(currency)) {
+                    tvUnitCurrencyTotalPrice.setText(currency);
+                    tvUnitCurrencyWholesale.setText(currency);
+                    tvUnitCurrencyRetail.setText(currency);
+                    setCurrencyValueToEdt(currency);
 
-                edtTotalPrice.setInputPrice(CommonUtil.isCurrencyVND(tvUnitCurrency.getText().toString()));
-                edtPriceWholesale.setInputPrice(CommonUtil.isCurrencyVND(tvUnitCurrency.getText().toString()));
-                edtPriceRetail.setInputPrice(CommonUtil.isCurrencyVND(tvUnitCurrency.getText().toString()));
+                    edtTotalPrice.setText("");
+                    edtPriceWholesale.setText("");
+                    edtPriceRetail.setText("");
+                }
             }
         });
+    }
+
+    private void setCurrencyValueToEdt(String currency) {
+        edtTotalPrice.setCurrencyVN(currency);
+        edtPriceWholesale.setCurrencyVN(currency);
+        edtPriceRetail.setCurrencyVN(currency);
     }
 
     @OnClick(R.id.btn_choose_unit_sl)

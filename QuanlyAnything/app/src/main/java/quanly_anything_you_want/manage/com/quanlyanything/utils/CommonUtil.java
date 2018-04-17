@@ -14,6 +14,8 @@ import static java.lang.Math.floor;
 import static java.lang.Math.pow;
 
 public class CommonUtil {
+    public static final String formatVN = "#,###,###";
+    public static final String formatUS = "#,###,###.##";
 
     public static String showName(String text) {
         if (TextUtils.isEmpty(text) || text.equalsIgnoreCase("null")) return "";
@@ -30,44 +32,46 @@ public class CommonUtil {
         return vnd != null && vnd.equalsIgnoreCase("vnd");
     }
 
-    public static String showPrice(String currency, double amount) {
+    public static String showPriceHasCurrency(String currency, double amount) {
         if (currency == null)
             currency = "";
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        formatter.applyPattern("#,###,###");
+        if (CommonUtil.isCurrencyVND(currency)) {
+            formatter.applyPattern(formatVN);
+
+        } else {
+            formatter.applyPattern(formatUS);
+
+        }
+        return formatter.format(amount) + currency;
+    }
+
+    public static String showPriceNotCurrency(String currency, double amount) {
+        if (currency == null)
+            currency = "";
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
+        if (CommonUtil.isCurrencyVND(currency)) {
+            formatter.applyPattern(formatVN);
+
+        } else {
+            formatter.applyPattern(formatUS);
+
+        }
+        return formatter.format(amount);
+    }
+
+    public static String showPriceTotal(String currency, double amount) {
+        if (currency == null)
+            currency = "";
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
+        if (CommonUtil.isCurrencyVND(currency)) {
+            formatter.applyPattern(formatVN);
+
+        } else {
+            formatter.applyPattern(formatUS);
+
+        }
         return formatter.format(setRoundAmount(amount, 2)) + currency;
-    }
-
-    public static String showPriceNotCurrency(double amount) {
-        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        formatter.applyPattern("#,###,###");
-        return formatter.format(setRoundAmount(amount, 2));
-    }
-
-    public static String showPriceNotCurrency(String amount) {
-        double value = 0;
-        if (!TextUtils.isEmpty(amount)) {
-            value = Double.valueOf(amount);
-        } else {
-            return "";
-        }
-
-        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        formatter.applyPattern("#,###,###");
-        return formatter.format(setRoundAmount(value, 2));
-    }
-
-    public static String showPriceNotCurrencyNotRoundValue(String amount) {
-        double value = 0;
-        if (!TextUtils.isEmpty(amount)) {
-            value = Double.valueOf(amount);
-        } else {
-            return "";
-        }
-
-        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        formatter.applyPattern("#,###,###");
-        return formatter.format(value);
     }
 
     private static double setRoundAmount(double amount, int precision) {

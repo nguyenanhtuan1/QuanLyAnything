@@ -53,13 +53,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:textColor="@color/black_color"
-                        android:textSize="@dimen/text_size_normal_default" />
+                        android:textSize="@dimen/text_size_normal_default"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -79,7 +79,8 @@
                         android:layout_weight="1"
                         android:singleLine="true"
                         android:textColor="@color/black_color"
-                        android:textSize="@dimen/text_size_normal_default" />
+                        android:textSize="@dimen/text_size_normal_default"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_add_quantity"
@@ -97,7 +98,32 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/wholesale_price_product"
+                        android:textSize="@dimen/text_size_normal_default" />
+
+                    <TextView
+                        android:id="@+id/tv_price_wholesale_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/text_size_normal_default"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -109,13 +135,30 @@
                         android:textSize="@dimen/text_size_normal_default" />
 
                     <TextView
-                        android:id="@+id/tv_price_product"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_price_retail_product"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
+                        android:layout_weight="1"
                         android:singleLine="true"
                         android:textColor="@color/black_color"
-                        android:textSize="@dimen/text_size_normal_default" />
+                        android:textSize="@dimen/text_size_normal_default"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_status_product"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginStart="2dp"
+                        android:background="@drawable/bg_btn_logout"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:singleLine="true"
+                        android:text="Stop"
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/text_size_normal_default"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

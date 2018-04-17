@@ -6,12 +6,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ListStoreAdapter;
 
 public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTapHoaContact.View {
@@ -24,6 +27,8 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
     ListStoreAdapter adapter;
     StoreShopTapHoaPresenter mPresenter;
     ProductDialog dialogProduct;
+
+    private boolean isScanFromThis;
 
     @Override
     protected void onInitData() {
@@ -90,9 +95,25 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         dialogProduct.show(getFragmentManager(), "ProductDialog");
     }
 
+    @OnClick(R.id.btn_scan_product)
+    void onClickScanCode() {
+        isScanFromThis = true;
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        integrator.setPrompt("");
+        integrator.setCaptureActivity(CustomScannerActivity.class);
+        integrator.setOrientationLocked(false);
+        integrator.initiateScan();
+    }
+
     @Override
     public void setValueBarcode(String barcode) {
-        dialogProduct.setValueBarcode(barcode);
+        if (isScanFromThis) {
+            edtSearch.setText(barcode);
+            edtSearch.setSelection(edtSearch.getText().length());
+            isScanFromThis = false;
+        } else {
+            dialogProduct.setValueBarcode(barcode);
+        }
     }
 
     @Override

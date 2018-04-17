@@ -58,8 +58,14 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         @BindView(R.id.tv_quantity_product)
         TextView tvQuantity;
 
-        @BindView(R.id.tv_price_product)
-        TextView tvPrice;
+        @BindView(R.id.tv_price_retail_product)
+        TextView tvPriceRetail;
+
+        @BindView(R.id.tv_price_wholesale_product)
+        TextView tvPriceWholesale;
+
+        @BindView(R.id.tv_status_product)
+        TextView tvStatusProduct;
 
         ViewItemHolder(View itemView) {
             super(itemView);
@@ -67,12 +73,13 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
             itemView.setOnClickListener(this);
         }
 
-
         void setUpdateData(ProductTapHoa data) {
             ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
             tvQuantity.setText(data.totalQuantity + " " + data.unitTotalQuantity);
-            tvPrice.setText(CommonUtil.showPrice(data.currency, data.priceRetail) + "/ 1" + data.unitRetail);
+            tvPriceRetail.setText(CommonUtil.showPriceHasCurrency(data.currency, data.priceRetail) + "/ 1" + data.unitRetail);
+            tvPriceWholesale.setText(CommonUtil.showPriceHasCurrency(data.currency, data.priceWholesale) + "/ 1" + data.unitWholesale);
+            tvStatusProduct.setVisibility(data.status?View.GONE:View.VISIBLE);
         }
 
         @OnClick(R.id.tv_add_quantity)

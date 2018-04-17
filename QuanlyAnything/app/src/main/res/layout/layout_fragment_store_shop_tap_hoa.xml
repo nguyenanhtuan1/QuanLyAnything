@@ -14,10 +14,10 @@
         android:orientation="horizontal">
 
         <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+            android:id="@+id/edt_search_product"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_margin="10dp"
-            android:id="@+id/edt_search_product"
             android:layout_weight="1"
             android:background="@drawable/bg_edt_input_search"
             android:gravity="center_vertical"
@@ -34,10 +34,21 @@
             tools:ignore="LabelFor" />
 
         <Button
-            android:id="@+id/btn_new_product"
-            android:layout_width="70dp"
+            android:id="@+id/btn_scan_product"
+            android:layout_width="50dp"
             android:layout_height="36dp"
-            android:layout_margin="10dp"
+            android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
+            android:text="@string/text_scan_code"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <Button
+            android:id="@+id/btn_new_product"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="4dp"
             android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
             android:text="@string/new_product"
             android:textAllCaps="false"

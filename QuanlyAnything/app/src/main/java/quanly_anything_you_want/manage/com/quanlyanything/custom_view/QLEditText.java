@@ -25,6 +25,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 public class QLEditText extends EditText {
     private boolean isShowClear = true;
     boolean isInputPrice;
+    String currencyVN;
 
     public QLEditText(Context context) {
         super(context);
@@ -97,13 +98,8 @@ public class QLEditText extends EditText {
         isInputPrice = inputPrice;
     }
 
-    @Override
-    public void setText(CharSequence text, BufferType type) {
-        if (isInputPrice) {
-            text = CommonUtil.showPriceNotCurrencyNotRoundValue(text.toString().replace(".", "").replace(",", ""));
-        }
-        super.setText(text, type);
-
+    public void setCurrencyVN(String currencyVN) {
+        this.currencyVN = currencyVN;
     }
 
     @Override
@@ -127,7 +123,21 @@ public class QLEditText extends EditText {
                 listener.onDismissKeyBoard(this);
             }
             if (isInputPrice) {
-                setText(CommonUtil.showPriceNotCurrencyNotRoundValue(getText().toString().replace(".", "").replace(",", "")));
+                String value = getText().toString();
+                if (CommonUtil.isCurrencyVND(currencyVN)) {
+                    value = value.replace(".", "");
+                } else {
+                    if (value.contains(",")) {
+                        value = value.replace(".", "");
+                    }
+
+                    value = value.replace(",", ".");
+                }
+                try {
+                    setText(CommonUtil.showPriceNotCurrency(currencyVN, Double.valueOf(value)));
+                } catch (Exception e) {
+                    setText("");
+                }
             }
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {
