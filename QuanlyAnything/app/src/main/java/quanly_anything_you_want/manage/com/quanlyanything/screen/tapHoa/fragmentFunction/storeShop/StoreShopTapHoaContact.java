@@ -2,6 +2,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
 public interface StoreShopTapHoaContact {
 
@@ -9,11 +10,21 @@ public interface StoreShopTapHoaContact {
         void setValueBarcode(String barcode);
 
         void onNotifyAdapterProduct();
+
+        void onNotifyAdapterProductAtPosition(int position);
     }
 
     interface Presenter {
 
+        void addItemProduct(ProductTapHoa product);
+
+        void setUpdateChangeProduct(int position, ProductTapHoa product);
+
+        void addMoreQuantityProduct(int position, int quantity, double price, String seller);
+
         void onSearchProduct(String text);
+
+        void onSaveCacheProduct();
     }
 
 }

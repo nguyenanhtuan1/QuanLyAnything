@@ -1,20 +1,9 @@
 package quanly_anything_you_want.manage.com.quanlyanything.interactor.api;
 
 
-import android.app.Application;
-
-import com.google.gson.GsonBuilder;
-
-import java.time.Instant;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import quanly_anything_you_want.manage.com.quanlyanything.MainApplication;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.ApiCallback;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.ApiServices;
-import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.HeadersInterceptor;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.RestCallback;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.RestError;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.login.LoginRequest;

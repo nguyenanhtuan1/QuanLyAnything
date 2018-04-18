@@ -127,7 +127,7 @@ public class ProductDialog extends BaseDialogFragment {
         edtCodeProduct.setText(mProduct.codeProduct);
         btnHasSell.setSelected(mProduct.status);
         btnNotSell.setSelected(!mProduct.status);
-        ImageLoader.loadImagePhoto(getContext(), mProduct.photo, imvPhotoProduct);
+        ImageLoader.loadImagePhoto(getContext(), "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhotoProduct);
     }
 
     @Override

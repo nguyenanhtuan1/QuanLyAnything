@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.AddQuantityProductTapHoaDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
@@ -37,7 +38,13 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         adapter = new ListStoreAdapter(getContext(), mPresenter.getListProduct(), new ListStoreAdapter.OnItemClickListener() {
             @Override
             public void onAddMoreQuantity(final int position) {
-
+                AddQuantityProductTapHoaDialog dialog = new AddQuantityProductTapHoaDialog(mPresenter.getListProduct().get(position), new AddQuantityProductTapHoaDialog.OnSaveListener() {
+                    @Override
+                    public void onSaveValue(int quantity, double price, String seller) {
+                        mPresenter.addMoreQuantityProduct(position, quantity, price, seller);
+                    }
+                });
+                dialog.show(getFragmentManager(), "AddQuantityProductTapHoaDialog");
             }
 
             @Override
@@ -45,8 +52,7 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
                 dialogProduct = new ProductDialog(mPresenter.getListProduct().get(position), new ProductDialog.OnSaveListener() {
                     @Override
                     public void onSaveValue(ProductTapHoa product) {
-                        mPresenter.getListProduct().set(position, product);
-                        adapter.notifyItemChanged(position);
+                        mPresenter.setUpdateChangeProduct(position, product);
                     }
                 });
                 dialogProduct.show(getFragmentManager(), "ProductDialog");
@@ -88,8 +94,7 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
             @Override
             public void onSaveValue(ProductTapHoa product) {
-                mPresenter.getListProduct().add(product);
-                adapter.notifyDataSetChanged();
+                mPresenter.addItemProduct(product);
             }
         });
         dialogProduct.show(getFragmentManager(), "ProductDialog");
@@ -119,5 +124,10 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
     @Override
     public void onNotifyAdapterProduct() {
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onNotifyAdapterProductAtPosition(int position) {
+        adapter.notifyItemChanged(position);
     }
 }

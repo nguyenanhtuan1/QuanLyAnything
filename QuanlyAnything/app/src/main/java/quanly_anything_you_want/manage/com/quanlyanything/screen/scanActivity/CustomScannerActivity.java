@@ -13,7 +13,7 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 
-public class CustomScannerActivity extends AppCompatActivity implements CompoundBarcodeView.TorchListener {
+public class CustomScannerActivity extends AppCompatActivity {
 
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
@@ -24,8 +24,7 @@ public class CustomScannerActivity extends AppCompatActivity implements Compound
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_scanner);
-        barcodeScannerView = (DecoratedBarcodeView) findViewById(R.id.zxing_barcode);
-        barcodeScannerView.setTorchListener(this);
+        barcodeScannerView =  findViewById(R.id.zxing_barcode);
         btnFlash = (Button) findViewById(R.id.btn_flash);
         btnFlash.setText(getString(R.string.text_flash_off));
 
@@ -85,17 +84,6 @@ public class CustomScannerActivity extends AppCompatActivity implements Compound
     private boolean hasFlash() {
         return getApplicationContext().getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-    }
-
-    @Override
-    public void onTorchOn() {
-        // necessary override..
-    }
-
-
-    @Override
-    public void onTorchOff() {
-        // necessary override..
     }
 
 }

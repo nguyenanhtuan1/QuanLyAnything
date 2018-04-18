@@ -1,7 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:background="@color/white_color"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/margin_left_right_default"
+    android:paddingStart="@dimen/margin_left_right_default">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_scan_product"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_gravity="end"
+        android:layout_marginBottom="@dimen/margin_left_right_default"
+        android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
+        android:text="Thêm hóa đơn"
+        android:textAllCaps="false"
+        android:textColor="@color/white_color"
+        android:textSize="@dimen/text_size_normal_default" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
+                app:cardBackgroundColor="@color/white_color"
+                app:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Tạo Hóa Đơn"
+                            android:textColor="@color/app_color"
+                            android:textSize="@dimen/text_size_title_default" />
+
+                        <Button
+                            android:id="@+id/btn_cancel"
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/bg_btn_logout"
+                            android:text="Hủy"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/text_size_normal_default" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="Người mua:"
+                            android:textSize="@dimen/text_size_normal_default" />
+
+                        <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height_edt"
+                            android:background="@drawable/bg_edt_input_product"
+                            android:paddingEnd="6dp"
+                            android:paddingStart="6dp"
+                            android:singleLine="true"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/text_size_normal_default" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="Tổng SP:"
+                            android:textSize="@dimen/text_size_normal_default" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edt_input_product"
+                            android:padding="4dp"
+                            android:text="1 thung mì tôm hảo hảo + 3 gói mì ô ma chi + 1 cái thau +1 hộp sữa vinamilk + 1 chai tương ớt chin su + 1kg cá khô"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/text_size_normal_default" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="Tổng Tiền:"
+                            android:textSize="@dimen/text_size_normal_default" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height_edt"
+                            android:background="@drawable/bg_edt_input_product"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="350.000 VND"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/text_size_title_default"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/text_title_product"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/text_size_title_default" />
+
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="end"
+                            android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
+                            android:text="@string/text_add"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/text_size_normal_default" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/bg_edt_input_product"
+                            android:orientation="horizontal"
+                            android:padding="6dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_sua_ong_tho" />
+
+                                <Button
+                                    android:layout_width="30dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/bg_btn_pressed_green_greentransnot_border"
+                                    android:text="Sửa"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/app_color"
+                                    android:textSize="@dimen/text_size_normal_default" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/name_product"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingEnd="4dp"
+                                        android:paddingStart="4dp"
+                                        android:singleLine="true"
+                                        android:text="Sữa ông thọ"
+                                        android:textColor="@color/black_color"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <Button
+                                        android:layout_width="36dp"
+                                        android:layout_height="30dp"
+                                        android:background="@drawable/bg_btn_logout"
+                                        android:text="Xóa"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white_color"
+                                        android:textSize="@dimen/text_size_normal_default" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/wholesale_price_product"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingEnd="4dp"
+                                        android:paddingStart="4dp"
+                                        android:singleLine="true"
+                                        android:text="120.000VND /1 Thùng"
+                                        android:textColor="@color/black_color"
+                                        android:textSize="@dimen/text_size_normal_default" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Số lượng sỉ:"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingEnd="4dp"
+                                        android:paddingStart="4dp"
+                                        android:singleLine="true"
+                                        android:text="4 Thùng = 480.000VND"
+                                        android:textColor="@color/black_color"
+                                        android:textSize="@dimen/text_size_normal_default"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/retail_price_product"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingEnd="4dp"
+                                        android:paddingStart="4dp"
+                                        android:singleLine="true"
+                                        android:text="20.000VND /1 Hộp"
+                                        android:textColor="@color/black_color"
+                                        android:textSize="@dimen/text_size_normal_default" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Số lượng lẻ:"
+                                        android:textSize="@dimen/text_size_normal_default" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingEnd="4dp"
+                                        android:paddingStart="4dp"
+                                        android:singleLine="true"
+                                        android:text="4 Hộp = 80.000VND"
+                                        android:textColor="@color/black_color"
+                                        android:textSize="@dimen/text_size_normal_default"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="70dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_btn_pressed_green_greentrans"
+                        android:text="Hoàn tất"
+                        android:textAllCaps="false"
+                        android:textColor="@color/app_color"
+                        android:textSize="@dimen/text_size_normal_default" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

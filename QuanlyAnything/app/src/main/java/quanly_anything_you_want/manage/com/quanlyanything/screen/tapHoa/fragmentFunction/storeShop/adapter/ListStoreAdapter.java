@@ -74,7 +74,8 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         }
 
         void setUpdateData(ProductTapHoa data) {
-            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
+//            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
+            ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
             tvQuantity.setText(data.totalQuantity + " " + data.unitTotalQuantity);
             tvPriceRetail.setText(CommonUtil.showPriceHasCurrency(data.currency, data.priceRetail) + "/ 1" + data.unitRetail);

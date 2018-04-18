@@ -49,7 +49,7 @@
                     android:background="@drawable/bg_btn_pressed_green_greentrans"
                     android:text="@string/text_save"
                     android:textAllCaps="false"
-                    android:textColor="@color/white_color"
+                    android:textColor="@color/app_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
             </RelativeLayout>
