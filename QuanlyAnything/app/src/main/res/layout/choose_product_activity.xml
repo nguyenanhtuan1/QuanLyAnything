@@ -3,7 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_screen_tap_hoa"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="@dimen/margin_left_right_default"
+        android:layout_marginStart="@dimen/margin_left_right_default"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_btn_logout"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_btn_pressed_green_greentrans"
+            android:text="Xong"
+            android:textAllCaps="false"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ln_content"
@@ -22,10 +55,10 @@
             android:background="@drawable/bg_edt_input_search"
             android:gravity="center_vertical"
             android:hint="@string/text_search"
-            android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"
             android:paddingEnd="10dp"
+            android:imeOptions="actionSearch"
             android:paddingStart="10dp"
             android:scrollbars="horizontal"
             android:singleLine="true"
@@ -38,23 +71,13 @@
             android:id="@+id/btn_scan_product"
             android:layout_width="50dp"
             android:layout_height="36dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
             android:text="@string/text_scan_code"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
             android:textSize="@dimen/text_size_normal_default" />
 
-        <Button
-            android:id="@+id/btn_new_product"
-            android:layout_width="60dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
-            android:text="@string/new_product"
-            android:textAllCaps="false"
-            android:textColor="@color/white_color"
-            android:textSize="@dimen/text_size_normal_default" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

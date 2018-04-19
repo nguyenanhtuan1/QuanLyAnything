@@ -23,7 +23,9 @@
                 android:id="@+id/imv_photo_product"
                 android:layout_width="80dp"
                 android:layout_height="70dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="@null" />
 
             <LinearLayout
@@ -41,7 +43,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="@string/name_product"
@@ -57,43 +59,6 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="@string/text_soluong"
-                        android:textSize="@dimen/text_size_normal_default" />
-
-                    <TextView
-                        android:id="@+id/tv_quantity_product"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginStart="2dp"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:textColor="@color/black_color"
-                        android:textSize="@dimen/text_size_normal_default"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_add_quantity"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@drawable/bg_btn_pressed_green_greentrans"
-                        android:gravity="center"
-                        android:text="@string/add_product"
-                        android:textAllCaps="false"
-                        android:textColor="@color/color_blue_normal"
-                        android:textSize="@dimen/text_size_title_small_login" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,7 +68,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="@string/wholesale_price_product"
@@ -128,7 +93,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="@string/retail_price_product"

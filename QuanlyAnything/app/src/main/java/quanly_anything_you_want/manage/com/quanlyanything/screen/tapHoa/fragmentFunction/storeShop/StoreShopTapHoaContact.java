@@ -20,8 +20,6 @@ public interface StoreShopTapHoaContact {
 
         void setUpdateChangeProduct(int position, ProductTapHoa product);
 
-        void addMoreQuantityProduct(int position, int quantity, double price, String seller);
-
         void onSearchProduct(String text);
 
         void onSaveCacheProduct();

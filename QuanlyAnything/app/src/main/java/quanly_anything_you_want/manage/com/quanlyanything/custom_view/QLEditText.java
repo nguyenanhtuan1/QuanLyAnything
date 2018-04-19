@@ -84,6 +84,30 @@ public class QLEditText extends EditText {
         });
     }
 
+    public int getValueInt() {
+        try {
+            return Integer.valueOf(getText().toString());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public float getValueFloat() {
+        try {
+            return Float.valueOf(getText().toString());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public double getValueDouble() {
+        try {
+            return Double.valueOf(getText().toString());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     @Override
     public void setCompoundDrawables(@Nullable Drawable left, @Nullable Drawable top, @Nullable Drawable right, @Nullable Drawable bottom) {
         if (isShowClear)
@@ -119,9 +143,7 @@ public class QLEditText extends EditText {
 
         } else {
             setCompoundDrawables(null, null, null, null);
-            if (listener != null) {
-                listener.onDismissKeyBoard(this);
-            }
+
             if (isInputPrice) {
                 String value = getText().toString();
                 if (CommonUtil.isCurrencyVND(currencyVN)) {
@@ -139,6 +161,11 @@ public class QLEditText extends EditText {
                     setText("");
                 }
             }
+
+            if (listener != null) {
+                listener.onDismissKeyBoard(this);
+            }
+
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {
                 imm.hideSoftInputFromWindow(this.getWindowToken(), 0);

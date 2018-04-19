@@ -1,6 +1,9 @@
 package quanly_anything_you_want.manage.com.quanlyanything.dialog;
 
 import android.annotation.SuppressLint;
+import android.text.InputType;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,21 +20,32 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
     @BindView(R.id.tv_unit_quantity_wholesale)
     TextView tvUnitQuantityWholesale;
 
+    @BindView(R.id.tv_unit_quantity_retail)
+    TextView tvUnitQuantityRetail;
+
     @BindView(R.id.edt_input_quantity_wholesale)
-    QLEditText edtInputQuantityWholesale;
+    QLEditText edtQuantityWholesale;
 
-    @BindView(R.id.edt_total_price)
-    QLEditText edtTotalPrice;
+    @BindView(R.id.edt_input_quantity_retail)
+    QLEditText edtQuantityRetail;
 
-    @BindView(R.id.tv_unit_currency)
-    TextView tvUnitCurrency;
+    @BindView(R.id.ln_content_wholesale)
+    LinearLayout lnContentWholesale;
 
-    private ProductTapHoa mProduct;
     private OnSaveListener mCallBack;
+    int quantityWholesale;
+    int quantityRetail;
+    String unitWholesale;
+    String unitRetail;
+    double priceWholesale;
 
-    public EditQuantityProductTapHoaDialog(ProductTapHoa mProduct, OnSaveListener mCallBack) {
-        this.mProduct = mProduct;
+    public EditQuantityProductTapHoaDialog(double priceWholesale, int quantityWholesale, int quantityRetail, String unitWholesale, String unitRetail, OnSaveListener mCallBack) {
         this.mCallBack = mCallBack;
+        this.quantityWholesale = quantityWholesale;
+        this.quantityRetail = quantityRetail;
+        this.unitWholesale = unitWholesale;
+        this.unitRetail = unitRetail;
+        this.priceWholesale = priceWholesale;
     }
 
     @Override
@@ -41,15 +55,48 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
 
     @Override
     protected void initData() {
-        edtInputQuantityWholesale.setShowClear(false);
-        edtTotalPrice.setShowClear(false);
+        edtQuantityWholesale.setShowClear(false);
+        edtQuantityRetail.setShowClear(false);
 
-        tvUnitQuantityWholesale.setText(mProduct.unitWholesale);
-        tvUnitCurrency.setText(mProduct.unitRetail);
+        lnContentWholesale.setVisibility(priceWholesale != 0 ? View.VISIBLE : View.GONE);
+
+        tvUnitQuantityWholesale.setText(unitWholesale != null ? unitWholesale : "");
+        tvUnitQuantityRetail.setText(unitRetail != null ? unitRetail : "");
+
+        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
+        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
     }
 
     @Override
     protected void initListener() {
+
+    }
+
+    @OnClick(R.id.btn_minus_wholesale)
+    void onClickMinusWholesale() {
+        if (quantityWholesale == 0) return;
+        quantityWholesale--;
+        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
+    }
+
+    @OnClick(R.id.btn_plus_wholesale)
+    void onClickPlusWholesale() {
+        quantityWholesale++;
+        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
+    }
+
+    @OnClick(R.id.btn_minus_retail)
+    void onClickMinusRetail() {
+        if (quantityRetail == 0) return;
+        quantityRetail--;
+        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
+
+    }
+
+    @OnClick(R.id.btn_plus_retail)
+    void onClickPlusRetail() {
+        quantityRetail++;
+        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
 
     }
 
@@ -60,24 +107,26 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
 
     @OnClick(R.id.btn_save)
     void onClickSave() {
-        if (edtInputQuantityWholesale.getText().toString().isEmpty() || edtTotalPrice.getText().toString().isEmpty()) {
+        if (edtQuantityWholesale.getText().toString().isEmpty() && edtQuantityRetail.getText().toString().isEmpty()) {
             Toast.makeText(getContext(), R.string.error_not_input_quantity_product, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int quantity = Integer.valueOf(edtInputQuantityWholesale.getText().toString());
-        double totalPrice;
-
-        if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-            totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", ""));
-        } else {
-            totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", "").replace(",", "."));
+        int quantityWhole = 0;
+        if (!edtQuantityWholesale.getText().toString().isEmpty()) {
+            quantityWhole = Integer.valueOf(edtQuantityWholesale.getText().toString());
         }
-        mCallBack.onSaveValue(quantity, totalPrice);
+
+        int quantityRetail = 0;
+        if (!edtQuantityRetail.getText().toString().isEmpty()) {
+            quantityRetail = Integer.valueOf(edtQuantityRetail.getText().toString());
+        }
+
+        mCallBack.onSaveValue(quantityWhole, quantityRetail);
         dismiss();
     }
 
     public interface OnSaveListener {
-        void onSaveValue(int quantity, double price);
+        void onSaveValue(int quantityWholesale, int quantityRetail);
     }
 }

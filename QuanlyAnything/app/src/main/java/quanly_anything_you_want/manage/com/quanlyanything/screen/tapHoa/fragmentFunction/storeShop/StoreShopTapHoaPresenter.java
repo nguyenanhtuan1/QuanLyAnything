@@ -31,7 +31,6 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     public void addItemProduct(ProductTapHoa product) {
         listStore.add(product);
         onSearchProduct(textSearch);
-        getView().onNotifyAdapterProduct();
         onSaveCacheProduct();
     }
 
@@ -40,14 +39,6 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
         listDisplay.set(position, product);
         getView().onNotifyAdapterProductAtPosition(position);
         onSaveCacheProduct();
-    }
-
-    @Override
-    public void addMoreQuantityProduct(int position, int quantity, double price, String seller) {
-        ProductTapHoa item = listDisplay.get(position);
-        item.totalQuantity = item.totalQuantity + quantity;
-        item.totalPrice = item.totalPrice + price;
-        getView().onNotifyAdapterProductAtPosition(position);
     }
 
     public class CustomComparator implements Comparator<ProductTapHoa> {

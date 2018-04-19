@@ -155,6 +155,7 @@
                             android:textSize="@dimen/text_size_title_default" />
 
                         <Button
+                            android:id="@+id/btn_add_product"
                             android:layout_width="50dp"
                             android:layout_height="34dp"
                             android:layout_gravity="end"
@@ -192,6 +193,7 @@
                                     android:src="@drawable/ic_sua_ong_tho" />
 
                                 <Button
+                                    android:id="@+id/btn_edit"
                                     android:layout_width="30dp"
                                     android:layout_height="26dp"
                                     android:layout_gravity="center"
@@ -273,7 +275,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Số lượng sỉ:"
+                                        android:text="SL sỉ:"
                                         android:textSize="@dimen/text_size_normal_default" />
 
                                     <TextView
@@ -320,7 +322,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Số lượng lẻ:"
+                                        android:text="SL lẻ:"
                                         android:textSize="@dimen/text_size_normal_default" />
 
                                     <TextView

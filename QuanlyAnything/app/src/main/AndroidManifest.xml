@@ -27,7 +27,9 @@
 
         <activity
             android:name=".screen.login.LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".screen.option.OptionManageActivity"
@@ -48,9 +50,11 @@
         <activity
             android:name=".screen.scanActivity.CustomScannerActivity"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation">
+            tools:replace="screenOrientation"/>
 
-        </activity>
+        <activity
+            android:name=".screen.chooseProduct.ChooseProductActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

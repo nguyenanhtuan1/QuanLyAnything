@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -17,6 +18,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ListStoreAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTapHoaContact.View {
     @BindView(R.id.edt_search_product)
@@ -24,6 +26,9 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
 
     @BindView(R.id.rcv_list_product)
     RecyclerView lvProduct;
+
+    @BindView(R.id.btn_new_product)
+    Button btnNewProduct;
 
     ListStoreAdapter adapter;
     StoreShopTapHoaPresenter mPresenter;
@@ -36,17 +41,6 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         mPresenter = new StoreShopTapHoaPresenter(this);
 
         adapter = new ListStoreAdapter(getContext(), mPresenter.getListProduct(), new ListStoreAdapter.OnItemClickListener() {
-            @Override
-            public void onAddMoreQuantity(final int position) {
-                AddQuantityProductTapHoaDialog dialog = new AddQuantityProductTapHoaDialog(mPresenter.getListProduct().get(position), new AddQuantityProductTapHoaDialog.OnSaveListener() {
-                    @Override
-                    public void onSaveValue(int quantity, double price, String seller) {
-                        mPresenter.addMoreQuantityProduct(position, quantity, price, seller);
-                    }
-                });
-                dialog.show(getFragmentManager(), "AddQuantityProductTapHoaDialog");
-            }
-
             @Override
             public void onClickDetail(final int position) {
                 dialogProduct = new ProductDialog(mPresenter.getListProduct().get(position), new ProductDialog.OnSaveListener() {
@@ -89,8 +83,10 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         return R.layout.layout_fragment_store_shop_tap_hoa;
     }
 
+
     @OnClick(R.id.btn_new_product)
     void onClickNewProduct() {
+        CommonUtil.delayButton(btnNewProduct);
         dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
             @Override
             public void onSaveValue(ProductTapHoa product) {

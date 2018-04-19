@@ -1,18 +1,23 @@
 package quanly_anything_you_want.manage.com.quanlyanything.model;
 
-public class ProductTapHoa {
+import java.io.Serializable;
+
+public class ProductTapHoa implements Serializable {
     public String name;
     public String photo;
     public String currency;
     public int totalQuantity;//tổng số lượng sản phẩm
-    public double totalPrice;//tổng giá trị sản phẩm
+    public double purchasePrice;//giá trị sản phẩm /1 đơn vị sản phảm
     public double priceWholesale;//giá bán sỉ
     public double priceRetail;//giá bán lẻ
     public boolean status;
-    public String unitTotalQuantity;
+    public String unitPurchase;
     public String unitWholesale;
     public String unitRetail;
     public String codeProduct;
+
+    public int quantityWholesale;// so luong add product cho màn hình choose product
+    public int quantityRetail;// so luong add product cho màn hình choose product
 
     public ProductTapHoa() {
         this.currency = "VND";

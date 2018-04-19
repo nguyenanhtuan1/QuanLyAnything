@@ -2,13 +2,17 @@ package quanly_anything_you_want.manage.com.quanlyanything.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.View;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Currency;
+
+import quanly_anything_you_want.manage.com.quanlyanything.screen.login.LoginContact;
 
 import static java.lang.Math.floor;
 import static java.lang.Math.pow;
@@ -43,7 +47,7 @@ public class CommonUtil {
             formatter.applyPattern(formatUS);
 
         }
-        return formatter.format(amount) + currency;
+        return formatter.format(amount)+" " + currency;
     }
 
     public static String showPriceNotCurrency(String currency, double amount) {
@@ -72,6 +76,17 @@ public class CommonUtil {
 
         }
         return formatter.format(setRoundAmount(amount, 2)) + currency;
+    }
+
+    public static void delayButton(final View view) {
+        view.setEnabled(false);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setEnabled(true);
+            }
+        }, 1500);
     }
 
     private static double setRoundAmount(double amount, int precision) {

@@ -55,9 +55,6 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
         @BindView(R.id.tv_name_product)
         TextView tvName;
 
-        @BindView(R.id.tv_quantity_product)
-        TextView tvQuantity;
-
         @BindView(R.id.tv_price_retail_product)
         TextView tvPriceRetail;
 
@@ -77,15 +74,9 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
 //            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
-            tvQuantity.setText(data.totalQuantity + " " + data.unitTotalQuantity);
-            tvPriceRetail.setText(CommonUtil.showPriceHasCurrency(data.currency, data.priceRetail) + "/ 1" + data.unitRetail);
-            tvPriceWholesale.setText(CommonUtil.showPriceHasCurrency(data.currency, data.priceWholesale) + "/ 1" + data.unitWholesale);
-            tvStatusProduct.setVisibility(data.status?View.GONE:View.VISIBLE);
-        }
-
-        @OnClick(R.id.tv_add_quantity)
-        void onClickAddQuantity() {
-            mCallBack.onAddMoreQuantity(getAdapterPosition());
+            tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.currency, data.priceRetail) + "/ 1" + data.unitRetail : "");
+            tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.currency, data.priceWholesale) + "/ 1" + data.unitWholesale : "");
+            tvStatusProduct.setVisibility(data.status ? View.GONE : View.VISIBLE);
         }
 
         @Override
@@ -97,7 +88,6 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
     }
 
     public interface OnItemClickListener {
-        void onAddMoreQuantity(int position);
 
         void onClickDetail(int position);
     }

@@ -133,7 +133,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:text="@string/text_unit_price"
@@ -145,7 +145,6 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/default_height_edt"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
                     android:paddingEnd="10dp"
@@ -154,13 +153,14 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
-                    android:textSize="@dimen/text_size_normal_default" />
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btn_choose_currency"
                     android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
-                    android:layout_marginStart="100dp"
+                    android:layout_marginStart="60dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
                     android:text="@string/text_choose"
@@ -178,53 +178,40 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/text_soluong"
+                    android:text="@string/text_unit_product"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
-                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_total_quantity"
+                <TextView
+                    android:id="@+id/tv_unit_purchase_product"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/default_height_edt"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:imeOptions="actionDone"
-                    android:inputType="numberDecimal"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
                     android:singleLine="true"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default" />
-
-                <TextView
-                    android:id="@+id/tv_unit_of_total_quantity"
-                    android:layout_width="80dp"
-                    android:layout_height="@dimen/default_height_edt"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/bg_edt_input_product"
-                    android:gravity="center"
-                    android:hint="@string/text_hint_unit"
+                    android:textAllCaps="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
-                    android:textSize="@dimen/text_size_normal_default" />
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btn_choose_unit_sl"
+                    android:id="@+id/btn_choose_unit_purchase"
                     android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="60dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
                     android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="@dimen/text_size_normal_default" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -236,16 +223,16 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/text_total_price"
+                    android:text="@string/text_purchase_price"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_total_purchase_price"
+                    android:id="@+id/edt_purchase_price"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/default_height_edt"
                     android:layout_weight="1"
@@ -262,13 +249,16 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
-                    android:id="@+id/tv_unit_currency_total_price"
-                    android:layout_width="50dp"
+                    android:id="@+id/tv_unit_currency_purchase"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textStyle="bold"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
                     android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default" />
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -316,8 +306,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginEnd="2dp"
+                    android:gravity="center"
                     android:text="/ 1"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default"
@@ -390,9 +380,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
                     android:gravity="center"
                     android:text="/ 1"
-                    android:layout_marginEnd="2dp"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default"
                     android:textStyle="bold" />
@@ -467,17 +457,17 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_top_item_product"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:focusableInTouchMode="true">
 
                 <TextView
                     android:layout_width="94dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:text="@string/status_product"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -485,6 +475,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/bg_btn_choose_function"
                     android:orientation="horizontal"
                     android:padding="1dp">
@@ -515,9 +506,19 @@
 
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btn_delete_product"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_btn_logout"
+                    android:text="@string/text_delete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/text_size_normal_default" />
 
-            </LinearLayout>
-
+            </RelativeLayout>
 
         </LinearLayout>
 

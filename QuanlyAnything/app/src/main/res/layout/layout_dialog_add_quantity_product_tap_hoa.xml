@@ -50,6 +50,38 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
+                    android:text="@string/text_name_seller"
+                    android:textSize="@dimen/text_size_normal_default" />
+
+                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
+                    android:id="@+id/edt_input_name_seller"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edt_input_product"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:paddingEnd="6dp"
+                    android:paddingStart="6dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/text_size_normal_default" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="6dp"
                     android:text="@string/text_soluong"
                     android:textSize="@dimen/text_size_normal_default" />
 
@@ -87,21 +119,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_title_quantity_product"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
-                    android:text="@string/text_total_price"
+                    android:text="@string/title_purchase_price"
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_total_price"
+                    android:id="@+id/edt_input_each_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
+                    android:hint="@string/text_hint_each_price"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:singleLine="true"
@@ -109,11 +141,12 @@
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
-                    android:id="@+id/tv_unit_currency"
+                    android:id="@+id/tv_unit_currency_each_price"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="6dp"
+                    android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default"
                     android:textStyle="bold" />
@@ -128,27 +161,34 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_title_quantity_product"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
-                    android:text="@string/text_name_seller"
+                    android:text="@string/text_total_price"
                     android:textSize="@dimen/text_size_normal_default" />
 
-                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_input_name_seller"
+                <TextView
+                    android:id="@+id/tv_total_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapSentences"
-                    android:paddingEnd="6dp"
-                    android:paddingStart="6dp"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
+
+                <TextView
+                    android:id="@+id/tv_unit_currency"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

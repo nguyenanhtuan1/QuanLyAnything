@@ -20,14 +20,20 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
     @BindView(R.id.edt_input_quantity)
     QLEditText edtInputQuantity;
 
-    @BindView(R.id.edt_total_price)
-    QLEditText edtTotalPrice;
+    @BindView(R.id.tv_total_price)
+    TextView tvTotalPrice;
 
     @BindView(R.id.edt_input_name_seller)
     QLEditText edtNameSeller;
 
+    @BindView(R.id.edt_input_each_price)
+    QLEditText edtEachPrice;
+
     @BindView(R.id.tv_unit_currency)
     TextView tvUnitCurrency;
+
+    @BindView(R.id.tv_unit_currency_each_price)
+    TextView tvUnitCurrencyEachPrice;
 
     private ProductTapHoa mProduct;
     private OnSaveListener mCallBack;
@@ -45,17 +51,52 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
     @Override
     protected void initData() {
         edtInputQuantity.setShowClear(false);
-        edtTotalPrice.setShowClear(false);
+        edtEachPrice.setShowClear(false);
 
-        tvUnitQuantityProduct.setText(mProduct.unitTotalQuantity);
+//        tvUnitQuantityProduct.setText(mProduct.unitTotalQuantity);
         tvUnitCurrency.setText(mProduct.currency);
-        edtTotalPrice.setInputPrice(true);
-        edtTotalPrice.setCurrencyVN(mProduct.currency);
+        tvUnitCurrencyEachPrice.setText(mProduct.currency);
+        edtEachPrice.setInputPrice(true);
+        edtEachPrice.setCurrencyVN(mProduct.currency);
     }
 
     @Override
     protected void initListener() {
 
+        edtEachPrice.setOnKeyboardListener(new QLEditText.KeyboardListener() {
+            @Override
+            public void onDismissKeyBoard(QLEditText keyboardEditText) {
+                updateData();
+            }
+        });
+        edtInputQuantity.setOnKeyboardListener(new QLEditText.KeyboardListener() {
+            @Override
+            public void onDismissKeyBoard(QLEditText keyboardEditText) {
+                updateData();
+            }
+        });
+    }
+
+    private void updateData() {
+        double eachPrice = 0;
+
+        if (!edtEachPrice.getText().toString().isEmpty()) {
+            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
+                eachPrice = Double.valueOf(edtEachPrice.getText().toString().replace(".", ""));
+            } else {
+                eachPrice = Double.valueOf(edtEachPrice.getText().toString().replace(".", "").replace(",", "."));
+            }
+        }
+
+        int quantity = 0;
+
+        if (!edtInputQuantity.getText().toString().isEmpty()) {
+            quantity = Integer.valueOf(edtInputQuantity.getText().toString());
+
+        }
+
+        double total = eachPrice * quantity;
+        tvTotalPrice.setText(CommonUtil.showPriceNotCurrency(mProduct.currency, total));
     }
 
     @OnClick(R.id.btn_cancel)
@@ -65,7 +106,7 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
 
     @OnClick(R.id.btn_save)
     void onClickSave() {
-        if (edtInputQuantity.getText().toString().isEmpty() || edtTotalPrice.getText().toString().isEmpty()) {
+        if (edtInputQuantity.getText().toString().isEmpty() || edtEachPrice.getText().toString().isEmpty()) {
             Toast.makeText(getContext(), R.string.error_not_input_quantity_product, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -74,9 +115,9 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
         double totalPrice;
 
         if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-            totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", ""));
+            totalPrice = Double.valueOf(tvTotalPrice.getText().toString().replace(".", ""));
         } else {
-            totalPrice = Double.valueOf(edtTotalPrice.getText().toString().replace(".", "").replace(",", "."));
+            totalPrice = Double.valueOf(tvTotalPrice.getText().toString().replace(".", "").replace(",", "."));
         }
         mCallBack.onSaveValue(quantity, totalPrice, edtNameSeller.getText().toString());
         dismiss();
