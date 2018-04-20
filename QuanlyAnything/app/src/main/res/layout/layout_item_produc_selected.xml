@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_edt_input_product"
+    android:orientation="horizontal"
+    android:padding="6dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imv_photo_product"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_sua_ong_tho" />
+
+        <Button
+            android:id="@+id/btn_edit_quantity"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_pressed_green_greentransnot_border"
+            android:text="Sửa"
+            android:textAllCaps="false"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/text_size_normal_default" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/name_product"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <TextView
+                android:id="@+id/tv_name_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:singleLine="true"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <Button
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_btn_logout"
+                android:text="@string/text_delete"
+                android:id="@+id/btn_delete_product"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/text_size_normal_default" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/wholesale_price_product"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <TextView
+                android:id="@+id/tv_price_wholesale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:singleLine="true"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/text_size_normal_default" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="SL sỉ:"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <TextView
+                android:id="@+id/tv_quantity_wholesale_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:singleLine="true"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/text_size_normal_default"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/retail_price_product"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <TextView
+                android:id="@+id/tv_price_retail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:singleLine="true"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/text_size_normal_default" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="SL lẻ:"
+                android:textSize="@dimen/text_size_normal_default" />
+
+            <TextView
+                android:id="@+id/tv_quantity_retail_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:singleLine="true"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/text_size_normal_default"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+

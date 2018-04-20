@@ -1,6 +1,7 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct;
 
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +16,24 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
     private List<ProductChooseDto> listDisplay = new ArrayList<>();
     private List<ProductChooseDto> listStore = new ArrayList<>();
 
-    ChooseProductPresenter(IBaseView view) {
+    ChooseProductPresenter(IBaseView view, ArrayList<String> nameProduct) {
         super.onCreate(view);
 
         for (ProductTapHoa item : getCachesManager().listProduct) {
-            listStore.add(new ProductChooseDto(item.name, item.codeProduct, item.priceWholesale, item.priceRetail, item.unitWholesale, item.unitRetail));
+            boolean isAdd = true;
+            for (String id : nameProduct) {
+                if (item.name.equalsIgnoreCase(id)) {
+                    isAdd = false;
+                    break;
+                }
+            }
+            if (isAdd)
+                listStore.add(new ProductChooseDto(item.name, item.codeProduct, item.priceWholesale, item.priceRetail, item.unitWholesale, item.unitRetail, item.currency));
 
         }
         listDisplay.addAll(listStore);
     }
+
 
     @Override
     public List<ProductChooseDto> getListDisplay() {
@@ -45,7 +55,14 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
     public void onSearchProduct(String text) {
         listDisplay.clear();
         for (int i = 0; i < listStore.size(); i++) {
-            if (listStore.get(i).name.toLowerCase().contains(text.toLowerCase()) || listStore.get(i).codeProduct.toLowerCase().contains(text.toLowerCase())) {
+            String valueName = Normalizer.normalize(listStore.get(i).name != null ? listStore.get(i).name : "", Normalizer.Form.NFD);
+            valueName = valueName.replaceAll("[^\\p{ASCII}]", "");
+
+            String valueSearch = Normalizer.normalize(text, Normalizer.Form.NFD);
+            valueSearch = valueSearch.replaceAll("[^\\p{ASCII}]", "");
+
+            if (valueName.toLowerCase().contains(valueSearch.toLowerCase())
+                    || (listStore.get(i).codeProduct != null && listStore.get(i).codeProduct.toLowerCase().contains(valueSearch.toLowerCase()))) {
                 listDisplay.add(listStore.get(i));
             }
         }
@@ -57,5 +74,6 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
     public ChooseProductContact.View getView() {
         return (ChooseProductContact.View) super.getView();
     }
+
 
 }

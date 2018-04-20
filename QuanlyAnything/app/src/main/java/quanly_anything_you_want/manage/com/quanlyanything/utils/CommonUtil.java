@@ -19,7 +19,6 @@ import static java.lang.Math.pow;
 
 public class CommonUtil {
     public static final String formatVN = "#,###,###";
-    public static final String formatUS = "#,###,###.##";
 
     public static String showName(String text) {
         if (TextUtils.isEmpty(text) || text.equalsIgnoreCase("null")) return "";
@@ -32,50 +31,21 @@ public class CommonUtil {
         return dp * (metrics.densityDpi / 160f);
     }
 
-    public static boolean isCurrencyVND(String vnd) {
-        return vnd != null && vnd.equalsIgnoreCase("vnd");
-    }
 
-    public static String showPriceHasCurrency(String currency, double amount) {
+    public static String showPriceHasCurrency(double amount, String currency) {
         if (currency == null)
             currency = "";
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        if (CommonUtil.isCurrencyVND(currency)) {
-            formatter.applyPattern(formatVN);
-
-        } else {
-            formatter.applyPattern(formatUS);
-
-        }
-        return formatter.format(amount)+" " + currency;
+        formatter.applyPattern(formatVN);
+        return formatter.format(amount).replace(",", ".") + " " + currency;
     }
 
-    public static String showPriceNotCurrency(String currency, double amount) {
-        if (currency == null)
-            currency = "";
+    public static String showPriceNotCurrency(double amount) {
+
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        if (CommonUtil.isCurrencyVND(currency)) {
-            formatter.applyPattern(formatVN);
+        formatter.applyPattern(formatVN);
 
-        } else {
-            formatter.applyPattern(formatUS);
-
-        }
-        return formatter.format(amount);
-    }
-
-    public static String showPriceTotal(String currency, double amount) {
-        if (currency == null)
-            currency = "";
-        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
-        if (CommonUtil.isCurrencyVND(currency)) {
-            formatter.applyPattern(formatVN);
-
-        } else {
-            formatter.applyPattern(formatUS);
-
-        }
-        return formatter.format(setRoundAmount(amount, 2)) + currency;
+        return formatter.format(amount).replace(",", ".");
     }
 
     public static void delayButton(final View view) {

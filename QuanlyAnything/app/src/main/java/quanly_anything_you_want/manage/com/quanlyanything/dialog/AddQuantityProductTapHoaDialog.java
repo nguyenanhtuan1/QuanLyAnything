@@ -57,7 +57,6 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
         tvUnitCurrency.setText(mProduct.currency);
         tvUnitCurrencyEachPrice.setText(mProduct.currency);
         edtEachPrice.setInputPrice(true);
-        edtEachPrice.setCurrencyVN(mProduct.currency);
     }
 
     @Override
@@ -81,11 +80,7 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
         double eachPrice = 0;
 
         if (!edtEachPrice.getText().toString().isEmpty()) {
-            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-                eachPrice = Double.valueOf(edtEachPrice.getText().toString().replace(".", ""));
-            } else {
-                eachPrice = Double.valueOf(edtEachPrice.getText().toString().replace(".", "").replace(",", "."));
-            }
+            eachPrice = Double.valueOf(edtEachPrice.getText().toString().replace(".", ""));
         }
 
         int quantity = 0;
@@ -96,7 +91,7 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
         }
 
         double total = eachPrice * quantity;
-        tvTotalPrice.setText(CommonUtil.showPriceNotCurrency(mProduct.currency, total));
+        tvTotalPrice.setText(CommonUtil.showPriceNotCurrency(total));
     }
 
     @OnClick(R.id.btn_cancel)
@@ -113,12 +108,7 @@ public class AddQuantityProductTapHoaDialog extends BaseDialogFragment {
 
         int quantity = Integer.valueOf(edtInputQuantity.getText().toString());
         double totalPrice;
-
-        if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-            totalPrice = Double.valueOf(tvTotalPrice.getText().toString().replace(".", ""));
-        } else {
-            totalPrice = Double.valueOf(tvTotalPrice.getText().toString().replace(".", "").replace(",", "."));
-        }
+        totalPrice = Double.valueOf(tvTotalPrice.getText().toString().replace(".", ""));
         mCallBack.onSaveValue(quantity, totalPrice, edtNameSeller.getText().toString());
         dismiss();
     }

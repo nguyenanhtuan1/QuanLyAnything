@@ -136,51 +136,6 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/text_unit_price"
-                    android:textColor="@color/hint_color"
-                    android:textSize="@dimen/text_size_normal_default" />
-
-                <TextView
-                    android:id="@+id/tv_unit_currency"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/default_height_edt"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_edt_input_product"
-                    android:gravity="center"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black_color"
-                    android:textColorHint="@color/transparent_dialog"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_choose_currency"
-                    android:layout_width="@dimen/with_btn_choose"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="60dp"
-                    android:background="@drawable/bg_btn_pressed_blue_bluetrans"
-                    android:gravity="center"
-                    android:text="@string/text_choose"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white_color"
-                    android:textSize="@dimen/text_size_normal_default" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_item_product"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:text="@string/text_unit_product"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_normal_default" />

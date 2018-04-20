@@ -13,10 +13,14 @@ import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseDialogFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 @SuppressLint("ValidFragment")
 public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
+    @BindView(R.id.tv_name_product)
+    TextView tvNameProduct;
+
     @BindView(R.id.tv_unit_quantity_wholesale)
     TextView tvUnitQuantityWholesale;
 
@@ -32,20 +36,15 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
     @BindView(R.id.ln_content_wholesale)
     LinearLayout lnContentWholesale;
 
-    private OnSaveListener mCallBack;
-    int quantityWholesale;
-    int quantityRetail;
-    String unitWholesale;
-    String unitRetail;
-    double priceWholesale;
+    @BindView(R.id.ln_content_retail)
+    LinearLayout lnContentRetail;
 
-    public EditQuantityProductTapHoaDialog(double priceWholesale, int quantityWholesale, int quantityRetail, String unitWholesale, String unitRetail, OnSaveListener mCallBack) {
+    private OnSaveListener mCallBack;
+    ProductChooseDto mProduct;
+
+    public EditQuantityProductTapHoaDialog(ProductChooseDto product, OnSaveListener mCallBack) {
         this.mCallBack = mCallBack;
-        this.quantityWholesale = quantityWholesale;
-        this.quantityRetail = quantityRetail;
-        this.unitWholesale = unitWholesale;
-        this.unitRetail = unitRetail;
-        this.priceWholesale = priceWholesale;
+        mProduct = new ProductChooseDto(product);
     }
 
     @Override
@@ -57,14 +56,16 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
     protected void initData() {
         edtQuantityWholesale.setShowClear(false);
         edtQuantityRetail.setShowClear(false);
+        tvNameProduct.setText(mProduct.name != null ? mProduct.name : "");
 
-        lnContentWholesale.setVisibility(priceWholesale != 0 ? View.VISIBLE : View.GONE);
+        lnContentWholesale.setVisibility(mProduct.priceWholesale != 0 ? View.VISIBLE : View.GONE);
+        lnContentRetail.setVisibility(mProduct.priceRetail != 0 ? View.VISIBLE : View.GONE);
 
-        tvUnitQuantityWholesale.setText(unitWholesale != null ? unitWholesale : "");
-        tvUnitQuantityRetail.setText(unitRetail != null ? unitRetail : "");
+        tvUnitQuantityWholesale.setText(mProduct.unitWholesale != null ? mProduct.unitWholesale : "");
+        tvUnitQuantityRetail.setText(mProduct.unitRetail != null ? mProduct.unitRetail : "");
 
-        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
-        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
+        edtQuantityWholesale.setText(mProduct.quantityWholesale != 0 ? String.valueOf(mProduct.quantityWholesale) : "");
+        edtQuantityRetail.setText(mProduct.quantityRetail != 0 ? String.valueOf(mProduct.quantityRetail) : "");
     }
 
     @Override
@@ -74,30 +75,28 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
 
     @OnClick(R.id.btn_minus_wholesale)
     void onClickMinusWholesale() {
-        if (quantityWholesale == 0) return;
-        quantityWholesale--;
-        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
+        if (mProduct.quantityWholesale == 0) return;
+        mProduct.quantityWholesale--;
+        edtQuantityWholesale.setText(mProduct.quantityWholesale != 0 ? String.valueOf(mProduct.quantityWholesale) : "");
     }
 
     @OnClick(R.id.btn_plus_wholesale)
     void onClickPlusWholesale() {
-        quantityWholesale++;
-        edtQuantityWholesale.setText(quantityWholesale != 0 ? String.valueOf(quantityWholesale) : "");
+        mProduct.quantityWholesale++;
+        edtQuantityWholesale.setText(mProduct.quantityWholesale != 0 ? String.valueOf(mProduct.quantityWholesale) : "");
     }
 
     @OnClick(R.id.btn_minus_retail)
     void onClickMinusRetail() {
-        if (quantityRetail == 0) return;
-        quantityRetail--;
-        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
-
+        if (mProduct.quantityRetail == 0) return;
+        mProduct.quantityRetail--;
+        edtQuantityRetail.setText(mProduct.quantityRetail != 0 ? String.valueOf(mProduct.quantityRetail) : "");
     }
 
     @OnClick(R.id.btn_plus_retail)
     void onClickPlusRetail() {
-        quantityRetail++;
-        edtQuantityRetail.setText(quantityRetail != 0 ? String.valueOf(quantityRetail) : "");
-
+        mProduct.quantityRetail++;
+        edtQuantityRetail.setText(mProduct.quantityRetail != 0 ? String.valueOf(mProduct.quantityRetail) : "");
     }
 
     @OnClick(R.id.btn_cancel)

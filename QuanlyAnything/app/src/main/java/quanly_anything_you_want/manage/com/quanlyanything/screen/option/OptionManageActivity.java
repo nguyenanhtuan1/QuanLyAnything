@@ -39,13 +39,13 @@ public class OptionManageActivity extends BaseActivity implements OptionManageCo
     @BindView(R.id.cs_container)
     ConstraintLayout constraintLayout;
 
-    OptionManagePresenter optionManagePresenter;
+    OptionManagePresenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.option_manage_activity);
         super.onCreate(savedInstanceState);
-        optionManagePresenter = new OptionManagePresenter(this);
+        mPresenter = new OptionManagePresenter(this);
 
     }
 

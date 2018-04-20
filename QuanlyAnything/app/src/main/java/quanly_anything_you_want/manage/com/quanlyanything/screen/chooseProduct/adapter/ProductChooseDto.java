@@ -12,8 +12,9 @@ public class ProductChooseDto implements Serializable {
     public String codeProduct;
     public int quantityWholesale;// so luong add product cho màn hình choose product
     public int quantityRetail;// so luong add product cho màn hình choose product
+    public String currency;
 
-    public ProductChooseDto(String name, String codeProduct, double priceWholesale, double priceRetail, String unitWholesale, String unitRetail) {
+    public ProductChooseDto(String name, String codeProduct, double priceWholesale, double priceRetail, String unitWholesale, String unitRetail, String currency) {
         this.name = name;
         this.codeProduct = codeProduct;
         this.priceWholesale = priceWholesale;
@@ -22,5 +23,16 @@ public class ProductChooseDto implements Serializable {
         this.unitRetail = unitRetail;
         quantityWholesale = 0;
         quantityRetail = 0;
+        this.currency = currency;
+    }
+
+    public ProductChooseDto(ProductChooseDto data) {
+        this.name = data.name;
+        this.priceWholesale = data.priceWholesale;
+        this.priceRetail = data.priceRetail;
+        this.unitWholesale = data.unitWholesale;
+        this.unitRetail = data.unitRetail;
+        quantityWholesale = data.quantityWholesale;
+        quantityRetail = data.quantityRetail;
     }
 }

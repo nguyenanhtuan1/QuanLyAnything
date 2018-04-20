@@ -36,20 +36,19 @@ public class ChooseProductActivity extends BaseActivity implements ChooseProduct
     QLEditText edtSearch;
 
     PickProductAdapter adapter;
-    ChooseProductPresenter optionManagePresenter;
+    ChooseProductPresenter mPresenter;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.choose_product_activity);
-        optionManagePresenter = new ChooseProductPresenter(this);
+        mPresenter = new ChooseProductPresenter(this,getIntent().getStringArrayListExtra(AppConstants.KEY_LIST_ID_PRODUCT));
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onInitData() {
-        adapter = new PickProductAdapter(this, optionManagePresenter.getListDisplay());
+        adapter = new PickProductAdapter(this, mPresenter.getListDisplay());
         rcvProduct.setLayoutManager(new LinearLayoutManager(this));
         rcvProduct.setAdapter(adapter);
     }
@@ -64,7 +63,7 @@ public class ChooseProductActivity extends BaseActivity implements ChooseProduct
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                optionManagePresenter.onSearchProduct(s.toString());
+                mPresenter.onSearchProduct(s.toString());
             }
 
             @Override
@@ -106,7 +105,7 @@ public class ChooseProductActivity extends BaseActivity implements ChooseProduct
     void onClickSave() {
         Intent intent = new Intent();
         ObjectContentList data = new ObjectContentList();
-        data.chooseDtoList = optionManagePresenter.getListSave();
+        data.chooseDtoList = mPresenter.getListSave();
         intent.putExtra(AppConstants.RESULT_CHOOSE_PRODUCT, data);
         setResult(RESULT_OK, intent);
         finish();

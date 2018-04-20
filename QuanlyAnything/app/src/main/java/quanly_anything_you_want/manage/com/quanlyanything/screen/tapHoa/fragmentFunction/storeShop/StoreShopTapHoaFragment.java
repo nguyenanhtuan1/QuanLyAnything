@@ -48,6 +48,11 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
                     public void onSaveValue(ProductTapHoa product) {
                         mPresenter.setUpdateChangeProduct(position, product);
                     }
+
+                    @Override
+                    public void onDeleteProduct() {
+                        mPresenter.deleteProduct(position);
+                    }
                 });
                 dialogProduct.show(getFragmentManager(), "ProductDialog");
             }
@@ -91,6 +96,11 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
             @Override
             public void onSaveValue(ProductTapHoa product) {
                 mPresenter.addItemProduct(product);
+            }
+
+            @Override
+            public void onDeleteProduct() {
+
             }
         });
         dialogProduct.show(getFragmentManager(), "ProductDialog");

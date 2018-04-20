@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogOk.DialogOk;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogPositiveNegative.DialogPositiveNegative;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogProgress.DialogProgress;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.DialogUtils;
 
@@ -64,6 +65,12 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected void showOkDialog(String title, String message, DialogOk.IOkDialogListener listener) {
         DialogUtils.showOkDialog(getContext(), title, message, listener);
     }
+
+
+    protected void showDialogConfig(String title, String message, DialogPositiveNegative.IPositiveNegativeDialogListener listener) {
+        DialogUtils.showConfirmDialog(getContext(), title, message, listener);
+    }
+
 
     protected void showErrorDialog(String message) {
         showOkDialog(getContext().getResources().getString(R.string.error), message, new DialogOk.IOkDialogListener() {

@@ -14,6 +14,7 @@ import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseDialogFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogPositiveNegative.DialogPositiveNegative;
 import quanly_anything_you_want.manage.com.quanlyanything.images.ImageLoader;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.popupCommon.selectUnit.SelectUnitProduct;
@@ -27,9 +28,6 @@ public class ProductDialog extends BaseDialogFragment {
 
     @BindView(R.id.edt_name_product)
     QLEditText edtNameProduct;
-
-    @BindView(R.id.tv_unit_currency)
-    TextView tvUnitCurrency;
 
     @BindView(R.id.edt_purchase_price)
     QLEditText edtPurchasePrice;
@@ -58,10 +56,6 @@ public class ProductDialog extends BaseDialogFragment {
     @BindView(R.id.edt_code_product)
     QLEditText edtCodeProduct;
 
-    @BindView(R.id.btn_choose_currency)
-    Button btnChooseCurrency;
-
-
     @BindView(R.id.btn_choose_unit_wholesale)
     Button btnChooseUnitWholesale;
 
@@ -79,6 +73,9 @@ public class ProductDialog extends BaseDialogFragment {
 
     @BindView(R.id.btn_not_sell)
     Button btnNotSell;
+
+    @BindView(R.id.btn_delete_product)
+    Button btnDelete;
 
     private ProductTapHoa mProduct;
     private OnSaveListener mCallBack;
@@ -107,10 +104,8 @@ public class ProductDialog extends BaseDialogFragment {
         edtPurchasePrice.setInputPrice(true);
         edtPriceWholesale.setInputPrice(true);
         edtPriceRetail.setInputPrice(true);
-        setCurrencyValueToEdt(mProduct.currency);
 
         edtNameProduct.setText(mProduct.name != null ? mProduct.name : "");
-        tvUnitCurrency.setText(mProduct.currency != null ? mProduct.currency : "");
 
         StringBuffer stringPurchase = new StringBuffer();
 
@@ -122,12 +117,11 @@ public class ProductDialog extends BaseDialogFragment {
             stringPurchase.append(mProduct.unitPurchase);
         }
         tvUnitCurrencyPurchase.setText(stringPurchase);
-
         tvUnitCurrencyWholesale.setText(mProduct.currency != null ? mProduct.currency : "");
         tvUnitCurrencyRetail.setText(mProduct.currency != null ? mProduct.currency : "");
-        edtPurchasePrice.setText(mProduct.purchasePrice != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.purchasePrice) : "");
-        edtPriceWholesale.setText(mProduct.priceWholesale != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.priceWholesale) : "");
-        edtPriceRetail.setText(mProduct.priceRetail != 0 ? CommonUtil.showPriceNotCurrency(mProduct.currency, mProduct.priceRetail) : "");
+        edtPurchasePrice.setText(mProduct.pricePurchase != 0 ? CommonUtil.showPriceNotCurrency(mProduct.pricePurchase) : "");
+        edtPriceWholesale.setText(mProduct.priceWholesale != 0 ? CommonUtil.showPriceNotCurrency(mProduct.priceWholesale) : "");
+        edtPriceRetail.setText(mProduct.priceRetail != 0 ? CommonUtil.showPriceNotCurrency(mProduct.priceRetail) : "");
         tvUnitPurchase.setText(mProduct.unitPurchase != null ? mProduct.unitPurchase : "");
         tvUnitOfWholesale.setText(mProduct.unitWholesale);
         tvUnitOfRetail.setText(mProduct.unitRetail);
@@ -135,6 +129,7 @@ public class ProductDialog extends BaseDialogFragment {
         btnHasSell.setSelected(mProduct.status);
         btnNotSell.setSelected(!mProduct.status);
         ImageLoader.loadImagePhoto(getContext(), "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhotoProduct);
+        btnDelete.setVisibility(!TextUtils.isEmpty(mProduct.name) ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -150,36 +145,23 @@ public class ProductDialog extends BaseDialogFragment {
     @OnClick(R.id.btn_save)
     void onClickSave() {
         mProduct.name = edtNameProduct.getText().toString();
-        mProduct.currency = tvUnitCurrency.getText().toString();
         mProduct.unitPurchase = tvUnitPurchase.getText().toString();
         if (edtPurchasePrice.getText().toString().isEmpty()) {
-            mProduct.purchasePrice = 0;
+            mProduct.pricePurchase = 0;
         } else {
-            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-                mProduct.purchasePrice = Double.valueOf(edtPurchasePrice.getText().toString().replace(".", ""));
-            } else {
-                mProduct.purchasePrice = Double.valueOf(edtPurchasePrice.getText().toString().replace(".", "").replace(",", "."));
-            }
+            mProduct.pricePurchase = Double.valueOf(edtPurchasePrice.getText().toString().replace(".", "").replace(",", ""));
         }
 
         if (edtPriceWholesale.getText().toString().isEmpty()) {
             mProduct.priceWholesale = 0;
         } else {
-            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-                mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", ""));
-            } else {
-                mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", "").replace(",", "."));
-            }
+            mProduct.priceWholesale = Double.valueOf(edtPriceWholesale.getText().toString().replace(".", "").replace(",", ""));
         }
 
         if (edtPriceRetail.getText().toString().isEmpty()) {
             mProduct.priceRetail = 0;
         } else {
-            if (CommonUtil.isCurrencyVND(mProduct.currency)) {
-                mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", ""));
-            } else {
-                mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", "").replace(",", "."));
-            }
+            mProduct.priceRetail = Double.valueOf(edtPriceRetail.getText().toString().replace(".", "").replace(",", ""));
         }
         mProduct.unitWholesale = tvUnitOfWholesale.getText().toString();
         mProduct.unitRetail = tvUnitOfRetail.getText().toString();
@@ -194,35 +176,27 @@ public class ProductDialog extends BaseDialogFragment {
 
     }
 
-    @OnClick(R.id.btn_choose_currency)
-    void onClickChooseCurrency() {
-        SelectUnitProduct selectUnitProduct = new SelectUnitProduct(getContext());
-
-        final String unit = tvUnitCurrency.getText().toString();
-        selectUnitProduct.showViewPopupUnitCurrency(btnChooseCurrency, tvUnitCurrency, new View.OnClickListener() {
+    @OnClick(R.id.btn_delete_product)
+    void onClickDeleteProduct() {
+        showDialogConfig(getString(R.string.app_name), getString(R.string.question_delete_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
             @Override
-            public void onClick(View v) {
-                String currency = ((TextView) v).getText().toString();
-                if (!unit.equalsIgnoreCase(currency)) {
-                    tvUnitCurrencyPurchase.setText(currency);
-                    tvUnitCurrencyWholesale.setText(currency);
-                    tvUnitCurrencyRetail.setText(currency);
-                    setCurrencyValueToEdt(currency);
+            public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
+                mCallBack.onDeleteProduct();
+                dismiss();
+            }
 
-                    edtPurchasePrice.setText("");
-                    edtPriceWholesale.setText("");
-                    edtPriceRetail.setText("");
-                }
+            @Override
+            public void onIPositiveNegativeDialogAnswerNegative(DialogPositiveNegative dialog) {
+                dialog.dismiss();
             }
         });
+
     }
 
-    private void setCurrencyValueToEdt(String currency) {
-        edtPurchasePrice.setCurrencyVN(currency);
-        edtPriceWholesale.setCurrencyVN(currency);
-        edtPriceRetail.setCurrencyVN(currency);
+    @OnClick(R.id.btn_choose_unit_purchase)
+    void onClickChooseUnitPurchase() {
+        showDialogPickUnitProduct(btnChooseUnitPurchase, tvUnitPurchase);
     }
-
 
     @OnClick(R.id.btn_choose_unit_wholesale)
     void onClickChooseUnitWholesale() {
@@ -232,11 +206,6 @@ public class ProductDialog extends BaseDialogFragment {
     @OnClick(R.id.btn_choose_unit_retail)
     void onClickChooseUnitRetail() {
         showDialogPickUnitProduct(btnChooseUnitRetail, tvUnitOfRetail);
-    }
-
-    @OnClick(R.id.btn_choose_unit_purchase)
-    void onClickChooseUnitPurchase() {
-        showDialogPickUnitProduct(btnChooseUnitPurchase, tvUnitPurchase);
     }
 
     @OnClick(R.id.btn_has_sell)
@@ -272,10 +241,14 @@ public class ProductDialog extends BaseDialogFragment {
 
                 if (tv == tvUnitPurchase) {
                     StringBuffer value = new StringBuffer();
-                    value.append(tvUnitCurrency.getText());
+                    value.append(mProduct.currency);
                     value.append("/ 1 ");
                     value.append(((TextView) v).getText().toString());
                     tvUnitCurrencyPurchase.setText(value);
+
+                    if (tvUnitOfWholesale.getText().toString().isEmpty()) {
+                        tvUnitOfWholesale.setText(((TextView) v).getText().toString());
+                    }
                 }
                 if (((TextView) v).getText().toString().isEmpty()) {
                     InputUnitProductDialog inputUnitProductDialog = new InputUnitProductDialog(new InputUnitProductDialog.OnClickSave() {
@@ -284,10 +257,14 @@ public class ProductDialog extends BaseDialogFragment {
                             tv.setText(text);
                             if (tv == tvUnitPurchase) {
                                 StringBuffer value2 = new StringBuffer();
-                                value2.append(tvUnitCurrency.getText());
+                                value2.append(mProduct.currency);
                                 value2.append("/ 1 ");
                                 value2.append(text);
                                 tvUnitCurrencyPurchase.setText(value2);
+
+                                if (tvUnitOfWholesale.getText().toString().isEmpty()) {
+                                    tvUnitOfWholesale.setText(text);
+                                }
                             }
                         }
                     });
@@ -299,5 +276,7 @@ public class ProductDialog extends BaseDialogFragment {
 
     public interface OnSaveListener {
         void onSaveValue(ProductTapHoa product);
+
+        void onDeleteProduct();
     }
 }

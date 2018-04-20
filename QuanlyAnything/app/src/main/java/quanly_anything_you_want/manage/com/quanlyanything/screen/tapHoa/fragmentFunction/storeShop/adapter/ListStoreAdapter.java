@@ -74,8 +74,8 @@ public class ListStoreAdapter extends RecyclerView.Adapter<ListStoreAdapter.View
 //            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
-            tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.currency, data.priceRetail) + "/ 1" + data.unitRetail : "");
-            tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.currency, data.priceWholesale) + "/ 1" + data.unitWholesale : "");
+            tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.priceRetail, data.currency) + "/ 1" + data.unitRetail : "");
+            tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.priceWholesale, data.currency) + "/ 1" + data.unitWholesale : "");
             tvStatusProduct.setVisibility(data.status ? View.GONE : View.VISIBLE);
         }
 

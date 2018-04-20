@@ -21,7 +21,7 @@ public class DialogUtils {
     }
 
     public static void showConfirmDialog(Context context, String title, String message, DialogPositiveNegative.IPositiveNegativeDialogListener listener) {
-        DialogPositiveNegative dialog = new DialogPositiveNegative(context, title, message, context.getString(R.string.error), context.getString(R.string.cancel));
+        DialogPositiveNegative dialog = new DialogPositiveNegative(context, title, message, context.getString(R.string.ok), context.getString(R.string.cancel));
         dialog.setOnIPositiveNegativeDialogListener(listener);
         dialog.show();
     }

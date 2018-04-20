@@ -25,7 +25,6 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 public class QLEditText extends EditText {
     private boolean isShowClear = true;
     boolean isInputPrice;
-    String currencyVN;
 
     public QLEditText(Context context) {
         super(context);
@@ -122,10 +121,6 @@ public class QLEditText extends EditText {
         isInputPrice = inputPrice;
     }
 
-    public void setCurrencyVN(String currencyVN) {
-        this.currencyVN = currencyVN;
-    }
-
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
@@ -146,17 +141,9 @@ public class QLEditText extends EditText {
 
             if (isInputPrice) {
                 String value = getText().toString();
-                if (CommonUtil.isCurrencyVND(currencyVN)) {
-                    value = value.replace(".", "");
-                } else {
-                    if (value.contains(",")) {
-                        value = value.replace(".", "");
-                    }
-
-                    value = value.replace(",", ".");
-                }
+                value = value.replace(".", "").replace(",", "");
                 try {
-                    setText(CommonUtil.showPriceNotCurrency(currencyVN, Double.valueOf(value)));
+                    setText(CommonUtil.showPriceNotCurrency(Double.valueOf(value)));
                 } catch (Exception e) {
                     setText("");
                 }

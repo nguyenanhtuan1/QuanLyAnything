@@ -7,13 +7,13 @@ import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseActivity;
 
 public class ExamActivity extends BaseActivity implements ExamContact.View {
-    ExamPresenter optionManagePresenter;
+    ExamPresenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        setContentView(R.layout.option_manage_activity);
         super.onCreate(savedInstanceState);
-        optionManagePresenter = new ExamPresenter(this);
+        mPresenter = new ExamPresenter(this);
 
     }
 

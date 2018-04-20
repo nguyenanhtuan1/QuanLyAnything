@@ -40,7 +40,7 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
     @BindView(R.id.view_pager_tap_hoa)
     ViewPager vPager;
 
-    private TapHoaPresenter optionManagePresenter;
+    private TapHoaPresenter mPresenter;
     private ViewPagerAdapter vPagerAdapter;
     List<Fragment> listFragment;
 
@@ -48,7 +48,7 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.tap_hoa_activity);
         super.onCreate(savedInstanceState);
-        optionManagePresenter = new TapHoaPresenter(this);
+        mPresenter = new TapHoaPresenter(this);
     }
 
     @Override
@@ -70,6 +70,7 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
         listFragment.add(new HistoryTapHoaFragment());
         vPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
         vPager.setAdapter(vPagerAdapter);
+        vPager.setOffscreenPageLimit(4);
     }
 
     @Override
