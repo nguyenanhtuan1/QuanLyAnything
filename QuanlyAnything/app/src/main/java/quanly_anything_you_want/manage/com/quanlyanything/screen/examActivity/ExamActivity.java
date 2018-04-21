@@ -12,8 +12,8 @@ public class ExamActivity extends BaseActivity implements ExamContact.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        setContentView(R.layout.option_manage_activity);
-        super.onCreate(savedInstanceState);
         mPresenter = new ExamPresenter(this);
+        super.onCreate(savedInstanceState);
 
     }
 

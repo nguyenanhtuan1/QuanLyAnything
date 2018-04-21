@@ -68,5 +68,6 @@
     <string name="question_delete_bill">Bạn có muốn hủy hóa đơn này?</string>
     <string name="text_total_product">Tổng SP:</string>
     <string name="text_add_bill">Thêm hóa đơn</string>
+    <string name="text_import_product">Nhập hàng</string>
 
 </resources>

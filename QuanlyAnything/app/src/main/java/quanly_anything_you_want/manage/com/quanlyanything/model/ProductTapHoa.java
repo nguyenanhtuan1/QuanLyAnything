@@ -24,7 +24,7 @@ public class ProductTapHoa implements Serializable {
         status = true;
     }
 
-    public ProductTapHoa(String name, double pricePurchase, double priceWholesale, double priceRetail, String unitPurchase, String unitWholesale, String unitRetail) {
+    public ProductTapHoa(String name,double pricePurchase, double priceWholesale, double priceRetail, String unitPurchase, String unitWholesale, String unitRetail) {
         this.name = name;
         this.pricePurchase = pricePurchase;
         this.priceWholesale = priceWholesale;

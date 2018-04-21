@@ -8,6 +8,7 @@ public class ExamFragment extends BaseFragment implements ExamFragmentContact.Vi
 
     @Override
     protected void onInitData() {
+        mPresenter = new ExamFragmentPresenter(this);
 
     }
 
