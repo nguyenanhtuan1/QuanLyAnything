@@ -135,4 +135,10 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
     public void onNotifyAdapterProductAtPosition(int position) {
         adapter.notifyItemChanged(position);
     }
+
+    @Override
+    public void onDestroy() {
+        mPresenter.onDestroy();
+        super.onDestroy();
+    }
 }

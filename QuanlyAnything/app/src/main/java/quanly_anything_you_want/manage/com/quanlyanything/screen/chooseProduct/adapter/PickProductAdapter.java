@@ -100,6 +100,7 @@ public class PickProductAdapter extends RecyclerView.Adapter<PickProductAdapter.
                 @Override
                 public void onDismissKeyBoard(QLEditText keyboardEditText) {
                     data.quantityWholesale = keyboardEditText.getValueInt();
+                    itemView.setSelected(data.quantityWholesale > 0 || data.quantityRetail > 0);
                 }
             });
 
@@ -107,6 +108,7 @@ public class PickProductAdapter extends RecyclerView.Adapter<PickProductAdapter.
                 @Override
                 public void onDismissKeyBoard(QLEditText keyboardEditText) {
                     data.quantityRetail = keyboardEditText.getValueInt();
+                    itemView.setSelected(data.quantityWholesale > 0 || data.quantityRetail > 0);
                 }
             });
         }

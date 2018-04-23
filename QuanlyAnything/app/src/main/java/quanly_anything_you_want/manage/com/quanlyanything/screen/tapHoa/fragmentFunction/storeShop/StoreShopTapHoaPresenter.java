@@ -1,6 +1,8 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop;
 
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +11,7 @@ import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadListProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
 public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShopTapHoaContact.Presenter {
@@ -22,6 +25,7 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
 
     StoreShopTapHoaPresenter(IBaseView view) {
         super.onCreate(view);
+        getEventManager().register(this);
         listStore.addAll(getCachesManager().listProduct);
         listDisplay.addAll(listStore);
         Collections.sort(listDisplay, new CustomComparator());
@@ -73,7 +77,7 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
             String valueSearch = Normalizer.normalize(text, Normalizer.Form.NFD);
             valueSearch = valueSearch.replaceAll("[^\\p{ASCII}]", "");
 
-            if (valueName.toLowerCase().contains(valueSearch.toLowerCase())|| (listStore.get(i).codeProduct != null && listStore.get(i).codeProduct.toLowerCase().contains(valueSearch.toLowerCase()))) {
+            if (valueName.toLowerCase().contains(valueSearch.toLowerCase()) || (listStore.get(i).codeProduct != null && listStore.get(i).codeProduct.toLowerCase().contains(valueSearch.toLowerCase()))) {
                 listDisplay.add(listStore.get(i));
             }
         }
@@ -83,6 +87,20 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     @Override
     public StoreShopTapHoaContact.View getView() {
         return (StoreShopTapHoaContact.View) super.getView();
+    }
+
+    @Subscribe
+    void onReloadProduct(ReloadListProduct data) {
+        if (data != null && data.product != null) {
+            listStore.add(data.product);
+            onSearchProduct(textSearch);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getEventManager().unRegister(this);
     }
 
     @Override

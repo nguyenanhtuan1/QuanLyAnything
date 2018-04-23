@@ -59,7 +59,7 @@ public class EditQuantityImportProductTapHoaDialog extends BaseDialogFragment {
     protected void initData() {
         edtQuantity.setShowClear(false);
         edtPriceProduct.setShowClear(false);
-
+        edtPriceProduct.setInputPrice(true);
         tvNameProduct.setText(mProduct.name != null ? mProduct.name : "");
         tvUnitProduct.setText(mProduct.unitImport != null ? mProduct.unitImport : "");
         tvUnitQuantity.setText(mProduct.unitImport != null ? mProduct.unitImport : "");

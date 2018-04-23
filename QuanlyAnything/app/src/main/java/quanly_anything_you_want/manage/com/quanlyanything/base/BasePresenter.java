@@ -1,7 +1,6 @@
 package quanly_anything_you_want.manage.com.quanlyanything.base;
 
 
-
 import org.greenrobot.eventbus.Subscribe;
 
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.ApiManager;
@@ -47,6 +46,10 @@ public abstract class BasePresenter {
 
     public void onCreate(IBaseView view) {
         mView = view;
+    }
+
+    public void onDestroy() {
+        mView = null;
     }
 
     @Subscribe

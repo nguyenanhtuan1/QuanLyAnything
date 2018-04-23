@@ -7,6 +7,7 @@ import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadListProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 
@@ -36,6 +37,15 @@ public class ChooseProductImportPresenter extends BasePresenter implements Choos
         listDisplay.addAll(listStore);
     }
 
+    @Override
+    public void addMoreProduct(ProductTapHoa productTapHoa) {
+        ProductChooseDto item = new ProductChooseDto(productTapHoa);
+        listStore.add(item);
+        listDisplay.add(0, item);
+        getCachesManager().listProduct.add(productTapHoa);
+        getEventManager().sendEvent(new ReloadListProduct(productTapHoa));
+        getView().onNotifyInsertedAdapterProduct(0);
+    }
 
     @Override
     public List<ProductChooseDto> getListDisplay() {

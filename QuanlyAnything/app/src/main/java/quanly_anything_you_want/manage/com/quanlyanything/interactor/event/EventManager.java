@@ -5,6 +5,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.ApiManager;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.Empty;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadListProduct;
 
 public class EventManager {
     public synchronized static EventManager getInstance() {
@@ -22,6 +23,10 @@ public class EventManager {
     }
 
     public void sendEvent(Empty event) {
+        EventBus.getDefault().post(event);
+    }
+
+    public void sendEvent(ReloadListProduct event) {
         EventBus.getDefault().post(event);
     }
 

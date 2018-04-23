@@ -17,7 +17,9 @@ import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ObjectContentList;
+import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProductImport.adapter.PickProductImportAdapter;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
@@ -33,11 +35,10 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
     PickProductImportAdapter adapter;
     ChooseProductImportPresenter mPresenter;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.choose_product_import_activity);
-        mPresenter = new ChooseProductImportPresenter(this,getIntent().getStringArrayListExtra(AppConstants.KEY_LIST_ID_PRODUCT));
+        mPresenter = new ChooseProductImportPresenter(this, getIntent().getStringArrayListExtra(AppConstants.KEY_LIST_ID_PRODUCT));
         super.onCreate(savedInstanceState);
     }
 
@@ -74,6 +75,12 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onNotifyInsertedAdapterProduct(int position) {
+        adapter.notifyItemInserted(position);
+        rcvProduct.scrollToPosition(0);
+    }
+
     @OnClick(R.id.btn_scan_product)
     void onClickScanCode() {
         IntentIntegrator integrator = new IntentIntegrator(this);
@@ -105,5 +112,20 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
         intent.putExtra(AppConstants.RESULT_CHOOSE_PRODUCT, data);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @OnClick(R.id.btn_new_product)
+    void onClickNewProduct() {
+        ProductDialog dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
+            @Override
+            public void onSaveValue(ProductTapHoa product) {
+                mPresenter.addMoreProduct(product);
+            }
+
+            @Override
+            public void onDeleteProduct() {
+            }
+        });
+        dialogProduct.show(getSupportFragmentManager(), "ProductDialog");
     }
 }
