@@ -48,6 +48,14 @@ public class CommonUtil {
         return formatter.format(amount).replace(",", ".");
     }
 
+
+    public static String showQuantityHasUnit(int amount, String unit) {
+        if (unit == null)
+            unit = "";
+        return String.valueOf(amount) + " " + unit;
+    }
+
+
     public static void delayButton(final View view) {
         view.setEnabled(false);
         Handler handler = new Handler();

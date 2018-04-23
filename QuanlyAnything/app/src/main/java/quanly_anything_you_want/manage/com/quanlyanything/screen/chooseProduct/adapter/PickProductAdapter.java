@@ -60,9 +60,6 @@ public class PickProductAdapter extends RecyclerView.Adapter<PickProductAdapter.
         @BindView(R.id.tv_unit_quantity_retail)
         TextView tvUnitRetail;
 
-        @BindView(R.id.ln_content_wholesale)
-        LinearLayout lnContentWholesale;
-
         @BindView(R.id.edt_input_quantity_wholesale)
         QLEditText edtQuantityWholesale;
 
@@ -91,15 +88,14 @@ public class PickProductAdapter extends RecyclerView.Adapter<PickProductAdapter.
             tvName.setText(data.name != null ? data.name : "");
             tvUnitWholesale.setText(data.unitWholesale);
             tvUnitRetail.setText(data.unitRetail);
-            if (data.priceWholesale == 0) {
-                edtQuantityWholesale.setEnabled(false);
+            edtQuantityWholesale.setEnabled(!(data.priceWholesale == 0));
 
-                btnMinusWholesale.setEnabled(false);
-                btnPlusWholesale.setEnabled(false);
+            btnMinusWholesale.setEnabled(!(data.priceWholesale == 0));
+            btnPlusWholesale.setEnabled(!(data.priceWholesale == 0));
 
-                btnMinusWholesale.setBackground(context.getDrawable(R.drawable.bg_btn_grey_circle));
-                btnPlusWholesale.setBackground(context.getDrawable(R.drawable.bg_btn_grey_circle));
-            }
+            btnMinusWholesale.setBackground(data.priceWholesale == 0 ? context.getDrawable(R.drawable.bg_btn_grey_circle) : context.getDrawable(R.drawable.bg_btn_pressed_blue_bluetrans_circle));
+            btnPlusWholesale.setBackground(data.priceWholesale == 0 ? context.getDrawable(R.drawable.bg_btn_grey_circle) : context.getDrawable(R.drawable.bg_btn_pressed_blue_bluetrans_circle));
+
             edtQuantityWholesale.setOnKeyboardListener(new QLEditText.KeyboardListener() {
                 @Override
                 public void onDismissKeyBoard(QLEditText keyboardEditText) {

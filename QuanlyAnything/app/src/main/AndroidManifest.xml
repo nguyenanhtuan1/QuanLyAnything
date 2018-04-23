@@ -43,6 +43,7 @@
 
         <activity
             android:name=".screen.tapHoa.TapHoaActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
 
         </activity>
@@ -54,6 +55,10 @@
 
         <activity
             android:name=".screen.chooseProduct.ChooseProductActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screen.chooseProductImport.ChooseProductImportActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
 

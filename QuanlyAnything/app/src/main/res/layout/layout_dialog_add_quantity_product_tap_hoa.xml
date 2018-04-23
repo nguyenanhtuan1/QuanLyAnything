@@ -23,6 +23,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="@color/app_color"
                 app:cardCornerRadius="4dp">
 
@@ -41,29 +42,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
-                    android:text="@string/text_name_seller"
+                    android:text="@string/name_product"
                     android:textSize="@dimen/text_size_normal_default" />
 
-                <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_input_name_seller"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_name_product"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapSentences"
-                    android:paddingEnd="6dp"
-                    android:paddingStart="6dp"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -73,38 +70,88 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/margin_top_item_product"
+                android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/text_unit_product"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/text_size_normal_default" />
+
+                <TextView
+                    android:id="@+id/tv_unit_product"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/default_height_edt"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edt_input_product"
+                    android:gravity="center"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black_color"
+                    android:textColorHint="@color/transparent_dialog"
+                    android:textSize="@dimen/text_size_normal_default"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_choose_unit_product"
+                    android:layout_width="@dimen/with_btn_choose"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/bg_btn_pressed_blue_bluetrans"
+                    android:gravity="center"
+                    android:text="@string/text_choose"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/text_size_normal_default" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
-                    android:text="@string/text_soluong"
+                    android:text="@string/text_quantity"
                     android:textSize="@dimen/text_size_normal_default" />
+
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
                     android:id="@+id/edt_input_quantity"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
+                    android:hint="0"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
+
                 <TextView
-                    android:id="@+id/tv_unit_quantity_product"
-                    android:layout_width="70dp"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="6dp"
                     android:singleLine="true"
+                    android:id="@+id/tv_unit_quantity"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default"
                     android:textStyle="bold" />
@@ -119,30 +166,33 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
-                    android:text="@string/title_purchase_price"
+                    android:text="@string/price_import"
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
-                    android:id="@+id/edt_input_each_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:id="@+id/edt_price_product"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:hint="@string/text_hint_each_price"
+                    android:hint="0"
                     android:imeOptions="actionDone"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
 
+
                 <TextView
-                    android:id="@+id/tv_unit_currency_each_price"
-                    android:layout_width="70dp"
+                    android:id="@+id/tv_currency"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="6dp"
@@ -161,34 +211,26 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_title_quantity_product"
-                    android:layout_width="110dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="6dp"
                     android:text="@string/text_total_price"
                     android:textSize="@dimen/text_size_normal_default" />
 
+
                 <TextView
                     android:id="@+id/tv_total_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default" />
-
-                <TextView
-                    android:id="@+id/tv_unit_currency"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="6dp"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 

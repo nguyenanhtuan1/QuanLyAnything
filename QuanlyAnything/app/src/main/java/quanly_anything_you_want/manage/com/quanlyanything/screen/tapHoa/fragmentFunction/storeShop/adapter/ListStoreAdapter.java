@@ -13,7 +13,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.images.ImageLoader;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;

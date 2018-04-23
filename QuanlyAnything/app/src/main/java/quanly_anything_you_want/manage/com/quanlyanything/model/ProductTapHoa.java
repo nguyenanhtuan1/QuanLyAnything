@@ -11,7 +11,7 @@ public class ProductTapHoa implements Serializable {
     public double priceWholesale;//giá bán sỉ
     public double priceRetail;//giá bán lẻ
     public boolean status;
-    public String unitPurchase;
+    public String unitProduct;
     public String unitWholesale;
     public String unitRetail;
     public String codeProduct;
@@ -24,12 +24,12 @@ public class ProductTapHoa implements Serializable {
         status = true;
     }
 
-    public ProductTapHoa(String name,double pricePurchase, double priceWholesale, double priceRetail, String unitPurchase, String unitWholesale, String unitRetail) {
+    public ProductTapHoa(String name, double pricePurchase, double priceWholesale, double priceRetail, String unitProduct, String unitWholesale, String unitRetail) {
         this.name = name;
         this.pricePurchase = pricePurchase;
         this.priceWholesale = priceWholesale;
         this.priceRetail = priceRetail;
-        this.unitPurchase = unitPurchase;
+        this.unitProduct = unitProduct;
         this.unitWholesale = unitWholesale;
         this.unitRetail = unitRetail;
         this.currency = "VND";

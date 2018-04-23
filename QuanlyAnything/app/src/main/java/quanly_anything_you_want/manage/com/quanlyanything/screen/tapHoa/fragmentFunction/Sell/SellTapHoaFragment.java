@@ -8,7 +8,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
-import quanly_anything_you_want.manage.com.quanlyanything.dialog.EditQuantityProductTapHoaDialog;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.EditQuantitySellProductTapHoaDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogPositiveNegative.DialogPositiveNegative;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ObjectContentList;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.ChooseProductActivity;
@@ -67,14 +67,14 @@ public class SellTapHoaFragment extends BaseFragment implements SellTapHoaContac
 
             @Override
             public void onEditQuantityProduct(final int positionParent, final int positionChild) {
-                EditQuantityProductTapHoaDialog dialog = new EditQuantityProductTapHoaDialog(mPresenter.getProductSelected(positionParent, positionChild),
-                        new EditQuantityProductTapHoaDialog.OnSaveListener() {
+                EditQuantitySellProductTapHoaDialog dialog = new EditQuantitySellProductTapHoaDialog(mPresenter.getProductSelected(positionParent, positionChild),
+                        new EditQuantitySellProductTapHoaDialog.OnSaveListener() {
                             @Override
                             public void onSaveValue(int quantityWholesale, int quantityRetail) {
                                 mPresenter.setUpdateQuantityProduct(positionParent, positionChild, quantityWholesale, quantityRetail);
                             }
                         });
-                dialog.show(getFragmentManager(), "EditQuantityProductTapHoaDialog");
+                dialog.show(getFragmentManager(), "EditQuantitySellProductTapHoaDialog");
             }
 
             @Override

@@ -1,4 +1,4 @@
-package quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct;
+package quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProductImport;
 
 
 import java.text.Normalizer;
@@ -11,19 +11,22 @@ import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 
 
-public class ChooseProductPresenter extends BasePresenter implements ChooseProductContact.Presenter {
+public class ChooseProductImportPresenter extends BasePresenter implements ChooseProductImportContact.Presenter {
 
     private List<ProductChooseDto> listDisplay = new ArrayList<>();
     private List<ProductChooseDto> listStore = new ArrayList<>();
 
-    ChooseProductPresenter(IBaseView view, ArrayList<String> nameProduct) {
+    ChooseProductImportPresenter(IBaseView view, ArrayList<String> nameProduct) {
         super.onCreate(view);
         for (ProductTapHoa item : getCachesManager().listProduct) {
             boolean isAdd = true;
-            for (String id : nameProduct) {
-                if (item.name.equalsIgnoreCase(id)) {
-                    isAdd = false;
-                    break;
+
+            if (nameProduct != null) {
+                for (String id : nameProduct) {
+                    if (item.name.equalsIgnoreCase(id)) {
+                        isAdd = false;
+                        break;
+                    }
                 }
             }
             if (isAdd)
@@ -43,7 +46,7 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
     public List<ProductChooseDto> getListSave() {
         List<ProductChooseDto> list = new ArrayList<>();
         for (ProductChooseDto item : listStore) {
-            if (item.quantityWholesale != 0 || item.quantityRetail != 0) {
+            if (item.quantityImport != 0 && item.priceImport != 0) {
                 list.add(item);
             }
         }
@@ -70,8 +73,8 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
 
 
     @Override
-    public ChooseProductContact.View getView() {
-        return (ChooseProductContact.View) super.getView();
+    public ChooseProductImportContact.View getView() {
+        return (ChooseProductImportContact.View) super.getView();
     }
 
 

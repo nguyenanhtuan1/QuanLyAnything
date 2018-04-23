@@ -17,7 +17,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.a
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 @SuppressLint("ValidFragment")
-public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
+public class EditQuantitySellProductTapHoaDialog extends BaseDialogFragment {
     @BindView(R.id.tv_name_product)
     TextView tvNameProduct;
 
@@ -42,7 +42,7 @@ public class EditQuantityProductTapHoaDialog extends BaseDialogFragment {
     private OnSaveListener mCallBack;
     ProductChooseDto mProduct;
 
-    public EditQuantityProductTapHoaDialog(ProductChooseDto product, OnSaveListener mCallBack) {
+    public EditQuantitySellProductTapHoaDialog(ProductChooseDto product, OnSaveListener mCallBack) {
         this.mCallBack = mCallBack;
         mProduct = new ProductChooseDto(product);
     }

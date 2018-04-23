@@ -9,13 +9,10 @@ import android.widget.EditText;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
-import java.time.Instant;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
-import quanly_anything_you_want.manage.com.quanlyanything.dialog.AddQuantityProductTapHoaDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;

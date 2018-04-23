@@ -43,13 +43,14 @@
     <string name="text_purchase_price"> Giá mua vào:</string>
     <string name="text_custom">tự nhập</string>
     <string name="text_input_unit">Nhập đơn vị</string>
-    <string name="text_flash_on">Flash On</string>
-    <string name="text_flash_off">Flash Off</string>
+    <string name="text_flash_on">Tắt đèn</string>
+    <string name="text_flash_off">Bật đèn</string>
     <string name="status_product">Trạng thái:</string>
     <string name="text_status_sell">Có bán</string>
     <string name="text_status_not_sell">Tạm dừng</string>
     <string name="error_not_input_quantity_product">Bạn chưa nhập đủ dữ liệu</string>
     <string name="text_name_seller">Tên người bán:</string>
+    <string name="text_seller">Người bán:</string>
     <string name="text_add">Thêm</string>
     <string name="text_title_product">Sản phẩm</string>
     <string name="text_quantity_sell_retail">Số lượng bán lẻ:</string>
@@ -60,7 +61,7 @@
     <string name="text_quantity_wholesale">SL sỉ:</string>
     <string name="text_quantity_retail">SL lẻ:</string>
     <string name="text_delete">Xóa</string>
-    <string name="text_unit_product">Đơn vị sản phẩm</string>
+    <string name="text_unit_product">Đơn vị sản phẩm:</string>
     <string name="title_new_bill">Tạo Hóa Đơn</string>
     <string name="text_name_client">Người mua:</string>
     <string name="text_btn_completed">Hoàn tất</string>
@@ -69,5 +70,11 @@
     <string name="text_total_product">Tổng SP:</string>
     <string name="text_add_bill">Thêm hóa đơn</string>
     <string name="text_import_product">Nhập hàng</string>
+    <string name="total_price">Tổng tiền:</string>
+    <string name="price_import">Giá mua:</string>
+    <string name="title_import_product">Nhập Sản Phẩm</string>
+    <string name="question_cancel_import_product">Bạn có muốn hủy nhập đơn hàng này?</string>
+    <string name="question_complete_import_product">Bạn có hoàn thành nhập đơn hàng này?</string>
+    <string name="text_quantity">Số lượng:</string>
 
 </resources>

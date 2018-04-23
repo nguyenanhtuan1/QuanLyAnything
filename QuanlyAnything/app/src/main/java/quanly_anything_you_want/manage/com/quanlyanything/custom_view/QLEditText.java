@@ -91,17 +91,17 @@ public class QLEditText extends EditText {
         }
     }
 
-    public float getValueFloat() {
+    public double getValueDouble() {
         try {
-            return Float.valueOf(getText().toString());
+            return Double.valueOf(getText().toString());
         } catch (Exception e) {
             return 0;
         }
     }
 
-    public double getValueDouble() {
+    public double getValueDoubleForVND() {
         try {
-            return Double.valueOf(getText().toString());
+            return Double.valueOf(getText().toString().replace(".", "").replace(",", ""));
         } catch (Exception e) {
             return 0;
         }
