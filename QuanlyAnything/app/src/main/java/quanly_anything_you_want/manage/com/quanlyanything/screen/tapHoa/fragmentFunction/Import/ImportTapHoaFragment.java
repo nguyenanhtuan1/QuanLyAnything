@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -142,6 +143,11 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
 
     @OnClick(R.id.btn_completed)
     void onClickCompleteImport() {
+        if (mPresenter.getBillImportProductDto().getListProduct().isEmpty()){
+            Toast.makeText(getContext(), R.string.error_not_import_product,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         showConfirmDialog(getString(R.string.question_complete_import_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
             @Override
             public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {

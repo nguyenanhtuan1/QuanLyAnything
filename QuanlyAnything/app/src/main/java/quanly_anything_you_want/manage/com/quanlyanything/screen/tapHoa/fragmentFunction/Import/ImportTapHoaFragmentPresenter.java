@@ -2,11 +2,15 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadImportHistory;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProductDto;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 
 public class ImportTapHoaFragmentPresenter extends BasePresenter implements ImportTapHoaFragmentContact.Presenter {
@@ -45,11 +49,16 @@ public class ImportTapHoaFragmentPresenter extends BasePresenter implements Impo
         getView().notifyAllDataAdapter();
     }
 
+    @Override
     public void completeImportProduct(String seller) {
         billImportProductDto.nameSeller = seller;
+        billImportProductDto.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
+        getCachesManager().getListBillImport().add(new BillImportProductDto(billImportProductDto));
+        getEventManager().sendEvent(new ReloadImportHistory(new BillImportProductDto(billImportProductDto)));
         resetData();
     }
 
+    @Override
     public void setRemoveProduct(int position) {
         billImportProductDto.getListProduct().remove(position);
         getView().updateData();

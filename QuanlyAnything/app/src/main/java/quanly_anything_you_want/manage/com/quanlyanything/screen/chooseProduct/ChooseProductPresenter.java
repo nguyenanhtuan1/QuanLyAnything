@@ -18,7 +18,7 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
 
     ChooseProductPresenter(IBaseView view, ArrayList<String> nameProduct) {
         super.onCreate(view);
-        for (ProductTapHoa item : getCachesManager().listProduct) {
+        for (ProductTapHoa item : getCachesManager().getListProduct()) {
             boolean isAdd = true;
             for (String id : nameProduct) {
                 if (item.name.equalsIgnoreCase(id)) {

@@ -17,6 +17,7 @@ public class TapHoaPresenter extends BasePresenter implements TapHoaContact.Pres
         list.add("Bán hàng");
         list.add("Báo cáo");
         list.add("Lịch sử");
+        list.add("Danh bạ");
         return list;
     }
 

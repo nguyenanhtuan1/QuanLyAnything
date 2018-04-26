@@ -8,6 +8,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.a
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 public class BillSellTapHoa implements Serializable {
+    public String date;
     public String nameClient;
     private List<ProductChooseDto> listProduct;
     public String currency = "VND";

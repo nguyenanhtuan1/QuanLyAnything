@@ -24,8 +24,19 @@ public class DateUtils {
         return formatDate(date, dateFormat);
     }
 
+    public static String formatFullDateVN(Date date) {
+        String dateFormat = "HH:mm - ";
+        dateFormat += "dd/MM/yyyy";
+        return formatDate(date, dateFormat);
+    }
+
     public static String formatDate(Date date) {
         String dateFormat = "MM/dd/yyyy";
+        return formatDate(date, dateFormat);
+    }
+
+    public static String formatDateVN(Date date) {
+        String dateFormat = "dd/MM/yyyy";
         return formatDate(date, dateFormat);
     }
 
@@ -220,8 +231,7 @@ public class DateUtils {
     }
 
 
-    public static TimeZone getCompanyTimeZone() {
-
+    public static TimeZone getDefaultTimeZone() {
         return TimeZone.getDefault();
     }
 

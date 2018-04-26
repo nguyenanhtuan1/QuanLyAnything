@@ -22,12 +22,12 @@
 
         <Button
             android:id="@+id/btn_edit_quantity"
-            android:layout_width="30dp"
+            android:layout_width="34dp"
             android:layout_height="26dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_btn_pressed_green_greentransnot_border"
-            android:text="Sửa"
+            android:text="@string/text_fix"
             android:textAllCaps="false"
             android:textColor="@color/app_color"
             android:textSize="@dimen/text_size_normal_default" />

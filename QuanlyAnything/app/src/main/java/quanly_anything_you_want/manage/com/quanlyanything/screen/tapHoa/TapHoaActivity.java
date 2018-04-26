@@ -25,6 +25,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.base.ViewPagerAdapter;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.adapterTopBar.TabHeaderTopBarAdapter;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.ImportTapHoaFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.SellTapHoaFragment;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.contact.ContactTapHoaFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.HistoryTapHoaFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.report.ReportTapHoaFragment;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.StoreShopTapHoaFragment;
@@ -67,15 +68,16 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
         listFragment.add(new SellTapHoaFragment());
         listFragment.add(new ReportTapHoaFragment());
         listFragment.add(new HistoryTapHoaFragment());
+        listFragment.add(new ContactTapHoaFragment());
         vPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
         vPager.setAdapter(vPagerAdapter);
-        vPager.setOffscreenPageLimit(4);
-
+        vPager.setOffscreenPageLimit(3);
         adapterTabHeader = new TabHeaderTopBarAdapter(this, mPresenter.getListTabHeader(),
                 new TabHeaderTopBarAdapter.OnItemTabHeaderClick() {
                     @Override
                     public void onClickItem(int position) {
-                        vPager.setCurrentItem(position);
+                        if (position != vPager.getCurrentItem())
+                            vPager.setCurrentItem(position);
                     }
                 });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -92,9 +94,10 @@ public class TapHoaActivity extends BaseActivity implements TapHoaContact.View {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
+                if (position == 1 || position == 2) {
                     rcvTabHeader.smoothScrollToPosition(0);
-                } else if (position == mPresenter.getListTabHeader().size() - 2) {
+                } else if (position == mPresenter.getListTabHeader().size() - 2
+                        || position == mPresenter.getListTabHeader().size() - 3) {
                     rcvTabHeader.smoothScrollToPosition(mPresenter.getListTabHeader().size() - 1);
                 } else
                     rcvTabHeader.smoothScrollToPosition(position);

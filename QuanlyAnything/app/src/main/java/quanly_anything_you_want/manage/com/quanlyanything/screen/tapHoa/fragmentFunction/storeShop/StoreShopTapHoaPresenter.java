@@ -26,7 +26,7 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     StoreShopTapHoaPresenter(IBaseView view) {
         super.onCreate(view);
         getEventManager().register(this);
-        listStore.addAll(getCachesManager().listProduct);
+        listStore.addAll(getCachesManager().getListProduct());
         listDisplay.addAll(listStore);
         Collections.sort(listDisplay, new CustomComparator());
     }
@@ -105,8 +105,8 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
 
     @Override
     public void onSaveCacheProduct() {
-        getCachesManager().listProduct.clear();
-        getCachesManager().listProduct.addAll(listStore);
+        getCachesManager().getListProduct().clear();
+        getCachesManager().getListProduct().addAll(listStore);
     }
 
 }

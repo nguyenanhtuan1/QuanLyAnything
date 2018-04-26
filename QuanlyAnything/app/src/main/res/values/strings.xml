@@ -76,5 +76,8 @@
     <string name="question_cancel_import_product">Bạn có muốn hủy nhập đơn hàng này?</string>
     <string name="question_complete_import_product">Bạn có hoàn thành nhập đơn hàng này?</string>
     <string name="text_quantity">Số lượng:</string>
+    <string name="text_fix">Sửa</string>
+    <string name="error_not_import_product">Bạn chưa thêm sản phẩm.</string>
+    <string name="text_date_import">Ngày nhập:</string>
 
 </resources>

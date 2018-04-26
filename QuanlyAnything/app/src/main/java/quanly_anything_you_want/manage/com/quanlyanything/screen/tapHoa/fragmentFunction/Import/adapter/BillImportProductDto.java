@@ -8,8 +8,20 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
 public class BillImportProductDto {
+    public String date;
     public String nameSeller;
     private List<ProductChooseDto> listProduct;
+
+    public BillImportProductDto(BillImportProductDto data) {
+        this.date = data.date;
+        this.nameSeller = data.nameSeller;
+        this.listProduct = new ArrayList<>();
+        this.listProduct.addAll(data.listProduct);
+    }
+
+    public BillImportProductDto() {
+
+    }
 
     public List<ProductChooseDto> getListProduct() {
         if (listProduct == null) listProduct = new ArrayList<>();

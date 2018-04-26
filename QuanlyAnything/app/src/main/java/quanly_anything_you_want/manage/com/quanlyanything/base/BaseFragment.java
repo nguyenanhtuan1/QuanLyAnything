@@ -45,8 +45,8 @@ abstract public class BaseFragment extends Fragment implements IBaseView {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unbinder.unbind();
+        super.onDestroy();
     }
 
     abstract protected int getLayoutId();

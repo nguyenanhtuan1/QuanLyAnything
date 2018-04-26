@@ -20,6 +20,10 @@ public interface ImportTapHoaFragmentContact {
         ArrayList<String> getListNameProduct();
 
         void resetData();
+
+        void completeImportProduct(String seller);
+
+        void setRemoveProduct(int position);
     }
 
 }
