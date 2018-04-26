@@ -3,6 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,8 +62,22 @@ public class SellTapHoaFragment extends BaseFragment implements SellTapHoaContac
             }
 
             @Override
-            public void onClickComplete(int position) {
+            public void onClickComplete(final int position) {
+                if (mPresenter.getListBill().get(position).getListProduct().isEmpty()) {
+                    Toast.makeText(getContext(), R.string.error_not_import_product, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                showConfirmDialog(getString(R.string.question_complete_sell_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
+                        mPresenter.setCompleteBill(position);
+                        dialog.dismiss();
+                    }
 
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerNegative(DialogPositiveNegative dialog) {
+                    }
+                });
             }
 
             @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
 
 public interface SellTapHoaContact {
 
@@ -22,9 +22,11 @@ public interface SellTapHoaContact {
 
     interface Presenter {
 
-        List<BillSellTapHoa> getListBill();
+        List<BillSellProduct> getListBill();
 
         ArrayList<String> getListNameProduct(int position);
+
+        void setCompleteBill(int positionParent);
 
         ProductChooseDto getProductSelected(int positionParent, int positionChild);
 

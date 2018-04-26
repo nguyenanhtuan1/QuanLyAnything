@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProductDto;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
 
 public class CachesManager {
 
@@ -15,11 +16,13 @@ public class CachesManager {
 
     private static final CachesManager INSTANCE = new CachesManager();
 
-    private static  List<ProductTapHoa> listProduct;
-    private static  List<BillImportProductDto> listBillImport;
+    private List<ProductTapHoa> listProduct;
+    private List<BillImportProduct> listBillImport;
+    private List<BillSellProduct> listBillSell;
 
     private CachesManager() {
         listBillImport = new ArrayList<>();
+        listBillSell = new ArrayList<>();
 
         listProduct = new ArrayList<>();
         listProduct.add(new ProductTapHoa("Sữa ông thọ", 19000, 200000, 10000, "Thùng", "Thùng", "Hộp"));
@@ -29,13 +32,24 @@ public class CachesManager {
         listProduct.add(new ProductTapHoa("Gạo nếp", 12000, 0, 17000, "Kg", "", "Kg"));
     }
 
-    public static List<ProductTapHoa> getListProduct(){
+    public List<ProductTapHoa> getListProduct() {
         return listProduct;
     }
-    public static List<BillImportProductDto> getListBillImport(){
+
+    public List<BillImportProduct> getListBillImport() {
         return listBillImport;
     }
 
+    public List<BillSellProduct> getListBillSell() {
+        return listBillSell;
+    }
+
+    public void removeBillImportProduct(int position) {
+        listBillImport.remove(position);
+    }
+    public void removeBillSellProduct(int position) {
+        listBillSell.remove(position);
+    }
 
 
 }

@@ -4,18 +4,21 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 import android.os.Handler;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadSellHistory;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 public class SellTapHoaPresenter extends BasePresenter implements SellTapHoaContact.Presenter {
-    private List<BillSellTapHoa> listBill = new ArrayList<>();
+    private List<BillSellProduct> listBill = new ArrayList<>();
 
     @Override
-    public List<BillSellTapHoa> getListBill() {
+    public List<BillSellProduct> getListBill() {
         return listBill;
     }
 
@@ -37,10 +40,32 @@ public class SellTapHoaPresenter extends BasePresenter implements SellTapHoaCont
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    listBill.add(new BillSellTapHoa());
+                    listBill.add(new BillSellProduct());
                     getView().onNotifyAdapterBillInsertedAtPosition(0);
                 }
-            },300);
+            }, 300);
+
+        }
+    }
+
+    @Override
+    public void setCompleteBill(int positionParent) {
+        BillSellProduct itemSave = listBill.get(positionParent);
+        itemSave.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
+        getCachesManager().getListBillSell().add(0, itemSave);
+        getEventManager().sendEvent(new ReloadSellHistory(itemSave));
+
+        listBill.remove(positionParent);
+        getView().onNotifyAdapterBillRemoveAtPosition(positionParent);
+
+        if (listBill.isEmpty()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    listBill.add(new BillSellProduct());
+                    getView().onNotifyAdapterBillInsertedAtPosition(0);
+                }
+            }, 300);
 
         }
     }
@@ -52,12 +77,12 @@ public class SellTapHoaPresenter extends BasePresenter implements SellTapHoaCont
 
     SellTapHoaPresenter(IBaseView view) {
         super.onCreate(view);
-        listBill.add(new BillSellTapHoa());
+        listBill.add(new BillSellProduct());
     }
 
     @Override
     public void addMoreBillItem() {
-        listBill.add(0, new BillSellTapHoa());
+        listBill.add(0, new BillSellProduct());
         getView().onNotifyAdapterBillInsertedAtPosition(0);
     }
 

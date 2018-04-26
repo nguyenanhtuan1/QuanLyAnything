@@ -7,6 +7,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.ApiMana
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.Empty;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadImportHistory;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadListProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadSellHistory;
 
 public class EventManager {
     public synchronized static EventManager getInstance() {
@@ -32,6 +33,10 @@ public class EventManager {
     }
 
     public void sendEvent(ReloadImportHistory event) {
+        EventBus.getDefault().post(event);
+    }
+
+    public void sendEvent(ReloadSellHistory event) {
         EventBus.getDefault().post(event);
     }
 

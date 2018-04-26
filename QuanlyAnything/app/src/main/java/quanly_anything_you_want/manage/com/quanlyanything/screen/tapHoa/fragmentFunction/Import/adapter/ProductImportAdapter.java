@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +23,15 @@ public class ProductImportAdapter extends RecyclerView.Adapter<ProductImportAdap
     private Context context;
     private List<ProductChooseDto> listProduct;
     private OnItemClickListener mCallBack;
+    private boolean isHistory;
 
-    public ProductImportAdapter(Context context, List<ProductChooseDto> listProduct, OnItemClickListener mCallBack) {
+    public void setHistory(boolean history) {
+        isHistory = history;
+    }
+
+    public ProductImportAdapter(Context context, List<ProductChooseDto> listProduct) {
         this.context = context;
         this.listProduct = listProduct;
-        this.mCallBack = mCallBack;
     }
 
     @Override
@@ -61,8 +66,13 @@ public class ProductImportAdapter extends RecyclerView.Adapter<ProductImportAdap
         @BindView(R.id.tv_total_price_product)
         TextView tvTotalPriceProduct;
 
+        @BindView(R.id.btn_delete_product)
+        Button btnDelete;
 
-        public ItemViewHolder(View itemView) {
+        @BindView(R.id.btn_edit_quantity)
+        Button btnEdit;
+
+        ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -73,17 +83,27 @@ public class ProductImportAdapter extends RecyclerView.Adapter<ProductImportAdap
             tvQuantityProduct.setText(CommonUtil.showQuantityHasUnit(data.quantityImport, data.unitImport));
             tvPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.priceImport, data.currency) + " / " + data.unitImport);
             tvTotalPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport, data.currency));
+            if (isHistory) {
+                btnDelete.setVisibility(View.GONE);
+                btnEdit.setVisibility(View.GONE);
+            }
         }
 
         @OnClick(R.id.btn_delete_product)
         void onClickDeleteProduct() {
+            CommonUtil.delayButton(btnDelete);
             mCallBack.onClickDelete(getAdapterPosition());
         }
 
         @OnClick(R.id.btn_edit_quantity)
         void onClickEditQuantityProduct() {
+            CommonUtil.delayButton(btnEdit);
             mCallBack.onClickEdit(getAdapterPosition());
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mCallBack) {
+        this.mCallBack = mCallBack;
     }
 
     public interface OnItemClickListener {

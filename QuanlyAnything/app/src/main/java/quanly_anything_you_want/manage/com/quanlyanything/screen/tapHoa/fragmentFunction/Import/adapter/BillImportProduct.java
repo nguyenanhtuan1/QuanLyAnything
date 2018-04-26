@@ -7,19 +7,20 @@ import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.a
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class BillImportProductDto {
+public class BillImportProduct {
     public String date;
     public String nameSeller;
     private List<ProductChooseDto> listProduct;
+    public boolean isShowProduct;
 
-    public BillImportProductDto(BillImportProductDto data) {
+    public BillImportProduct(BillImportProduct data) {
         this.date = data.date;
         this.nameSeller = data.nameSeller;
         this.listProduct = new ArrayList<>();
         this.listProduct.addAll(data.listProduct);
     }
 
-    public BillImportProductDto() {
+    public BillImportProduct() {
 
     }
 

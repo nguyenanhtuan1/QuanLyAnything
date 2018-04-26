@@ -7,6 +7,7 @@ public interface HistoryTapHoaContact {
 
     interface View extends IBaseView {
         void onNotifyAdapterImport();
+        void onNotifyAdapterSell();
     }
 
     interface Presenter {

@@ -6,7 +6,6 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white_color"
         app:cardCornerRadius="4dp">
@@ -14,9 +13,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_marginTop="8dp"
             android:background="@color/white_color"
-            android:orientation="vertical"
-            android:layout_margin="6dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,14 +54,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_seller"
+                    android:text="@string/text_name_client"
                     android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
@@ -158,6 +157,7 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
 
 </LinearLayout>
 

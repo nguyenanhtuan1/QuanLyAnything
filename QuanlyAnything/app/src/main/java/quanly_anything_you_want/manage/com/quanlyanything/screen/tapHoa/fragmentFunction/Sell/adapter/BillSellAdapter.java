@@ -18,9 +18,9 @@ import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText
 
 public class BillSellAdapter extends RecyclerView.Adapter<BillSellAdapter.ViewItemHolder> {
     private Context context;
-    private List<BillSellTapHoa> sellList;
+    private List<BillSellProduct> sellList;
 
-    public BillSellAdapter(Context context, List<BillSellTapHoa> sellList) {
+    public BillSellAdapter(Context context, List<BillSellProduct> sellList) {
         this.context = context;
         this.sellList = sellList;
     }
@@ -59,7 +59,7 @@ public class BillSellAdapter extends RecyclerView.Adapter<BillSellAdapter.ViewIt
             ButterKnife.bind(this, itemView);
         }
 
-        void setUpData(BillSellTapHoa data) {
+        void setUpData(BillSellProduct data) {
             edtNameClient.setText(data.nameClient != null ? data.nameClient : "");
             tvTotalNameProduct.setText(data.getNameTotalProduct());
             tvTotalAmount.setText(data.getTextTotalAmountProduct());

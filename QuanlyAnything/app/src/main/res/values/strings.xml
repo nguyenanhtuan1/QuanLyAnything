@@ -66,6 +66,8 @@
     <string name="text_name_client">Người mua:</string>
     <string name="text_btn_completed">Hoàn tất</string>
     <string name="question_delete_product">Bạn có muốn xóa sản phẩm này?</string>
+    <string name="question_delete_sell_history_product">Bạn có muốn xóa lịch sử bán hàng này?</string>
+    <string name="question_delete_import_history_product">Bạn có muốn xóa lịch sử nhập sản phẩm này?</string>
     <string name="question_delete_bill">Bạn có muốn hủy hóa đơn này?</string>
     <string name="text_total_product">Tổng SP:</string>
     <string name="text_add_bill">Thêm hóa đơn</string>
@@ -75,9 +77,10 @@
     <string name="title_import_product">Nhập Sản Phẩm</string>
     <string name="question_cancel_import_product">Bạn có muốn hủy nhập đơn hàng này?</string>
     <string name="question_complete_import_product">Bạn có hoàn thành nhập đơn hàng này?</string>
+    <string name="question_complete_sell_product">Bạn có hoàn thành bán đơn hàng này?</string>
     <string name="text_quantity">Số lượng:</string>
     <string name="text_fix">Sửa</string>
-    <string name="error_not_import_product">Bạn chưa thêm sản phẩm.</string>
+    <string name="error_not_import_product">Bạn chưa thêm sản phẩm nào.</string>
     <string name="text_date_import">Ngày nhập:</string>
 
 </resources>

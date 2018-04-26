@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class BillSellTapHoa implements Serializable {
+public class BillSellProduct implements Serializable {
     public String date;
     public String nameClient;
     private List<ProductChooseDto> listProduct;
-    public String currency = "VND";
+    public boolean isShowProduct;
 
     public String getNameTotalProduct() {
         StringBuilder text = new StringBuilder();
@@ -51,7 +52,7 @@ public class BillSellTapHoa implements Serializable {
         for (ProductChooseDto item : getListProduct()) {
             amount = amount + (item.quantityWholesale * item.priceWholesale) + (item.quantityRetail * item.priceRetail);
         }
-        return CommonUtil.showPriceHasCurrency(amount, currency);
+        return CommonUtil.showPriceHasCurrency(amount, AppConstants.CURRENCY_DEFAULT);
     }
 
 

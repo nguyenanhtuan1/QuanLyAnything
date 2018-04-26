@@ -41,7 +41,16 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
     protected void onInitData() {
         mPresenter = new ImportTapHoaFragmentPresenter(this);
 
-        adapter = new ProductImportAdapter(getContext(), mPresenter.getBillImportProductDto().getListProduct(), new ProductImportAdapter.OnItemClickListener() {
+        adapter = new ProductImportAdapter(getContext(), mPresenter.getBillImportProduct().getListProduct());
+        rcvProduct.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcvProduct.setHasFixedSize(true);
+        rcvProduct.setAdapter(adapter);
+        rcvProduct.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    protected void onInitListener() {
+        adapter.setOnItemClickListener(new ProductImportAdapter.OnItemClickListener() {
             @Override
             public void onClickDelete(final int position) {
                 showConfirmDialog(getString(R.string.question_delete_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
@@ -54,12 +63,11 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
                     public void onIPositiveNegativeDialogAnswerNegative(DialogPositiveNegative dialog) {
                     }
                 });
-
             }
 
             @Override
             public void onClickEdit(final int position) {
-                ProductChooseDto item = mPresenter.getBillImportProductDto().getListProduct().get(position);
+                ProductChooseDto item = mPresenter.getBillImportProduct().getListProduct().get(position);
                 EditQuantityImportProductTapHoaDialog dialog = new EditQuantityImportProductTapHoaDialog(item,
                         new EditQuantityImportProductTapHoaDialog.OnSaveListener() {
                             @Override
@@ -71,22 +79,12 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
                 dialog.show(getFragmentManager(), "EditQuantitySellProductTapHoaDialog");
             }
         });
-
-        rcvProduct.setLayoutManager(new LinearLayoutManager(getContext()));
-        rcvProduct.setHasFixedSize(true);
-        rcvProduct.setAdapter(adapter);
-        rcvProduct.setNestedScrollingEnabled(false);
-    }
-
-    @Override
-    protected void onInitListener() {
-
     }
 
     @Override
     public void updateData() {
-        tvTotalNameProduct.setText(mPresenter.getBillImportProductDto().getNameTotalProduct());
-        tvTotalAmount.setText(mPresenter.getBillImportProductDto().getTotalAmountProduct());
+        tvTotalNameProduct.setText(mPresenter.getBillImportProduct().getNameTotalProduct());
+        tvTotalAmount.setText(mPresenter.getBillImportProduct().getTotalAmountProduct());
     }
 
     @Override
@@ -117,7 +115,7 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
         if (resultCode != RESULT_OK) return;
         ObjectContentList product = (ObjectContentList) data.getSerializableExtra(AppConstants.RESULT_CHOOSE_PRODUCT);
         if (product != null && product.chooseDtoList != null && !product.chooseDtoList.isEmpty()) {
-            mPresenter.getBillImportProductDto().getListProduct().addAll(product.chooseDtoList);
+            mPresenter.getBillImportProduct().getListProduct().addAll(product.chooseDtoList);
             adapter.notifyDataSetChanged();
             updateData();
         }
@@ -143,8 +141,8 @@ public class ImportTapHoaFragment extends BaseFragment implements ImportTapHoaFr
 
     @OnClick(R.id.btn_completed)
     void onClickCompleteImport() {
-        if (mPresenter.getBillImportProductDto().getListProduct().isEmpty()){
-            Toast.makeText(getContext(), R.string.error_not_import_product,Toast.LENGTH_SHORT).show();
+        if (mPresenter.getBillImportProduct().getListProduct().isEmpty()) {
+            Toast.makeText(getContext(), R.string.error_not_import_product, Toast.LENGTH_SHORT).show();
             return;
         }
 

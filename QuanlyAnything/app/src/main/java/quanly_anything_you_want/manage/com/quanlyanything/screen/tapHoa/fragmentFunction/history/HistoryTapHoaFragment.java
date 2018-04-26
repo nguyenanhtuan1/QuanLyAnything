@@ -1,16 +1,16 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
-
-import org.zakariya.stickyheaders.StickyHeaderLayoutManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogPositiveNegative.DialogPositiveNegative;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter.ImportHistoryAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter.SellHistoryAdapter;
 
 public class HistoryTapHoaFragment extends BaseFragment implements HistoryTapHoaContact.View {
 
@@ -25,6 +25,7 @@ public class HistoryTapHoaFragment extends BaseFragment implements HistoryTapHoa
 
     HistoryTapHoaPresenter mPresenter;
 
+    SellHistoryAdapter adapterSell;
     ImportHistoryAdapter adapterImport;
 
     @Override
@@ -32,17 +33,47 @@ public class HistoryTapHoaFragment extends BaseFragment implements HistoryTapHoa
         mPresenter = new HistoryTapHoaPresenter(this);
         btnImportHistory.setSelected(true);
 
-        adapterImport = new ImportHistoryAdapter(mPresenter.getListImport());
-        rcvHistory.setLayoutManager(new StickyHeaderLayoutManager());
+        adapterImport = new ImportHistoryAdapter(getContext(), mPresenter.getListImport());
+        rcvHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         rcvHistory.setAdapter(adapterImport);
+
+        adapterSell = new SellHistoryAdapter(getContext(), mPresenter.getListSell());
+
     }
 
     @Override
     protected void onInitListener() {
         adapterImport.setOnItemClickListener(new ImportHistoryAdapter.OnItemClickListener() {
             @Override
-            public void onItemDelete(int positionHeader) {
+            public void onItemDelete(final int positionHeader) {
+                showConfirmDialog(getString(R.string.question_delete_import_history_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
+                        mPresenter.setDeleteImportHistory(positionHeader);
+                        dialog.dismiss();
+                    }
 
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerNegative(DialogPositiveNegative dialog) {
+                    }
+                });
+            }
+        });
+
+        adapterSell.setOnItemClickListener(new SellHistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemDelete(final int positionHeader) {
+                showConfirmDialog(getString(R.string.question_delete_sell_history_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
+                        mPresenter.setDeleteSellHistory(positionHeader);
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onIPositiveNegativeDialogAnswerNegative(DialogPositiveNegative dialog) {
+                    }
+                });
             }
         });
     }
@@ -56,17 +87,25 @@ public class HistoryTapHoaFragment extends BaseFragment implements HistoryTapHoa
     void onClickSellHistory() {
         btnSellHistory.setSelected(true);
         btnImportHistory.setSelected(false);
+        rcvHistory.setAdapter(adapterSell);
     }
 
     @OnClick(R.id.btn_import_history)
     void onClickImportHistory() {
         btnSellHistory.setSelected(false);
         btnImportHistory.setSelected(true);
+        rcvHistory.setAdapter(adapterImport);
+
     }
 
     @Override
     public void onNotifyAdapterImport() {
-        adapterImport.notifyAllSectionsDataSetChanged();
+        adapterImport.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onNotifyAdapterSell() {
+        adapterSell.notifyDataSetChanged();
     }
 
     @Override

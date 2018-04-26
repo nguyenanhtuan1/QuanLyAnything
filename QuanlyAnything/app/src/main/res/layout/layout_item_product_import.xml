@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
@@ -24,7 +25,6 @@
             android:id="@+id/btn_edit_quantity"
             android:layout_width="34dp"
             android:layout_height="26dp"
-            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_btn_pressed_green_greentransnot_border"
             android:text="@string/text_fix"
@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingEnd="4dp"
+                android:textStyle="bold"
                 android:paddingStart="4dp"
                 android:singleLine="true"
                 android:textColor="@color/black_color"

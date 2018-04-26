@@ -1,12 +1,14 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter;
 
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.zakariya.stickyheaders.SectioningAdapter;
 
 import java.util.List;
 
@@ -14,20 +16,36 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProductDto;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.ProductImportAdapter;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class ImportHistoryAdapter extends SectioningAdapter {
+public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdapter.ViewItemHolder> {
+    private Context context;
+    private List<BillImportProduct> list;
 
-    private List<BillImportProductDto> list;
-
-    public ImportHistoryAdapter(List<BillImportProductDto> mSections) {
+    public ImportHistoryAdapter(Context context, List<BillImportProduct> mSections) {
+        this.context = context;
         this.list = mSections;
-        resetCollapsed();
     }
 
-    class HeaderViewHolder extends SectioningAdapter.HeaderViewHolder {
+    @Override
+    public ImportHistoryAdapter.ViewItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_view_import_history, parent, false);
+        return new ViewItemHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ImportHistoryAdapter.ViewItemHolder holder, int position) {
+        holder.setUpData(list.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return list != null ? list.size() : 0;
+    }
+
+    public class ViewItemHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_date_import)
         TextView tvDate;
 
@@ -43,97 +61,52 @@ public class ImportHistoryAdapter extends SectioningAdapter {
         @BindView(R.id.imv_drop_down)
         ImageView imvDropDown;
 
-        HeaderViewHolder(View itemView) {
+        @BindView(R.id.rcv_product)
+        RecyclerView lvProduct;
+        @BindView(R.id.btn_delete_import_history)
+        Button btnDelete;
+
+        BillImportProduct itemBill;
+        ProductImportAdapter adapter;
+
+        public ViewItemHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+        }
+
+        void setUpData(BillImportProduct data) {
+            itemBill = data;
+            tvDate.setText(itemBill.date != null ? itemBill.date : "");
+            tvNameSeller.setText(itemBill.nameSeller != null ? itemBill.nameSeller : "");
+            tvTotalNameProduct.setText(itemBill.getNameTotalProduct());
+            tvTotalAmount.setText(itemBill.getTotalAmountProduct());
+            imvDropDown.setRotation(itemBill.isShowProduct ? -90 : 0);
+
+            adapter = new ProductImportAdapter(context, itemBill.getListProduct());
+            adapter.setHistory(true);
+            lvProduct.setLayoutManager(new LinearLayoutManager(context));
+            lvProduct.setHasFixedSize(true);
+            lvProduct.setAdapter(data.isShowProduct ? adapter : null);
         }
 
         @OnClick(R.id.btn_delete_import_history)
         void onClickDelete() {
-            mCallBack.onItemDelete(getSection());
+            CommonUtil.delayButton(btnDelete);
+            mCallBack.onItemDelete(getAdapterPosition());
         }
 
         @OnClick(R.id.btn_show_product)
         void onClickShowProduct() {
-            setSectionIsCollapsed(getSection(), !isSectionCollapsed(getSection()));
-            imvDropDown.setRotation(isSectionCollapsed(getSection()) ? 0 : -90);
+            itemBill.isShowProduct = !itemBill.isShowProduct;
+            lvProduct.setAdapter(itemBill.isShowProduct ? adapter : null);
+            imvDropDown.setRotation(itemBill.isShowProduct ? -90 : 0);
         }
     }
 
-    class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
+    private ImportHistoryAdapter.OnItemClickListener mCallBack;
 
-        @BindView(R.id.tv_name_product)
-        TextView tvNameProduct;
-
-        @BindView(R.id.tv_quantity_product)
-        TextView tvQuantityProduct;
-
-        @BindView(R.id.tv_price_product)
-        TextView tvPriceProduct;
-
-        @BindView(R.id.tv_total_price_product)
-        TextView tvTotalAmount;
-
-
-        @BindView(R.id.view_line_bottom)
-        View vBottom;
-
-        ItemViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    @Override
-    public SectioningAdapter.HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int headerType) {
-        return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_import_history, parent, false));
-    }
-
-    @Override
-    public SectioningAdapter.ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemType) {
-        return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_import_history, parent, false));
-    }
-
-    @Override
-    public void onBindHeaderViewHolder(SectioningAdapter.HeaderViewHolder viewHolder, final int sectionIndex, int headerType) {
-        HeaderViewHolder holder = ((HeaderViewHolder) viewHolder);
-        BillImportProductDto item = list.get(sectionIndex);
-        holder.tvDate.setText(item.date != null ? item.date : "");
-        holder.tvNameSeller.setText(item.nameSeller != null ? item.nameSeller : "");
-        holder.tvTotalNameProduct.setText(item.getNameTotalProduct());
-        holder.tvTotalAmount.setText(item.getTotalAmountProduct());
-        holder.imvDropDown.setRotation(isSectionCollapsed(sectionIndex) ? 0 : -90);
-    }
-
-    @Override
-    public void onBindItemViewHolder(SectioningAdapter.ItemViewHolder viewHolder, final int sectionIndex, final int itemIndex, int itemType) {
-        ItemViewHolder holder = (ItemViewHolder) viewHolder;
-        ProductChooseDto item = list.get(sectionIndex).getListProduct().get(itemIndex);
-        holder.tvNameProduct.setText(item.name != null ? item.name : "");
-        holder.tvQuantityProduct.setText(CommonUtil.showQuantityHasUnit(item.quantityImport, item.unitImport));
-        holder.tvPriceProduct.setText(CommonUtil.showPriceHasCurrencyAndUnit(item.priceImport, item.currency, item.unitImport));
-        holder.tvTotalAmount.setText(CommonUtil.showPriceHasCurrency(item.priceImport * item.quantityImport, item.currency));
-        holder.vBottom.setVisibility(itemIndex == list.get(sectionIndex).getListProduct().size() - 1 ? View.INVISIBLE : View.VISIBLE);
-    }
-
-    @Override
-    public int getNumberOfSections() {
-        return list != null ? list.size() : 0;
-    }
-
-    @Override
-    public int getNumberOfItemsInSection(int sectionIndex) {
-        return list.get(sectionIndex).getListProduct().size();
-    }
-
-    @Override
-    public boolean doesSectionHaveHeader(int sectionIndex) {
-        return true;
-    }
-
-    private OnItemClickListener mCallBack;
-
-    public void setOnItemClickListener(OnItemClickListener callBack) {
+    public void setOnItemClickListener(ImportHistoryAdapter.OnItemClickListener callBack) {
         mCallBack = callBack;
     }
 
@@ -141,18 +114,4 @@ public class ImportHistoryAdapter extends SectioningAdapter {
         void onItemDelete(int positionHeader);
 
     }
-
-    @Override
-    public void notifyAllSectionsDataSetChanged() {
-        super.notifyAllSectionsDataSetChanged();
-        resetCollapsed();
-    }
-
-    private void resetCollapsed() {
-        if (list != null)
-            for (int i = 0; i < list.size(); i++) {
-                setSectionIsCollapsed(i, true);
-            }
-    }
-
 }

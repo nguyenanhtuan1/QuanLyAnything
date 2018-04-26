@@ -8,29 +8,28 @@ import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadImportHistory;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProductDto;
-import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 
 public class ImportTapHoaFragmentPresenter extends BasePresenter implements ImportTapHoaFragmentContact.Presenter {
-    private BillImportProductDto billImportProductDto;
+    private BillImportProduct billImportProduct;
 
 
-    public BillImportProductDto getBillImportProductDto() {
-        return billImportProductDto;
+    public BillImportProduct getBillImportProduct() {
+        return billImportProduct;
     }
 
     ImportTapHoaFragmentPresenter(IBaseView view) {
         super.onCreate(view);
-        billImportProductDto = new BillImportProductDto();
+        billImportProduct = new BillImportProduct();
 
     }
 
     @Override
     public ArrayList<String> getListNameProduct() {
         ArrayList<String> list = new ArrayList<>();
-        for (ProductChooseDto item : billImportProductDto.getListProduct()) {
+        for (ProductChooseDto item : billImportProduct.getListProduct()) {
             list.add(item.name);
         }
         return list;
@@ -43,24 +42,24 @@ public class ImportTapHoaFragmentPresenter extends BasePresenter implements Impo
 
     @Override
     public void resetData() {
-        billImportProductDto.nameSeller = "";
-        billImportProductDto.getListProduct().clear();
+        billImportProduct.nameSeller = "";
+        billImportProduct.getListProduct().clear();
         getView().updateData();
         getView().notifyAllDataAdapter();
     }
 
     @Override
     public void completeImportProduct(String seller) {
-        billImportProductDto.nameSeller = seller;
-        billImportProductDto.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
-        getCachesManager().getListBillImport().add(new BillImportProductDto(billImportProductDto));
-        getEventManager().sendEvent(new ReloadImportHistory(new BillImportProductDto(billImportProductDto)));
+        billImportProduct.nameSeller = seller;
+        billImportProduct.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
+        getCachesManager().getListBillImport().add(0,new BillImportProduct(billImportProduct));
+        getEventManager().sendEvent(new ReloadImportHistory(new BillImportProduct(billImportProduct)));
         resetData();
     }
 
     @Override
     public void setRemoveProduct(int position) {
-        billImportProductDto.getListProduct().remove(position);
+        billImportProduct.getListProduct().remove(position);
         getView().updateData();
         getView().notifyRemoveDataAdapter(position);
     }

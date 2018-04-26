@@ -22,10 +22,15 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 public class ProductSelectedAdapter extends RecyclerView.Adapter<ProductSelectedAdapter.ViewItemHolder> {
     private Context context;
     private List<ProductChooseDto> listProduct;
+    private boolean isShowHistory;
 
     public ProductSelectedAdapter(Context context, List<ProductChooseDto> listProduct) {
         this.context = context;
         this.listProduct = listProduct;
+    }
+
+    public void setShowHistory(boolean showHistory) {
+        isShowHistory = showHistory;
     }
 
     @Override
@@ -98,6 +103,11 @@ public class ProductSelectedAdapter extends RecyclerView.Adapter<ProductSelected
             stringRetail.append(" = ");
             stringRetail.append(CommonUtil.showPriceHasCurrency(data.quantityRetail * data.priceRetail, data.currency));
             tvQuantityRetail.setText(data.quantityRetail != 0 ? stringRetail : "");
+
+            if (isShowHistory){
+                btnEdit.setVisibility(View.GONE);
+                btnDelete.setVisibility(View.GONE);
+            }
         }
 
         @OnClick(R.id.btn_edit_quantity)
