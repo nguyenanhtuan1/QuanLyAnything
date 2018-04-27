@@ -12,11 +12,13 @@ import quanly_anything_you_want.manage.com.quanlyanything.R;
 public class ImageLoader {
 
     public static void loadImagePhoto(Context context, String url, ImageView imageView) {
-        if (TextUtils.isEmpty(url)) return;
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(R.mipmap.ic_launcher_round)
-                .error(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(url).apply(options).into(imageView);
+        if (!TextUtils.isEmpty(url)) {
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .error(R.mipmap.ic_launcher_round);
+            Glide.with(context).load(url).apply(options).into(imageView);
+        }
+
     }
 }

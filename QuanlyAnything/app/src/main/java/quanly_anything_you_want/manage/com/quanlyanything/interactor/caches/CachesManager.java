@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.model.UserContact;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
 
@@ -19,6 +20,7 @@ public class CachesManager {
     private List<ProductTapHoa> listProduct;
     private List<BillImportProduct> listBillImport;
     private List<BillSellProduct> listBillSell;
+    private List<UserContact> listUserContact;
 
     private CachesManager() {
         listBillImport = new ArrayList<>();
@@ -30,6 +32,10 @@ public class CachesManager {
         listProduct.add(new ProductTapHoa("Mì chua cay", 180000, 220000, 7000, "Thùng", "Thùng", "Gói"));
         listProduct.add(new ProductTapHoa("Bánh trứng", 130000, 0, 150000, "Hộp", "", "Hộp"));
         listProduct.add(new ProductTapHoa("Gạo nếp", 12000, 0, 17000, "Kg", "", "Kg"));
+    }
+
+    public List<UserContact> getListUserContact() {
+        return listUserContact;
     }
 
     public List<ProductTapHoa> getListProduct() {

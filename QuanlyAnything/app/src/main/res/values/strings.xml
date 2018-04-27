@@ -82,5 +82,10 @@
     <string name="text_fix">Sửa</string>
     <string name="error_not_import_product">Bạn chưa thêm sản phẩm nào.</string>
     <string name="text_date_import">Ngày nhập:</string>
+    <string name="text_date_sell">Ngày bán</string>
+    <string name="add_new">Thêm mới</string>
+    <string name="text_call">Gọi</string>
+    <string name="name">Tên:</string>
+    <string name="number_phone">Phone:</string>
 
 </resources>
