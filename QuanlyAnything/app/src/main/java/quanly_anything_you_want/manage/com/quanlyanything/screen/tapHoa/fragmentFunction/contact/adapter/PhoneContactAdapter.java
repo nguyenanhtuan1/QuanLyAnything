@@ -37,7 +37,6 @@ public class PhoneContactAdapter extends RecyclerView.Adapter<PhoneContactAdapte
         UserContact item = list.get(position);
         holder.tvName.setText(item.name != null ? item.name : "");
         holder.tvPhone.setText(item.phone != null ? item.phone : "");
-        ImageLoader.loadImagePhoto(context, item.photo, holder.imvContact);
         holder.tvDesc.setText(item.desc != null ? item.desc : "");
     }
 

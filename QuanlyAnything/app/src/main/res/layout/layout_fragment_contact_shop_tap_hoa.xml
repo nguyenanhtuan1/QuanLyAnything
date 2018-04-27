@@ -10,29 +10,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_left_right_default"
-        android:gravity="end"
-        android:orientation="horizontal">
+        android:background="@drawable/bg_btn_white_border"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_height_edt"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edt_input_search"
+            android:hint="@string/text_search"
+            android:imeOptions="actionSearch"
+            android:paddingEnd="4dp"
+            android:paddingStart="10dp"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_normal_default" />
 
         <Button
             android:id="@+id/btn_add_phone_number"
-            android:layout_width="74dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/default_height_edt"
+            android:layout_marginEnd="14dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
-            android:text="@string/add_new"
+            android:text="@string/text_add"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
             android:textSize="@dimen/text_size_normal_default" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_add_phone_number_from_device"
-            android:layout_width="wrap_content"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
+            android:layout_width="30dp"
             android:layout_height="36dp"
-            android:background="@drawable/bg_btn_pressed_blue_bluetrans_stroke_orange"
-            android:text="Thêm từ điện thoại"
-            android:textAllCaps="false"
+            android:contentDescription="@null"
+            android:src="@drawable/bg_btn_pressed_contact"
             android:textColor="@color/white_color"
             android:textSize="@dimen/text_size_normal_default" />
     </LinearLayout>

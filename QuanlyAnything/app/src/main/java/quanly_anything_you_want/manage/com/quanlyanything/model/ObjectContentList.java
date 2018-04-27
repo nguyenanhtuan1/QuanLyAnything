@@ -7,4 +7,5 @@ import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.a
 
 public class ObjectContentList implements Serializable {
     public List<ProductChooseDto> chooseDtoList;
+    public List<UserContact> userContacts;
 }

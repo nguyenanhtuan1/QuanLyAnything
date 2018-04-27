@@ -20,11 +20,11 @@ public class ContactTabHoaFragmentPresenter extends BasePresenter implements Con
     ContactTabHoaFragmentPresenter(IBaseView view) {
         super.onCreate(view);
 
-        contactList.add(new UserContact("Nguyễn trung vinh","0987234222",null,"Vinh bán bún"));
-        contactList.add(new UserContact("Nguyễn Anh Tuấn","0987234222",null,"tuấn bán hành"));
-        contactList.add(new UserContact("Nguyễn văn anh","0987234222",null,"anh bán kem"));
-        contactList.add(new UserContact("Trần trung Huấn","0987234222",null,"Huấn bán gạo"));
-        contactList.add(new UserContact("Hà văn tú","0987234222",null,"Tú bán kẹo dừa"));
+        contactList.add(new UserContact("Nguyễn trung vinh", "0987234222", "Vinh bán bún"));
+        contactList.add(new UserContact("Nguyễn Anh Tuấn", "0987234222", "tuấn bán hành"));
+        contactList.add(new UserContact("Nguyễn văn anh", "0987234222", "anh bán kem"));
+        contactList.add(new UserContact("Trần trung Huấn", "0987234222", "Huấn bán gạo"));
+        contactList.add(new UserContact("Hà văn tú", "0987234222", "Tú bán kẹo dừa"));
 //        if (getCachesManager().getListUserContact() != null)
 //            contactList.addAll(getCachesManager().getListUserContact());
     }
@@ -34,4 +34,35 @@ public class ContactTabHoaFragmentPresenter extends BasePresenter implements Con
         return (ContactTabHoaFragmentContact.View) super.getView();
     }
 
+    @Override
+    public ArrayList<String> getListNumberPhone() {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (UserContact item : contactList) {
+            arrayList.add(item.phone);
+        }
+        return arrayList;
+    }
+
+    @Override
+    public void setOnDeleteContact(int position) {
+        contactList.remove(position);
+        getView().onNotifyAdapterRemoveContactAtPosition(position);
+    }
+
+    @Override
+    public void addMoreContact(UserContact value, int position) {
+        contactList.add(0, value);
+        getView().onNotifyAdapterInsertedContactAtPosition(position);
+    }
+
+    @Override
+    public void addMoreContact(List<UserContact> value) {
+        contactList.addAll(value);
+        getView().onNotifyAdapterContact();
+    }
+
+    @Override
+    public void editContact(UserContact value, int position) {
+        getView().onNotifyAdapterContactAtPosition(position);
+    }
 }

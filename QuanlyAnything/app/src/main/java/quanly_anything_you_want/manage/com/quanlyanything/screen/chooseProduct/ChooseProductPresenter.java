@@ -20,12 +20,13 @@ public class ChooseProductPresenter extends BasePresenter implements ChooseProdu
         super.onCreate(view);
         for (ProductTapHoa item : getCachesManager().getListProduct()) {
             boolean isAdd = true;
-            for (String id : nameProduct) {
-                if (item.name.equalsIgnoreCase(id)) {
-                    isAdd = false;
-                    break;
+            if (nameProduct != null)
+                for (String id : nameProduct) {
+                    if (item.name.equalsIgnoreCase(id)) {
+                        isAdd = false;
+                        break;
+                    }
                 }
-            }
             if (isAdd)
                 listStore.add(new ProductChooseDto(item));
 
