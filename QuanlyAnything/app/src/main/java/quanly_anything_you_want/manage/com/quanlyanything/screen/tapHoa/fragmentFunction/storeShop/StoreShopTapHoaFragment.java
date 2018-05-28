@@ -1,5 +1,6 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -13,11 +14,14 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseFragment;
-import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.detail_product.DetailProductActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ListStoreAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
+
+import static android.app.Activity.RESULT_OK;
 
 public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTapHoaContact.View {
     @BindView(R.id.edt_search_product)
@@ -31,9 +35,9 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
 
     ListStoreAdapter adapter;
     StoreShopTapHoaPresenter mPresenter;
-    ProductDialog dialogProduct;
 
     private boolean isScanFromThis;
+    private int mPosition;
 
     @Override
     protected void onInitData() {
@@ -42,18 +46,10 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         adapter = new ListStoreAdapter(getContext(), mPresenter.getListProduct(), new ListStoreAdapter.OnItemClickListener() {
             @Override
             public void onClickDetail(final int position) {
-                dialogProduct = new ProductDialog(mPresenter.getListProduct().get(position), new ProductDialog.OnSaveListener() {
-                    @Override
-                    public void onSaveValue(ProductTapHoa product) {
-                        mPresenter.setUpdateChangeProduct(position, product);
-                    }
-
-                    @Override
-                    public void onDeleteProduct() {
-                        mPresenter.deleteProduct(position);
-                    }
-                });
-                dialogProduct.show(getFragmentManager(), "ProductDialog");
+                mPosition = position;
+                Intent intent = new Intent(getContext(), DetailProductActivity.class);
+                intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mPresenter.getListProduct().get(position));
+                startActivityForResult(intent, AppConstants.REQUEST_EDIT_PRODUCT);
             }
         });
 
@@ -91,18 +87,27 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
     @OnClick(R.id.btn_new_product)
     void onClickNewProduct() {
         CommonUtil.delayButton(btnNewProduct);
-        dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
-            @Override
-            public void onSaveValue(ProductTapHoa product) {
-                mPresenter.addItemProduct(product);
-            }
+        Intent intent = new Intent(getContext(), DetailProductActivity.class);
+        startActivityForResult(intent, AppConstants.REQUEST_NEW_PRODUCT);
+    }
 
-            @Override
-            public void onDeleteProduct() {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            ProductTapHoa tapHoa = (ProductTapHoa) data.getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
 
+            if (requestCode == AppConstants.REQUEST_EDIT_PRODUCT) {
+                if (tapHoa.isDelete) {
+                    mPresenter.deleteProduct(mPosition);
+                } else {
+                    mPresenter.setUpdateChangeProduct(mPosition, tapHoa);
+                }
+            } else if (requestCode == AppConstants.REQUEST_NEW_PRODUCT) {
+                mPresenter.addItemProduct(tapHoa);
             }
-        });
-        dialogProduct.show(getFragmentManager(), "ProductDialog");
+        }
+
     }
 
     @OnClick(R.id.btn_scan_product)
@@ -121,8 +126,6 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
             edtSearch.setText(barcode);
             edtSearch.setSelection(edtSearch.getText().length());
             isScanFromThis = false;
-        } else {
-            dialogProduct.setValueBarcode(barcode);
         }
     }
 

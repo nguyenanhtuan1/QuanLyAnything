@@ -1,8 +1,11 @@
 package quanly_anything_you_want.manage.com.quanlyanything.base;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +83,13 @@ public abstract class BaseDialogFragment extends DialogFragment {
             }
         });
     }
-
+    protected boolean checkPermissions(String[] permissions, Context context) {
+        for (String s : permissions) {
+            if (ContextCompat.checkSelfPermission(context.getApplicationContext(), s) != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
+    }
     protected void showNoNetworkErrorDialog() {
         showErrorDialog(getContext().getString(R.string.no_internet_network));
     }

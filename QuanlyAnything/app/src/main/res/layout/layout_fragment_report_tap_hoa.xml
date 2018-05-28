@@ -2,16 +2,157 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white_color"
+    android:orientation="vertical"
     android:paddingEnd="@dimen/margin_left_right_default"
     android:paddingStart="@dimen/margin_left_right_default">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/date_from"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <TextView
+            android:id="@+id/tv_time_filter_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_title_default"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imv_pick_time_from"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_calendar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_gravity="end"
-        android:contentDescription="@null"
-        android:src="@drawable/icon_calendar" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/date_to"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <TextView
+            android:id="@+id/tv_time_filter_to"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_title_default"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imv_pick_time_to"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_calendar" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/grey_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_buy"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <TextView
+            android:id="@+id/tv_total_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_sell"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/text_size_normal_default" />
+
+        <TextView
+            android:id="@+id/tv_total_sell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="14dp"
+
+        android:background="@color/grey_divider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/tv_title_amount"
+        android:text="@string/text_total_interest"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_total_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_blue_normal"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
 </LinearLayout>

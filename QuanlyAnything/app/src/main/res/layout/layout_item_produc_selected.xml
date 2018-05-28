@@ -17,8 +17,7 @@
             android:id="@+id/imv_photo_product"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_sua_ong_tho" />
+            android:contentDescription="@null"/>
 
         <Button
             android:id="@+id/btn_edit_quantity"

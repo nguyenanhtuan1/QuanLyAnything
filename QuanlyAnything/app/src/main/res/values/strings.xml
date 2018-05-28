@@ -91,5 +91,11 @@
     <string name="text_desc">Mô tả:</string>
     <string name="text_detail">Chi tiết</string>
     <string name="text_done">Xong</string>
+    <string name="date_from">Từ ngày:</string>
+    <string name="date_to">Tới ngày:</string>
+    <string name="total_buy">Tổng chi:</string>
+    <string name="total_sell">Tổng thu:</string>
+    <string name="text_total_interest">Tổng tiền lãi:</string>
+    <string name="text_total_hole">Tổng tiền lỗ:</string>
 
 </resources>

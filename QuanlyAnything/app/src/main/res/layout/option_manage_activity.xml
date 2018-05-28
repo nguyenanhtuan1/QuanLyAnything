@@ -5,8 +5,8 @@
     android:id="@+id/cs_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_screen_login"
     android:orientation="vertical"
+    android:background="@color/color_main_app"
     android:paddingEnd="@dimen/padding_left_right_screen_login"
     android:paddingStart="@dimen/padding_left_right_screen_login">
 

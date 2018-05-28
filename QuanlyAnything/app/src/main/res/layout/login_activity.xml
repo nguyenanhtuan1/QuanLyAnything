@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_login"
+    android:background="@color/color_main_app"
     android:orientation="vertical"
     android:paddingEnd="@dimen/padding_left_right_screen_login"
     android:paddingStart="@dimen/padding_left_right_screen_login">

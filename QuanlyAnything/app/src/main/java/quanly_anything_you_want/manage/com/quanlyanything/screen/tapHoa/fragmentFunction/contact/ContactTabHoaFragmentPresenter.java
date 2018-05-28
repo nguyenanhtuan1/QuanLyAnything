@@ -19,14 +19,8 @@ public class ContactTabHoaFragmentPresenter extends BasePresenter implements Con
 
     ContactTabHoaFragmentPresenter(IBaseView view) {
         super.onCreate(view);
-
-        contactList.add(new UserContact("Nguyễn trung vinh", "0987234222", "Vinh bán bún"));
-        contactList.add(new UserContact("Nguyễn Anh Tuấn", "0987234222", "tuấn bán hành"));
-        contactList.add(new UserContact("Nguyễn văn anh", "0987234222", "anh bán kem"));
-        contactList.add(new UserContact("Trần trung Huấn", "0987234222", "Huấn bán gạo"));
-        contactList.add(new UserContact("Hà văn tú", "0987234222", "Tú bán kẹo dừa"));
-//        if (getCachesManager().getListUserContact() != null)
-//            contactList.addAll(getCachesManager().getListUserContact());
+        if (getCachesManager().getListUserContact() != null)
+            contactList.addAll(getCachesManager().getListUserContact());
     }
 
     @Override

@@ -1,16 +1,9 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.option;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.util.Log;
 import android.widget.ImageView;
 
 import butterknife.BindView;

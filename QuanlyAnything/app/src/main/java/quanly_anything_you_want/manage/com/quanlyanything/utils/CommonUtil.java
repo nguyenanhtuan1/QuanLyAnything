@@ -1,23 +1,39 @@
 package quanly_anything_you_want.manage.com.quanlyanything.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Currency;
+import java.util.Date;
+import java.util.Locale;
 
+import quanly_anything_you_want.manage.com.quanlyanything.BuildConfig;
+import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.login.LoginContact;
 
 import static java.lang.Math.floor;
 import static java.lang.Math.pow;
 
 public class CommonUtil {
+    public static final String JPEG_FILE_PREFIX = "IMG_";
+    public static final String JPEG_FILE_SUFFIX = ".jpg";
+
     public static final String formatVN = "#,###,###";
 
     public static String showName(String text) {
@@ -234,4 +250,59 @@ public class CommonUtil {
 
         return sReturn.toString();
     }
+
+    public static File startActionImageCapture(Activity activity, int requestCode) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file;
+        try {
+            file = createTempFile(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                    activity.getResources().getString(R.string.app_name),
+                    JPEG_FILE_PREFIX,
+                    JPEG_FILE_SUFFIX
+            );
+            if (file == null) {
+                return null;
+            }
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getUriFromFile(activity, file));
+            activity.startActivityForResult(takePictureIntent, requestCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+            file = null;
+        }
+        return file;
+    }
+
+    public static Uri getUriFromFile(Context context, File file) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file);
+        }
+        return Uri.fromFile(file);
+    }
+
+
+    private static File createTempFile(File rootDir, String dirName, String prefix, String suffix) throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        String fileName = prefix + timeStamp + "_";
+        File storageDir = getStorageDir(rootDir, dirName);
+        if (storageDir == null) {
+            return null;
+        }
+        return File.createTempFile(fileName, suffix, storageDir);
+    }
+
+    private static File getStorageDir(File dir, String name) {
+        File storageDir = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            storageDir = new File(dir, name);
+            if (!storageDir.mkdirs()) {
+                if (!storageDir.exists()) {
+                    return null;
+                }
+            }
+        }
+        return storageDir;
+    }
+
+
 }

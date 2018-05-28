@@ -1,6 +1,12 @@
-package quanly_anything_you_want.manage.com.quanlyanything.dialog;
+package quanly_anything_you_want.manage.com.quanlyanything.screen.detail_product;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -8,21 +14,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
-import quanly_anything_you_want.manage.com.quanlyanything.base.BaseDialogFragment;
+import quanly_anything_you_want.manage.com.quanlyanything.base.BaseActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText;
+import quanly_anything_you_want.manage.com.quanlyanything.dialog.InputUnitProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.dialog.dialogPositiveNegative.DialogPositiveNegative;
 import quanly_anything_you_want.manage.com.quanlyanything.images.ImageLoader;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.popupCommon.selectUnit.SelectUnitProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-@SuppressLint("ValidFragment")
-public class ProductDialog extends BaseDialogFragment {
+public class DetailProductActivity extends BaseActivity implements DetailProductContact.View {
     @BindView(R.id.imv_photo_product)
     ImageView imvPhotoProduct;
 
@@ -76,23 +86,21 @@ public class ProductDialog extends BaseDialogFragment {
 
     @BindView(R.id.btn_delete_product)
     Button btnDelete;
-
+    private File mUploadFile;
     private ProductTapHoa mProduct;
-    private OnSaveListener mCallBack;
+    DetailProductPresenter mPresenter;
 
-    public ProductDialog(ProductTapHoa mProduct, OnSaveListener mCallBack) {
-        this.mProduct = mProduct;
-        this.mCallBack = mCallBack;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.detail_product_activity);
+        mPresenter = new DetailProductPresenter(this);
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
-
-    protected int layoutID() {
-        return R.layout.layout_dialog_product;
-    }
-
-    @Override
-    protected void initData() {
+    public void onInitData() {
+        mProduct = (ProductTapHoa) getIntent().getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
         if (mProduct == null) {
             mProduct = new ProductTapHoa();
         }
@@ -128,18 +136,19 @@ public class ProductDialog extends BaseDialogFragment {
         edtCodeProduct.setText(mProduct.codeProduct);
         btnHasSell.setSelected(mProduct.status);
         btnNotSell.setSelected(!mProduct.status);
-        ImageLoader.loadImagePhoto(getContext(), "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhotoProduct);
+        ImageLoader.loadImagePhoto(this, mProduct.photo, imvPhotoProduct);
         btnDelete.setVisibility(!TextUtils.isEmpty(mProduct.name) ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
-    protected void initListener() {
+    public void onInitListener() {
 
     }
 
     @OnClick(R.id.btn_cancel)
     void onClickCancel() {
-        dismiss();
+        finish();
     }
 
     @OnClick(R.id.btn_save)
@@ -167,22 +176,58 @@ public class ProductDialog extends BaseDialogFragment {
         mProduct.unitRetail = tvUnitOfRetail.getText().toString();
         mProduct.codeProduct = edtCodeProduct.getText().toString();
         mProduct.status = btnHasSell.isSelected();
-        mCallBack.onSaveValue(mProduct);
-        dismiss();
+
+        Intent intent = new Intent();
+        intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mProduct);
+        setResult(RESULT_OK, intent);
+        finish();
     }
+
 
     @OnClick(R.id.btn_choose_image)
     void onClickChooseImage() {
+        String[] s = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (checkPermissions(s)) {
+            mUploadFile = CommonUtil.startActionImageCapture(this, AppConstants.REQUEST_CAPTURE_IMAGE);
+        } else {
+            ActivityCompat.requestPermissions(this, s, AppConstants.REQUEST_PERMISSION_CAPTURE_IMAGE);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED && requestCode == AppConstants.REQUEST_PERMISSION_CAPTURE_IMAGE) {
+            mUploadFile = CommonUtil.startActionImageCapture(this, AppConstants.REQUEST_CAPTURE_IMAGE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(final int requestCode, int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AppConstants.REQUEST_CAPTURE_IMAGE) {
+            if (mUploadFile != null) {
+                ImageLoader.loadImagePhoto2(this, mUploadFile, imvPhotoProduct);
+            }
+        } else {
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            if (result != null && result.getContents() != null) {
+                edtCodeProduct.setText(result.getContents());
+            }
+        }
     }
 
     @OnClick(R.id.btn_delete_product)
     void onClickDeleteProduct() {
-        showDialogConfig(getString(R.string.app_name), getString(R.string.question_delete_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
+        showConfirmDialog(getString(R.string.app_name), getString(R.string.question_delete_product), new DialogPositiveNegative.IPositiveNegativeDialogListener() {
             @Override
             public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
-                mCallBack.onDeleteProduct();
-                dismiss();
+                dialog.dismiss();
+                Intent intent = new Intent();
+                mProduct.isDelete = true;
+                intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mProduct);
+                setResult(RESULT_OK, intent);
+                finish();
             }
 
             @Override
@@ -190,7 +235,6 @@ public class ProductDialog extends BaseDialogFragment {
                 dialog.dismiss();
             }
         });
-
     }
 
     @OnClick(R.id.btn_choose_unit_purchase)
@@ -222,19 +266,15 @@ public class ProductDialog extends BaseDialogFragment {
 
     @OnClick(R.id.btn_scan_product)
     void onClickScanProduct() {
-        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setPrompt("");
         integrator.setCaptureActivity(CustomScannerActivity.class);
         integrator.setOrientationLocked(false);
         integrator.initiateScan();
     }
 
-    public void setValueBarcode(String value) {
-        edtCodeProduct.setText(value);
-    }
-
     private void showDialogPickUnitProduct(Button btn, final TextView tv) {
-        SelectUnitProduct selectUnitProduct = new SelectUnitProduct(getContext());
+        SelectUnitProduct selectUnitProduct = new SelectUnitProduct(this);
         selectUnitProduct.showViewPopupUnitProduct(btn, tv, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,15 +308,11 @@ public class ProductDialog extends BaseDialogFragment {
                             }
                         }
                     });
-                    inputUnitProductDialog.show(getChildFragmentManager(), "InputUnitProductDialog");
+                    inputUnitProductDialog.show(getSupportFragmentManager(), "InputUnitProductDialog");
                 }
             }
         });
     }
 
-    public interface OnSaveListener {
-        void onSaveValue(ProductTapHoa product);
 
-        void onDeleteProduct();
-    }
 }

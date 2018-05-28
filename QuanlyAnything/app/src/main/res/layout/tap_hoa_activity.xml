@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_screen_tap_hoa"
+    android:background="@color/color_main_app"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="74dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left_right_default"
         android:layout_marginTop="@dimen/padding_top_bar"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_back_blue"
+        android:drawableStart="@drawable/ic_back_white"
         android:text="@string/text_back"
         android:textAllCaps="false"
-        android:textColor="@color/bg_text_color_presed_blue_white"
+        android:textColor="#FF0000"
         android:textSize="@dimen/text_size_normal_default" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/scr_top_bar"
-        android:layout_marginStart="8dp"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp" />
 
     <View
         android:id="@+id/view_line"

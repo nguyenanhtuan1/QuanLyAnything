@@ -71,7 +71,6 @@
                         android:id="@+id/imv_photo_product"
                         android:layout_width="180dp"
                         android:layout_height="130dp"
-                        android:layout_margin="4dp"
                         android:contentDescription="@null"
                         android:scaleType="centerCrop" />
                 </android.support.v7.widget.CardView>

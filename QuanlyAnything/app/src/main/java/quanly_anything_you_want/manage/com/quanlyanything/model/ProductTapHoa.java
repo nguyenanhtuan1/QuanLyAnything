@@ -16,6 +16,8 @@ public class ProductTapHoa implements Serializable {
     public String unitRetail;
     public String codeProduct;
 
+    public boolean isDelete;
+
 //    public int quantityWholesale;// so luong add product cho màn hình choose product
 //    public int quantityRetail;// so luong add product cho màn hình choose product
 

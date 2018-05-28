@@ -25,13 +25,7 @@ public class CachesManager {
     private CachesManager() {
         listBillImport = new ArrayList<>();
         listBillSell = new ArrayList<>();
-
         listProduct = new ArrayList<>();
-        listProduct.add(new ProductTapHoa("Sữa ông thọ", 19000, 200000, 10000, "Thùng", "Thùng", "Hộp"));
-        listProduct.add(new ProductTapHoa("Mì tôm hảo hảo", 200000, 210000, 6000, "Thùng", "Thùng", "Gói"));
-        listProduct.add(new ProductTapHoa("Mì chua cay", 180000, 220000, 7000, "Thùng", "Thùng", "Gói"));
-        listProduct.add(new ProductTapHoa("Bánh trứng", 130000, 0, 150000, "Hộp", "", "Hộp"));
-        listProduct.add(new ProductTapHoa("Gạo nếp", 12000, 0, 17000, "Kg", "", "Kg"));
     }
 
     public List<UserContact> getListUserContact() {

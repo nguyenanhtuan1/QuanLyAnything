@@ -17,10 +17,10 @@ import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.base.BaseActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.custom_view.QLEditText;
-import quanly_anything_you_want.manage.com.quanlyanything.dialog.ProductDialog;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ObjectContentList;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProductImport.adapter.PickProductImportAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.detail_product.DetailProductActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 
@@ -97,6 +97,11 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
         if (result != null && result.getContents() != null) {
             edtSearch.setText(result.getContents());
         }
+
+        if (resultCode == RESULT_OK && requestCode == AppConstants.REQUEST_NEW_PRODUCT) {
+            ProductTapHoa tapHoa = (ProductTapHoa) data.getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
+            mPresenter.addMoreProduct(tapHoa);
+        }
     }
 
     @OnClick(R.id.btn_cancel)
@@ -116,16 +121,7 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
 
     @OnClick(R.id.btn_new_product)
     void onClickNewProduct() {
-        ProductDialog dialogProduct = new ProductDialog(null, new ProductDialog.OnSaveListener() {
-            @Override
-            public void onSaveValue(ProductTapHoa product) {
-                mPresenter.addMoreProduct(product);
-            }
-
-            @Override
-            public void onDeleteProduct() {
-            }
-        });
-        dialogProduct.show(getSupportFragmentManager(), "ProductDialog");
+        Intent intent = new Intent(this, DetailProductActivity.class);
+        startActivityForResult(intent, AppConstants.REQUEST_NEW_PRODUCT);
     }
 }

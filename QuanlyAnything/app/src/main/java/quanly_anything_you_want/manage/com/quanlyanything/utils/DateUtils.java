@@ -39,6 +39,10 @@ public class DateUtils {
         String dateFormat = "dd/MM/yyyy";
         return formatDate(date, dateFormat);
     }
+    public static String formatDateVNMonthYear(Date date) {
+        String dateFormat = "MM - yyyy";
+        return "Tháng "+ formatDate(date, dateFormat);
+    }
 
     public static String formatFullDatePeriods(Date date) {
         String dateFormat = "MM/dd/yyyy";
