@@ -177,12 +177,20 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
         mProduct.codeProduct = edtCodeProduct.getText().toString();
         mProduct.status = btnHasSell.isSelected();
 
+        if (mProduct._id == null) {
+            mPresenter.onCreateProduct(mProduct);
+        }else {
+            mPresenter.onUpdateProduct(mProduct);
+        }
+    }
+
+    @Override
+    public void onCreateProductSuccess(ProductTapHoa product) {
         Intent intent = new Intent();
-        intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mProduct);
+        intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, product);
         setResult(RESULT_OK, intent);
         finish();
     }
-
 
     @OnClick(R.id.btn_choose_image)
     void onClickChooseImage() {

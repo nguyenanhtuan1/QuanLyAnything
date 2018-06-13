@@ -1,5 +1,6 @@
 package quanly_anything_you_want.manage.com.quanlyanything.popupCommon.selectUnit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -63,7 +64,7 @@ public class SelectUnitProduct extends PopupWindow {
         setHeight(WRAP_CONTENT);
 
         for (int i = 0; i < getListUnitProduct().size(); i++) {
-            final LinearLayout ln = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.layout_item_unit, null, false);
+            @SuppressLint("InflateParams") final LinearLayout ln = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.layout_item_unit, null, false);
             final TextView tv = (TextView) ln.getChildAt(0);
             tv.setText(getListUnitProduct().get(i));
             if (!getListUnitProduct().get(i).isEmpty()) {
@@ -94,6 +95,7 @@ public class SelectUnitProduct extends PopupWindow {
         list.add("Thùng");
         list.add("Hộp");
         list.add("Chai");
+        list.add("Lọ");
         list.add("Lon");
         list.add("Gói");
         list.add("Túi");

@@ -3,6 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,12 +46,22 @@ public class LoginActivity extends BaseActivity implements LoginContact.View {
         Intent intent = new Intent(LoginActivity.this, OptionManageActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     @OnClick(R.id.btn_login)
     void onClickLogin() {
+        if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
+            return;
+        }
         loginPresenter.login(edtName.getText().toString(), edtPassword.getText().toString());
+    }
+
+    @OnClick(R.id.tv_create_account)
+    void onClickCreateAccount() {
+        if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
+            return;
+        }
+        loginPresenter.createAccount(edtName.getText().toString(), edtPassword.getText().toString());
     }
 
 

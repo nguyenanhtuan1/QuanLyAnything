@@ -12,6 +12,8 @@ public interface LoginContact {
     interface Presenter {
 
         void login(String email, String password);
+
+        void createAccount(String email, String password);
     }
 
 }

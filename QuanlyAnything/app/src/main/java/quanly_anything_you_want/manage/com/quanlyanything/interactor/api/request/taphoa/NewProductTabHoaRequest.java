@@ -1,15 +1,12 @@
-package quanly_anything_you_want.manage.com.quanlyanything.model;
+package quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.taphoa;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
-public class ProductTapHoa implements Serializable {
+public class NewProductTabHoaRequest {
     @SerializedName("name")
     public String name;
-
-    @SerializedName("_id")
-    public String _id;
 
     @SerializedName("creator")
     public String creator;
@@ -29,7 +26,7 @@ public class ProductTapHoa implements Serializable {
     @SerializedName("priceRetail")
     public double priceRetail;//giá bán lẻ
 
-    @SerializedName("statusProduct")
+    @SerializedName("active")
     public boolean status;
 
     @SerializedName("unitProduct")
@@ -44,22 +41,18 @@ public class ProductTapHoa implements Serializable {
     @SerializedName("codeProduct")
     public String codeProduct;
 
-    public boolean isDelete;
-
-    public ProductTapHoa() {
-        this.currency = "VND";
-        status = true;
-    }
-
-    public ProductTapHoa(String name, double pricePurchase, double priceWholesale, double priceRetail, String unitProduct, String unitWholesale, String unitRetail) {
-        this.name = name;
-        this.pricePurchase = pricePurchase;
-        this.priceWholesale = priceWholesale;
-        this.priceRetail = priceRetail;
-        this.unitProduct = unitProduct;
-        this.unitWholesale = unitWholesale;
-        this.unitRetail = unitRetail;
-        this.currency = "VND";
-        status = true;
+    public NewProductTabHoaRequest(ProductTapHoa data) {
+        this.name = data.name;
+        this.creator = data.creator;
+        this.photo = data.photo;
+        this.currency = data.currency;
+        this.pricePurchase = data.pricePurchase;
+        this.priceWholesale = data.priceWholesale;
+        this.priceRetail = data.priceRetail;
+        this.status = data.status;
+        this.unitProduct = data.unitProduct;
+        this.unitWholesale = data.unitWholesale;
+        this.unitRetail = data.unitRetail;
+        this.codeProduct = data.codeProduct;
     }
 }

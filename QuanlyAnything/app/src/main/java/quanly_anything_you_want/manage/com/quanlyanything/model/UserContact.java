@@ -3,6 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.model;
 import java.io.Serializable;
 
 public class UserContact implements Serializable{
+
     public String name;
     public String phone;
     public String desc;

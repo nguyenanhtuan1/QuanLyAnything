@@ -97,5 +97,6 @@
     <string name="total_sell">Tổng thu:</string>
     <string name="text_total_interest">Tổng tiền lãi:</string>
     <string name="text_total_hole">Tổng tiền lỗ:</string>
+    <string name="new_account">Tạo mới một tài khoản</string>
 
 </resources>

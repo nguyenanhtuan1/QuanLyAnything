@@ -49,7 +49,6 @@
             android:padding="6dp"
             android:singleLine="true"
             android:scrollbars="horizontal"
-            android:text="nguyenanhtuan081193@gmail.com"
             android:textColor="@color/white_color"
             android:textSize="@dimen/text_size_input_login" />
 
@@ -76,7 +75,6 @@
             android:singleLine="true"
             android:padding="6dp"
             android:scrollbars="horizontal"
-            android:text="aadsafdaf"
             android:textColor="@color/white_color"
             android:textSize="@dimen/text_size_input_login" />
 
@@ -90,6 +88,18 @@
             android:textAllCaps="false"
             android:textColor="@color/white_color" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/new_account"
+        android:id="@+id/tv_create_account"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/bg_text_color_presed_blue_white"
+        android:layout_height="wrap_content" />
 
 
 </android.support.constraint.ConstraintLayout>

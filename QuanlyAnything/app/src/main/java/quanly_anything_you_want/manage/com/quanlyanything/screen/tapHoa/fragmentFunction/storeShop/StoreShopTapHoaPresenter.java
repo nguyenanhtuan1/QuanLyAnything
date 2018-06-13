@@ -11,13 +11,16 @@ import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.ApiCallback;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.RestError;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.AllProductTapHoaResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadListProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
 public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShopTapHoaContact.Presenter {
     private List<ProductTapHoa> listDisplay = new ArrayList<>();
     private List<ProductTapHoa> listStore = new ArrayList<>();
-    String textSearch = "";
+    private String textSearch = "";
 
     List<ProductTapHoa> getListProduct() {
         return listDisplay;
@@ -26,9 +29,26 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     StoreShopTapHoaPresenter(IBaseView view) {
         super.onCreate(view);
         getEventManager().register(this);
-        listStore.addAll(getCachesManager().getListProduct());
-        listDisplay.addAll(listStore);
-        Collections.sort(listDisplay, new CustomComparator());
+    }
+
+    public void getAllProductFromServer() {
+        getView().showLoading();
+        getApiManager().getAllProduct(getPreferManager().getUser()._id, new ApiCallback<AllProductTapHoaResponse>() {
+            @Override
+            public void success(AllProductTapHoaResponse res) {
+                listStore.addAll(res.results);
+                listDisplay.addAll(listStore);
+                Collections.sort(listDisplay, new CustomComparator());
+                getView().onNotifyAdapterProduct();
+                getView().hideLoading();
+            }
+
+            @Override
+            public void failure(RestError error) {
+                getView().hideLoading();
+                getView().onFail(error);
+            }
+        });
     }
 
     @Override

@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginRequest {
 
-    @SerializedName("email")
+    @SerializedName("name")
     @Expose
-    private String email;
+    private String name;
 
     @SerializedName("password")
     @Expose
     private String password;
 
-    public LoginRequest(String email, String password) {
-        this.email = email;
+    public LoginRequest(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 }
