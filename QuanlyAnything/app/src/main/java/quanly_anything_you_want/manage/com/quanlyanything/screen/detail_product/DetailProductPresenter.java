@@ -6,6 +6,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.ApiCallback;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.RestError;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.taphoa.NewProductTabHoaRequest;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.BaseResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.CreateProductTapHoaResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
@@ -47,6 +48,23 @@ public class DetailProductPresenter extends BasePresenter implements DetailProdu
             public void success(CreateProductTapHoaResponse res) {
                 getView().hideLoading();
                 getView().onCreateProductSuccess(product);
+            }
+
+            @Override
+            public void failure(RestError error) {
+                getView().hideLoading();
+                getView().onFail(error);
+            }
+        });
+    }
+    @Override
+    public void onDeleteProduct(final ProductTapHoa product) {
+        getView().showLoading();
+        getApiManager().deleteProductTapHoa(product._id, new ApiCallback<BaseResponse>() {
+            @Override
+            public void success(BaseResponse res) {
+                getView().hideLoading();
+                getView().onDeleteSuccess();
             }
 
             @Override

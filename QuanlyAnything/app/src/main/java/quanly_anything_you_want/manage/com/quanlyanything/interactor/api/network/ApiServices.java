@@ -2,11 +2,13 @@ package quanly_anything_you_want.manage.com.quanlyanything.interactor.api.networ
 
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.login.LoginRequest;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.taphoa.NewProductTabHoaRequest;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.BaseResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.login.LoginResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.AllProductTapHoaResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.CreateProductTapHoaResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -33,11 +35,17 @@ public interface ApiServices {
             @Body NewProductTabHoaRequest loginRequest
     );
 
-    @POST("updateProduct/{idProduct}")
+    @PUT("updateProduct/{idProduct}")
     Call<CreateProductTapHoaResponse> updateProductTapHoa(
             @Header("media-type") String mediaType,
             @Path("idProduct") String idProduct,
             @Body NewProductTabHoaRequest loginRequest
+    );
+
+    @DELETE("deleteProduct/{idProduct}")
+    Call<BaseResponse> deleteProductTapHoa(
+            @Header("media-type") String mediaType,
+            @Path("idProduct") String idProduct
     );
 
     @GET("allProduct/{creator}")

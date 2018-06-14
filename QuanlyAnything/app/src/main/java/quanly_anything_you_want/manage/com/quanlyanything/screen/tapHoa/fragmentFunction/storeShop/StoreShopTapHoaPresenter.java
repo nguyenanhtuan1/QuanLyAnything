@@ -53,8 +53,13 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
 
     @Override
     public void addItemProduct(ProductTapHoa product) {
-        listStore.add(product);
-        onSearchProduct(textSearch);
+        listStore.add(0, product);
+        if (textSearch.isEmpty()) {
+            listDisplay.add(0,product);
+            getView().onNotifyAdapterProduct();
+        } else {
+            onSearchProduct(textSearch);
+        }
         onSaveCacheProduct();
     }
 

@@ -9,37 +9,37 @@ public class NewProductTabHoaRequest {
     public String name;
 
     @SerializedName("creator")
-    public String creator;
+    private String creator;
 
     @SerializedName("photo")
-    public String photo;
+    private String photo;
 
     @SerializedName("currency")
     public String currency;
 
     @SerializedName("pricePurchase")
-    public double pricePurchase;//giá trị sản phẩm /1 đơn vị sản phảm
+    private double pricePurchase;//giá trị sản phẩm /1 đơn vị sản phảm
 
     @SerializedName("priceWholesale")
-    public double priceWholesale;//giá bán sỉ
+    private double priceWholesale;//giá bán sỉ
 
     @SerializedName("priceRetail")
-    public double priceRetail;//giá bán lẻ
+    private double priceRetail;//giá bán lẻ
 
     @SerializedName("active")
-    public boolean status;
+    private boolean status;
 
     @SerializedName("unitProduct")
-    public String unitProduct;
+    private String unitProduct;
 
     @SerializedName("unitWholesale")
-    public String unitWholesale;
+    private String unitWholesale;
 
     @SerializedName("unitRetail")
-    public String unitRetail;
+    private String unitRetail;
 
     @SerializedName("codeProduct")
-    public String codeProduct;
+    private String codeProduct;
 
     public NewProductTabHoaRequest(ProductTapHoa data) {
         this.name = data.name;

@@ -15,4 +15,9 @@ public class OptionManagePresenter extends BasePresenter implements OptionManage
         return (OptionManageContact.View) super.getView();
     }
 
+    @Override
+    public void resetUser(){
+        getPreferManager().resetUser();
+    }
+
 }

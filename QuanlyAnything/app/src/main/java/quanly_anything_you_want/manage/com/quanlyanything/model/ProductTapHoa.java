@@ -29,7 +29,7 @@ public class ProductTapHoa implements Serializable {
     @SerializedName("priceRetail")
     public double priceRetail;//giá bán lẻ
 
-    @SerializedName("statusProduct")
+    @SerializedName("active")
     public boolean status;
 
     @SerializedName("unitProduct")

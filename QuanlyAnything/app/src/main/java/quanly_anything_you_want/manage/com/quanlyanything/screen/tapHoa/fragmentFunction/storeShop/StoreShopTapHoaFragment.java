@@ -56,7 +56,6 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
         lvProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
         lvProduct.setHasFixedSize(true);
         lvProduct.setAdapter(adapter);
-
         mPresenter.getAllProductFromServer();
     }
 

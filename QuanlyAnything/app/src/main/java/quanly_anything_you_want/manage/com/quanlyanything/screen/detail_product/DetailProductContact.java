@@ -8,6 +8,8 @@ public interface DetailProductContact {
 
     interface View extends IBaseView {
         void onCreateProductSuccess(ProductTapHoa product);
+
+        void onDeleteSuccess();
     }
 
     interface Presenter {
@@ -15,6 +17,8 @@ public interface DetailProductContact {
         void onCreateProduct(ProductTapHoa product);
 
         void onUpdateProduct(ProductTapHoa product);
+
+        void onDeleteProduct(ProductTapHoa product);
     }
 
 }

@@ -14,23 +14,6 @@ import quanly_anything_you_want.manage.com.quanlyanything.screen.login.LoginActi
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.TapHoaActivity;
 
 public class OptionManageActivity extends BaseActivity implements OptionManageContact.View {
-    @BindView(R.id.imv_tap_hoa)
-    ImageView imvTapHoa;
-
-    @BindView(R.id.imv_shop_fashion)
-    ImageView imvShopFashion;
-
-    @BindView(R.id.imv_chi_tieu)
-    ImageView imvChiTieu;
-
-    @BindView(R.id.imv_shop_pet)
-    ImageView imvShopPet;
-
-    @BindView(R.id.imv_schedule)
-    ImageView imvSchedule;
-
-    @BindView(R.id.cs_container)
-    ConstraintLayout constraintLayout;
 
     OptionManagePresenter mPresenter;
 
@@ -54,46 +37,40 @@ public class OptionManageActivity extends BaseActivity implements OptionManageCo
 
     @OnClick(R.id.btn_tap_hoa)
     void onClickTapHoa() {
-        setOnStartAnimation(imvTapHoa, TapHoaActivity.class);
+        setOnStartAnimation(TapHoaActivity.class);
     }
 
     @OnClick(R.id.btn_shop_fashion)
     void onClickShopClothes() {
-        setOnStartAnimation(imvShopFashion, TapHoaActivity.class);
+        setOnStartAnimation(TapHoaActivity.class);
     }
 
     @OnClick(R.id.btn_chi_tieu)
     void onClickChiTieu() {
-        setOnStartAnimation(imvChiTieu, TapHoaActivity.class);
+        setOnStartAnimation(TapHoaActivity.class);
     }
 
     @OnClick(R.id.btn_shop_pet)
     void onClickShopPet() {
-        setOnStartAnimation(imvShopPet, TapHoaActivity.class);
+        setOnStartAnimation(TapHoaActivity.class);
     }
 
     @OnClick(R.id.btn_schedule)
     void onClickSchedule() {
-        setOnStartAnimation(imvSchedule, TapHoaActivity.class);
+        setOnStartAnimation(TapHoaActivity.class);
     }
 
-    private void setOnStartAnimation(final ImageView view, final Class activity) {
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "rotationY", 0f, 360f);
-//        objectAnimator.setDuration(500);
-//        objectAnimator.addListener(new AnimatorListenerAdapter() {
-//        });
-//        objectAnimator.addListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-                Intent intent = new Intent(OptionManageActivity.this, activity);
-                startActivity(intent);
-//            }
-//        });
-//        objectAnimator.start();
+    private void setOnStartAnimation(final Class activity) {
+        Intent intent = null;
+        if (activity == TapHoaActivity.class) {
+            intent = new Intent(OptionManageActivity.this, activity);
+        }
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_logout)
     void onClickLogout() {
+        mPresenter.resetUser();
         Intent intent = new Intent(OptionManageActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

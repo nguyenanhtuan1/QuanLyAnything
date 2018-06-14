@@ -8,6 +8,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.network.RestError;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.login.LoginRequest;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.request.taphoa.NewProductTabHoaRequest;
+import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.BaseResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.login.LoginResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.AllProductTapHoaResponse;
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.api.response.taphoa.CreateProductTapHoaResponse;
@@ -81,6 +82,22 @@ public class ApiManager {
                 .enqueue(new RestCallback<CreateProductTapHoaResponse>() {
                     @Override
                     public void success(CreateProductTapHoaResponse res) {
+                        callback.success(res);
+                    }
+
+                    @Override
+                    public void failure(RestError error) {
+                        callback.failure(error);
+                    }
+
+                });
+    }
+
+    public void deleteProductTapHoa(String idProduct, final ApiCallback<BaseResponse> callback) {
+        mApiServices.deleteProductTapHoa("application/json", idProduct)
+                .enqueue(new RestCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse res) {
                         callback.success(res);
                     }
 

@@ -179,7 +179,7 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
 
         if (mProduct._id == null) {
             mPresenter.onCreateProduct(mProduct);
-        }else {
+        } else {
             mPresenter.onUpdateProduct(mProduct);
         }
     }
@@ -188,6 +188,15 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
     public void onCreateProductSuccess(ProductTapHoa product) {
         Intent intent = new Intent();
         intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, product);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    @Override
+    public void onDeleteSuccess() {
+        Intent intent = new Intent();
+        mProduct.isDelete = true;
+        intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mProduct);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -231,11 +240,7 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
             @Override
             public void onIPositiveNegativeDialogAnswerPositive(DialogPositiveNegative dialog) {
                 dialog.dismiss();
-                Intent intent = new Intent();
-                mProduct.isDelete = true;
-                intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mProduct);
-                setResult(RESULT_OK, intent);
-                finish();
+                mPresenter.onDeleteProduct(mProduct);
             }
 
             @Override

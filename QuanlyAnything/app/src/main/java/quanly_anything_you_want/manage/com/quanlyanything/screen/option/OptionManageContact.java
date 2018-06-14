@@ -10,6 +10,7 @@ public interface OptionManageContact {
 
     interface Presenter {
 
+        void resetUser();
     }
 
 }
