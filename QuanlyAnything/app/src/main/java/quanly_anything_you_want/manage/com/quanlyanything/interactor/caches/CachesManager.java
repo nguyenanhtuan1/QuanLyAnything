@@ -22,12 +22,10 @@ public class CachesManager {
 
     private static final CachesManager INSTANCE = new CachesManager();
     Realm myRealm;
-    private List<BillSellProduct> listBillSell;
     private List<UserContact> listUserContact;
 
     private CachesManager() {
         myRealm = Realm.getDefaultInstance();
-        listBillSell = new ArrayList<>();
     }
 
     // start row to product
@@ -66,6 +64,8 @@ public class CachesManager {
     }
 
     // end row to product
+
+    //start bil import
     public List<BillImportProduct> getListBillImport() {
         RealmResults<BillImportProduct> results1 =
                 myRealm.where(BillImportProduct.class).findAll();
@@ -80,20 +80,48 @@ public class CachesManager {
         myRealm.commitTransaction();
     }
 
+    public void removeBillImportProduct(long id) {
+        final RealmResults<BillImportProduct> puppies = myRealm.where(BillImportProduct.class).findAll();
+        puppies.size();
+        myRealm.executeTransactionAsync(bgRealm -> {
+            BillImportProduct data = bgRealm.where(BillImportProduct.class).equalTo("id", id).findFirst();
+            assert data != null;
+            data.deleteFromRealm();
+        });
+    }
+
+    //end bill import
+
+    //start bill export
+    public List<BillSellProduct> getListBillSell() {
+        RealmResults<BillSellProduct> results1 =
+                myRealm.where(BillSellProduct.class).findAll();
+        if (results1 != null)
+            return results1;
+        return new ArrayList<>();
+    }
+
+    public void addMoreBillSellProduct(BillSellProduct product) {
+        myRealm.beginTransaction();
+        myRealm.copyToRealm(product);
+        myRealm.commitTransaction();
+    }
+
+    public void removeBillSellProduct(long id) {
+        final RealmResults<BillSellProduct> puppies = myRealm.where(BillSellProduct.class).findAll();
+        puppies.size();
+        myRealm.executeTransactionAsync(bgRealm -> {
+            BillSellProduct data = bgRealm.where(BillSellProduct.class).equalTo("id", id).findFirst();
+            assert data != null;
+            data.deleteFromRealm();
+        });
+    }
+
+
+
+
     public List<UserContact> getListUserContact() {
         return listUserContact;
-    }
-
-
-    public List<BillSellProduct> getListBillSell() {
-        return listBillSell;
-    }
-
-    public void removeBillImportProduct(int position) {
-    }
-
-    public void removeBillSellProduct(int position) {
-        listBillSell.remove(position);
     }
 
 

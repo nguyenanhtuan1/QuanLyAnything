@@ -25,9 +25,9 @@ import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdapter.ViewItemHolder> {
     private Context context;
-    private List<BillImportProduct> list;
+    private List<HistoryBillImport> list;
 
-    public ImportHistoryAdapter(Context context, List<BillImportProduct> mSections) {
+    public ImportHistoryAdapter(Context context, List<HistoryBillImport> mSections) {
         this.context = context;
         this.list = mSections;
     }
@@ -69,7 +69,7 @@ public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdap
         @BindView(R.id.btn_delete_import_history)
         Button btnDelete;
 
-        BillImportProduct itemBill;
+        HistoryBillImport itemBill;
         ProductImportAdapter adapter;
 
         public ViewItemHolder(View itemView) {
@@ -78,7 +78,7 @@ public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdap
 
         }
 
-        void setUpData(BillImportProduct data) {
+        void setUpData(HistoryBillImport data) {
             itemBill = data;
             tvDate.setText(DateUtils.formatFullDateVN(new Date(itemBill.id)));
             tvNameSeller.setText(itemBill.nameSeller != null ? itemBill.nameSeller : "");

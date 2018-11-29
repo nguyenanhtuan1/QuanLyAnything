@@ -1,4 +1,4 @@
-package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter;
+package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,19 +8,25 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class BillSellProduct extends RealmObject implements Serializable {
+public class HistoryBillSellProduct implements Serializable {
     @PrimaryKey
     public long id;
-    public String nameClient;
-    public RealmList<ProductChooseDto> listProduct;
+    String nameClient;
+    private List<ProductChooseDto> listProduct;
+    boolean isShowProduct;
 
-    public BillSellProduct() {
+    public HistoryBillSellProduct(BillSellProduct data) {
+        this.id = data.id;
+        this.nameClient = data.nameClient;
+        this.listProduct = new RealmList<>();
+        this.listProduct.addAll(data.listProduct);
     }
 
-    public String getNameTotalProduct() {
+    String getNameTotalProduct() {
         StringBuilder text = new StringBuilder();
         for (ProductChooseDto item : getListProduct()) {
 
@@ -53,7 +59,7 @@ public class BillSellProduct extends RealmObject implements Serializable {
         return text.toString();
     }
 
-    public String getTextTotalAmountProduct() {
+    String getTextTotalAmountProduct() {
         double amount = 0;
         for (ProductChooseDto item : getListProduct()) {
             amount = amount + (item.quantityWholesale * item.priceWholesale) + (item.quantityRetail * item.priceRetail);
@@ -61,9 +67,8 @@ public class BillSellProduct extends RealmObject implements Serializable {
         return CommonUtil.showPriceHasCurrency(amount);
     }
 
-
     public List<ProductChooseDto> getListProduct() {
-        if (listProduct == null) listProduct = new RealmList<ProductChooseDto>();
+        if (listProduct == null) listProduct = new ArrayList<>();
         return listProduct;
     }
 }

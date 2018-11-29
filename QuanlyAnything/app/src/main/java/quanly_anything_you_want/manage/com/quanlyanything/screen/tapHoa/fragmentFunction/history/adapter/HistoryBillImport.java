@@ -1,35 +1,30 @@
-package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter;
-
-import com.google.gson.annotations.SerializedName;
+package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-import io.realm.annotations.PrimaryKey;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
-import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class BillImportProduct extends RealmObject implements Serializable {
-    @PrimaryKey
+public class HistoryBillImport implements Serializable {
     public long id;
 
     public String nameSeller;
 
-    public RealmList<ProductChooseDto> listProduct;
+    private RealmList<ProductChooseDto> listProduct;
 
-    public BillImportProduct(BillImportProduct data) {
+    public boolean isShowProduct;
+
+    public HistoryBillImport(BillImportProduct data) {
         this.id = data.id;
         this.nameSeller = data.nameSeller;
         this.listProduct = new RealmList<>();
         this.listProduct.addAll(data.listProduct);
     }
 
-    public BillImportProduct() {
+    public HistoryBillImport() {
 
     }
 

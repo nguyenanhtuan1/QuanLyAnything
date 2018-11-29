@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
@@ -51,8 +52,8 @@ public class SellTapHoaPresenter extends BasePresenter implements SellTapHoaCont
     @Override
     public void setCompleteBill(int positionParent) {
         BillSellProduct itemSave = listBill.get(positionParent);
-        itemSave.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
-        getCachesManager().getListBillSell().add(0, itemSave);
+        itemSave.id = new Date().getTime();
+        getCachesManager().addMoreBillSellProduct(itemSave);
         getEventManager().sendEvent(new ReloadSellHistory(itemSave));
 
         listBill.remove(positionParent);

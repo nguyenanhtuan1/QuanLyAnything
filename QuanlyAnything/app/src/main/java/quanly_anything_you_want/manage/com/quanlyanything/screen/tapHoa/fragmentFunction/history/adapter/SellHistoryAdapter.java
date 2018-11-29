@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -17,12 +18,14 @@ import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.ProductSelectedAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 public class SellHistoryAdapter extends RecyclerView.Adapter<SellHistoryAdapter.ViewItemHolder> {
     private Context context;
-    private List<BillSellProduct> list;
+    private List<HistoryBillSellProduct> list;
 
-    public SellHistoryAdapter(Context context, List<BillSellProduct> mSections) {
+    public SellHistoryAdapter(Context context, List<HistoryBillSellProduct> mSections) {
         this.context = context;
         this.list = mSections;
     }
@@ -63,7 +66,7 @@ public class SellHistoryAdapter extends RecyclerView.Adapter<SellHistoryAdapter.
         @BindView(R.id.rcv_product)
         RecyclerView lvProduct;
 
-        BillSellProduct item;
+        HistoryBillSellProduct item;
         ProductSelectedAdapter adapter;
 
         public ViewItemHolder(View itemView) {
@@ -71,9 +74,9 @@ public class SellHistoryAdapter extends RecyclerView.Adapter<SellHistoryAdapter.
             ButterKnife.bind(this, itemView);
         }
 
-        void setupData(BillSellProduct item) {
+        void setupData(HistoryBillSellProduct item) {
             this.item = item;
-            tvDate.setText(item.date != null ? item.date : "");
+            tvDate.setText(DateUtils.formatFullDateVN(new Date(item.id)));
             tvNameSeller.setText(item.nameClient != null ? item.nameClient : "");
             tvTotalNameProduct.setText(item.getNameTotalProduct());
             tvTotalAmount.setText(item.getTextTotalAmountProduct());

@@ -12,16 +12,18 @@ import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.
 import quanly_anything_you_want.manage.com.quanlyanything.interactor.event.type.ReloadSellHistory;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Sell.adapter.BillSellProduct;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter.HistoryBillImport;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.history.adapter.HistoryBillSellProduct;
 
 public class HistoryTapHoaPresenter extends BasePresenter implements HistoryTapHoaContact.Presenter {
-    private List<BillImportProduct> listImport;
-    private List<BillSellProduct> listSell;
+    private List<HistoryBillImport> listImport;
+    private List<HistoryBillSellProduct> listSell;
 
-    public List<BillImportProduct> getListImport() {
+    public List<HistoryBillImport> getListImport() {
         return listImport;
     }
 
-    public List<BillSellProduct> getListSell() {
+    public List<HistoryBillSellProduct> getListSell() {
         return listSell;
     }
 
@@ -29,10 +31,14 @@ public class HistoryTapHoaPresenter extends BasePresenter implements HistoryTapH
         super.onCreate(view);
         getEventManager().register(this);
         listImport = new ArrayList<>();
-        listImport.addAll(getCachesManager().getListBillImport());
+        for (BillImportProduct item : getCachesManager().getListBillImport()) {
+            listImport.add(new HistoryBillImport(item));
+        }
 
         listSell = new ArrayList<>();
-        listSell.addAll(getCachesManager().getListBillSell());
+        for (BillSellProduct item : getCachesManager().getListBillSell()) {
+            listSell.add(new HistoryBillSellProduct(item));
+        }
     }
 
     @Override
@@ -43,7 +49,7 @@ public class HistoryTapHoaPresenter extends BasePresenter implements HistoryTapH
     @Subscribe
     void onReloadBillImport(ReloadImportHistory data) {
         if (data.importProductDto != null) {
-            listImport.add(0,data.importProductDto);
+            listImport.add(0, new HistoryBillImport(data.importProductDto));
             getView().onNotifyAdapterImport();
         }
     }
@@ -51,7 +57,7 @@ public class HistoryTapHoaPresenter extends BasePresenter implements HistoryTapH
     @Subscribe
     void onReloadBillSell(ReloadSellHistory data) {
         if (data.sellProduct != null) {
-            listSell.add(0,data.sellProduct);
+            listSell.add(0, new HistoryBillSellProduct(data.sellProduct));
             getView().onNotifyAdapterSell();
         }
     }
@@ -64,13 +70,13 @@ public class HistoryTapHoaPresenter extends BasePresenter implements HistoryTapH
 
     public void setDeleteImportHistory(int positionHeader) {
         listImport.remove(positionHeader);
-        getCachesManager().removeBillImportProduct(positionHeader);
+        getCachesManager().removeBillImportProduct(listImport.get(positionHeader).id);
         getView().onNotifyAdapterImport();
     }
 
     public void setDeleteSellHistory(int positionHeader) {
         listSell.remove(positionHeader);
-        getCachesManager().removeBillSellProduct(positionHeader);
+        getCachesManager().removeBillSellProduct(listSell.get(positionHeader).id);
         getView().onNotifyAdapterSell();
     }
 }

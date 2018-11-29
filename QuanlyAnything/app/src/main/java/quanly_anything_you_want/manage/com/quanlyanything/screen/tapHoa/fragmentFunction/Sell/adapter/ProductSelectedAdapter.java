@@ -84,8 +84,7 @@ public class ProductSelectedAdapter extends RecyclerView.Adapter<ProductSelected
 
         void setUpdateData(final ProductChooseDto data) {
             this.data = data;
-//            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
-            ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
+            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
             tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.priceWholesale) + " / 1 " + data.unitWholesale : "");
             tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.priceRetail) + " / 1 " + data.unitRetail : "");

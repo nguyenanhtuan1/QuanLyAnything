@@ -83,8 +83,7 @@ public class PickProductAdapter extends RecyclerView.Adapter<PickProductAdapter.
             this.data = data;
             edtQuantityWholesale.setShowClear(false);
             edtQuantityRetail.setShowClear(false);
-//            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
-            ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
+            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
             tvUnitWholesale.setText(data.unitWholesale);
             tvUnitRetail.setText(data.unitRetail);

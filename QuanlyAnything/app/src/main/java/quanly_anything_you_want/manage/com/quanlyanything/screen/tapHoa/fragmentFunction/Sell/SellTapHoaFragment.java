@@ -83,12 +83,7 @@ public class SellTapHoaFragment extends BaseFragment implements SellTapHoaContac
             @Override
             public void onEditQuantityProduct(final int positionParent, final int positionChild) {
                 EditQuantitySellProductTapHoaDialog dialog = new EditQuantitySellProductTapHoaDialog(mPresenter.getProductSelected(positionParent, positionChild),
-                        new EditQuantitySellProductTapHoaDialog.OnSaveListener() {
-                            @Override
-                            public void onSaveValue(int quantityWholesale, int quantityRetail) {
-                                mPresenter.setUpdateQuantityProduct(positionParent, positionChild, quantityWholesale, quantityRetail);
-                            }
-                        });
+                        (quantityWholesale, quantityRetail) -> mPresenter.setUpdateQuantityProduct(positionParent, positionChild, quantityWholesale, quantityRetail));
                 dialog.show(getFragmentManager(), "EditQuantitySellProductTapHoaDialog");
             }
 
