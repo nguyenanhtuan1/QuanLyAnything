@@ -18,6 +18,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.detail_product.DetailProductActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ListStoreAdapter;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ProductTapHoaSend;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
@@ -40,6 +41,11 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
     private int mPosition;
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.layout_fragment_store_shop_tap_hoa;
+    }
+
+    @Override
     protected void onInitData() {
         mPresenter = new StoreShopTapHoaPresenter(this);
 
@@ -48,7 +54,8 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
             public void onClickDetail(final int position) {
                 mPosition = position;
                 Intent intent = new Intent(getContext(), DetailProductActivity.class);
-                intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, mPresenter.getListProduct().get(position));
+                ProductTapHoaSend data = new ProductTapHoaSend(mPresenter.getListProduct().get(position));
+                intent.putExtra(AppConstants.KEY_DETAIL_PRODUCT, data);
                 startActivityForResult(intent, AppConstants.REQUEST_EDIT_PRODUCT);
             }
         });
@@ -78,12 +85,6 @@ public class StoreShopTapHoaFragment extends BaseFragment implements StoreShopTa
             }
         });
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.layout_fragment_store_shop_tap_hoa;
-    }
-
 
     @OnClick(R.id.btn_new_product)
     void onClickNewProduct() {

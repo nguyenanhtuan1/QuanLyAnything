@@ -12,8 +12,8 @@ public class User implements Serializable {
     @SerializedName("password")
     public String password;
 
-    @SerializedName("_id")
-    public String _id;
+    @SerializedName("id")
+    public String id;
 
 
 }

@@ -24,7 +24,7 @@ public class ApiManager {
     private static final ApiManager INSTANCE = new ApiManager();
 
     private ApiManager() {
-        mApiServices = MainApplication.retrofit.create(ApiServices.class);
+//        mApiServices = MainApplication.retrofit.create(ApiServices.class);
     }
 
 

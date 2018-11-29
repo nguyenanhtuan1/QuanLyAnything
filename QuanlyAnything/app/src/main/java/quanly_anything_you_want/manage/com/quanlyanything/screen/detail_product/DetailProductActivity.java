@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.images.ImageLoader;
 import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 import quanly_anything_you_want.manage.com.quanlyanything.popupCommon.selectUnit.SelectUnitProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.scanActivity.CustomScannerActivity;
+import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ProductTapHoaSend;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
@@ -100,9 +102,12 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
 
     @Override
     public void onInitData() {
-        mProduct = (ProductTapHoa) getIntent().getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
-        if (mProduct == null) {
+
+        ProductTapHoaSend mProductSend = (ProductTapHoaSend) getIntent().getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
+        if (mProductSend == null) {
             mProduct = new ProductTapHoa();
+        } else {
+            mProduct = new ProductTapHoa(mProductSend);
         }
         edtPurchasePrice.setShowClear(false);
         edtPriceWholesale.setShowClear(false);
@@ -116,17 +121,11 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
         edtNameProduct.setText(mProduct.name != null ? mProduct.name : "");
 
         StringBuffer stringPurchase = new StringBuffer();
-
-        if (mProduct.currency != null) {
-            stringPurchase.append(mProduct.currency);
-        }
         if (!TextUtils.isEmpty(mProduct.unitProduct)) {
             stringPurchase.append("/ 1 ");
             stringPurchase.append(mProduct.unitProduct);
         }
         tvUnitCurrencyProduct.setText(stringPurchase);
-        tvUnitCurrencyWholesale.setText(mProduct.currency != null ? mProduct.currency : "");
-        tvUnitCurrencyRetail.setText(mProduct.currency != null ? mProduct.currency : "");
         edtPurchasePrice.setText(mProduct.pricePurchase != 0 ? CommonUtil.showPriceNotCurrency(mProduct.pricePurchase) : "");
         edtPriceWholesale.setText(mProduct.priceWholesale != 0 ? CommonUtil.showPriceNotCurrency(mProduct.priceWholesale) : "");
         edtPriceRetail.setText(mProduct.priceRetail != 0 ? CommonUtil.showPriceNotCurrency(mProduct.priceRetail) : "");
@@ -176,8 +175,9 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
         mProduct.unitRetail = tvUnitOfRetail.getText().toString();
         mProduct.codeProduct = edtCodeProduct.getText().toString();
         mProduct.status = btnHasSell.isSelected();
-
-        if (mProduct._id == null) {
+        if (mUploadFile != null)
+            mProduct.photo = mUploadFile.getPath();
+        if (mProduct.id == null) {
             mPresenter.onCreateProduct(mProduct);
         } else {
             mPresenter.onUpdateProduct(mProduct);
@@ -224,7 +224,7 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AppConstants.REQUEST_CAPTURE_IMAGE) {
             if (mUploadFile != null) {
-                ImageLoader.loadImagePhoto2(this, mUploadFile, imvPhotoProduct);
+                ImageLoader.loadImagePhoto(this, mUploadFile.getPath(), imvPhotoProduct);
             }
         } else {
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -294,7 +294,7 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
 
                 if (tv == tvUnitPurchase) {
                     StringBuffer value = new StringBuffer();
-                    value.append(mProduct.currency);
+                    value.append(AppConstants.CURRENCY_DEFAULT);
                     value.append("/ 1 ");
                     value.append(((TextView) v).getText().toString());
                     tvUnitCurrencyProduct.setText(value);
@@ -310,7 +310,7 @@ public class DetailProductActivity extends BaseActivity implements DetailProduct
                             tv.setText(text);
                             if (tv == tvUnitPurchase) {
                                 StringBuffer value2 = new StringBuffer();
-                                value2.append(mProduct.currency);
+                                value2.append(AppConstants.CURRENCY_DEFAULT);
                                 value2.append("/ 1 ");
                                 value2.append(text);
                                 tvUnitCurrencyProduct.setText(value2);

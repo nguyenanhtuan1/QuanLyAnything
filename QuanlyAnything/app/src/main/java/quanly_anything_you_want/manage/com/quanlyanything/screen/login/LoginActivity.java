@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity implements LoginContact.View {
         if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
             return;
         }
-        loginPresenter.login(edtName.getText().toString(), edtPassword.getText().toString());
+//        loginPresenter.login(edtName.getText().toString(), edtPassword.getText().toString());
     }
 
     @OnClick(R.id.tv_create_account)
@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity implements LoginContact.View {
         if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
             return;
         }
-        loginPresenter.createAccount(edtName.getText().toString(), edtPassword.getText().toString());
+//        loginPresenter.createAccount(edtName.getText().toString(), edtPassword.getText().toString());
     }
 
 

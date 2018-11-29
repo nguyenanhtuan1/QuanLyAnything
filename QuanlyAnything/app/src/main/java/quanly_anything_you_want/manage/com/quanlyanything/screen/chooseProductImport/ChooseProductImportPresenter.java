@@ -21,7 +21,6 @@ public class ChooseProductImportPresenter extends BasePresenter implements Choos
         super.onCreate(view);
         for (ProductTapHoa item : getCachesManager().getListProduct()) {
             boolean isAdd = true;
-
             if (nameProduct != null) {
                 for (String id : nameProduct) {
                     if (item.name.equalsIgnoreCase(id)) {
@@ -42,7 +41,6 @@ public class ChooseProductImportPresenter extends BasePresenter implements Choos
         ProductChooseDto item = new ProductChooseDto(productTapHoa);
         listStore.add(item);
         listDisplay.add(0, item);
-        getCachesManager().getListProduct().add(productTapHoa);
         getEventManager().sendEvent(new ReloadListProduct(productTapHoa));
         getView().onNotifyInsertedAdapterProduct(0);
     }

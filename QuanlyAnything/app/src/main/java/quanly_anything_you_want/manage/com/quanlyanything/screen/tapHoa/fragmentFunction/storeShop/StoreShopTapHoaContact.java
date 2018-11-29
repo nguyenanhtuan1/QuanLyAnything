@@ -24,7 +24,6 @@ public interface StoreShopTapHoaContact {
 
         void onSearchProduct(String text);
 
-        void onSaveCacheProduct();
     }
 
 }

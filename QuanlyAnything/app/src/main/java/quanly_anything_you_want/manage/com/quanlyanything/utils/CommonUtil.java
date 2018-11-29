@@ -48,22 +48,18 @@ public class CommonUtil {
     }
 
 
-    public static String showPriceHasCurrency(double amount, String currency) {
-        if (currency == null)
-            currency = "";
+    public static String showPriceHasCurrency(double amount) {
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
         formatter.applyPattern(formatVN);
-        return formatter.format(amount).replace(",", ".") + " " + currency;
+        return formatter.format(amount).replace(",", ".") + " " + "VND";
     }
 
-    public static String showPriceHasCurrencyAndUnit(double amount, String currency, String unit) {
-        if (currency == null)
-            currency = "";
+    public static String showPriceHasCurrencyAndUnit(double amount, String unit) {
         if (unit == null)
             unit = "";
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance();
         formatter.applyPattern(formatVN);
-        return formatter.format(amount).replace(",", ".") + " " + currency + " / " + unit;
+        return formatter.format(amount).replace(",", ".") + " " + "VND" + " / " + unit;
     }
 
     public static String showPriceNotCurrency(double amount) {

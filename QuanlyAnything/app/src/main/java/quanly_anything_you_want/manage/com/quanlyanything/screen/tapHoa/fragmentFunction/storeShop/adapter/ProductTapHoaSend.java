@@ -1,23 +1,18 @@
-package quanly_anything_you_want.manage.com.quanlyanything.model;
+package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.storeShop.adapter.ProductTapHoaSend;
+import quanly_anything_you_want.manage.com.quanlyanything.model.ProductTapHoa;
 
-public class ProductTapHoa extends RealmObject implements Serializable {
-    @PrimaryKey
+
+public class ProductTapHoaSend implements Serializable {
     @SerializedName("id")
     public String id;
 
     @SerializedName("name")
     public String name;
-
-    @SerializedName("creator")
-    public String creator;
 
     @SerializedName("photo")
     public String photo;
@@ -48,25 +43,8 @@ public class ProductTapHoa extends RealmObject implements Serializable {
 
     public boolean isDelete;
 
-    public ProductTapHoa() {
-        status = true;
-    }
-
-    public ProductTapHoa(ProductTapHoaSend data) {
+    public  ProductTapHoaSend(ProductTapHoa data) {
         id = data.id;
-        name = data.name;
-        photo = data.photo;
-        pricePurchase = data.pricePurchase;//giá trị sản phẩm /1 đơn vị sản phảm
-        priceWholesale = data.priceWholesale;//giá bán sỉ
-        priceRetail = data.priceRetail;//giá bán lẻ
-        status = data.status;
-        unitProduct = data.unitProduct;
-        unitWholesale = data.unitWholesale;
-        unitRetail = data.unitRetail;
-        codeProduct = data.codeProduct;
-    }
-
-    public void convert(ProductTapHoa data) {
         name = data.name;
         photo = data.photo;
         pricePurchase = data.pricePurchase;//giá trị sản phẩm /1 đơn vị sản phảm

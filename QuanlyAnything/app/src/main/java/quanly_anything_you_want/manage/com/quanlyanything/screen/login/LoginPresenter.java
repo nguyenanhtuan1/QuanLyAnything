@@ -14,43 +14,43 @@ public class LoginPresenter extends BasePresenter implements LoginContact.Presen
             getView().loginSuccess();
     }
 
-    @Override
-    public void login(String email, String password) {
-        getView().showLoading();
-        getApiManager().loginOwner(new LoginRequest(email, password), new ApiCallback<LoginResponse>() {
-            @Override
-            public void success(LoginResponse res) {
-                getPreferManager().setUser(res.results);
-                getView().hideLoading();
-                getView().loginSuccess();
-            }
+//    @Override
+//    public void login(String email, String password) {
+//        getView().showLoading();
+//        getApiManager().loginOwner(new LoginRequest(email, password), new ApiCallback<LoginResponse>() {
+//            @Override
+//            public void success(LoginResponse res) {
+//                getPreferManager().setUser(res.results);
+//                getView().hideLoading();
+//                getView().loginSuccess();
+//            }
+//
+//            @Override
+//            public void failure(RestError error) {
+//                getView().hideLoading();
+//                getView().onFail(error);
+//            }
+//        });
+//    }
 
-            @Override
-            public void failure(RestError error) {
-                getView().hideLoading();
-                getView().onFail(error);
-            }
-        });
-    }
-
-    @Override
-    public void createAccount(String name, String password) {
-        getView().showLoading();
-        getApiManager().createAccount(new LoginRequest(name, password), new ApiCallback<LoginResponse>() {
-            @Override
-            public void success(LoginResponse res) {
-                getPreferManager().setUser(res.results);
-                getView().hideLoading();
-                getView().loginSuccess();
-            }
-
-            @Override
-            public void failure(RestError error) {
-                getView().hideLoading();
-                getView().onFail(error);
-            }
-        });
-    }
+//    @Override
+//    public void createAccount(String name, String password) {
+//        getView().showLoading();
+//        getApiManager().createAccount(new LoginRequest(name, password), new ApiCallback<LoginResponse>() {
+//            @Override
+//            public void success(LoginResponse res) {
+//                getPreferManager().setUser(res.results);
+//                getView().hideLoading();
+//                getView().loginSuccess();
+//            }
+//
+//            @Override
+//            public void failure(RestError error) {
+//                getView().hideLoading();
+//                getView().onFail(error);
+//            }
+//        });
+//    }
 
     @Override
     public LoginContact.View getView() {

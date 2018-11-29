@@ -45,7 +45,6 @@ public class NewProductTabHoaRequest {
         this.name = data.name;
         this.creator = data.creator;
         this.photo = data.photo;
-        this.currency = data.currency;
         this.pricePurchase = data.pricePurchase;
         this.priceWholesale = data.priceWholesale;
         this.priceRetail = data.priceRetail;

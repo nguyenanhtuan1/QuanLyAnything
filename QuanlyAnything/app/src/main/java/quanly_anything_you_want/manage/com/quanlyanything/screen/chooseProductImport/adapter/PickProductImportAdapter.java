@@ -91,15 +91,14 @@ public class PickProductImportAdapter extends RecyclerView.Adapter<PickProductIm
             edtQuantity.setShowClear(false);
             edtPrice.setShowClear(false);
             edtPrice.setInputPrice(true);
-//            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
-            ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
+            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
 
             edtQuantity.setOnKeyboardListener(new QLEditText.KeyboardListener() {
                 @Override
                 public void onDismissKeyBoard(QLEditText keyboardEditText) {
                     data.quantityImport = keyboardEditText.getValueInt();
-                    tvTotalAmount.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport, data.currency));
+                    tvTotalAmount.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport));
                     itemView.setSelected(data.quantityImport > 0 && data.priceImport > 0);
                 }
             });
@@ -108,7 +107,7 @@ public class PickProductImportAdapter extends RecyclerView.Adapter<PickProductIm
                 @Override
                 public void onDismissKeyBoard(QLEditText keyboardEditText) {
                     data.priceImport = keyboardEditText.getValueDoubleForVND();
-                    tvTotalAmount.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport, data.currency));
+                    tvTotalAmount.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport));
                     itemView.setSelected(data.quantityImport > 0 && data.priceImport > 0);
 
                 }

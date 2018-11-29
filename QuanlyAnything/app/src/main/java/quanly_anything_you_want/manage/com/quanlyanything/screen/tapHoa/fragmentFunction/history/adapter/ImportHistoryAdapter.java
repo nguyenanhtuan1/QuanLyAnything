@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,6 +21,7 @@ import quanly_anything_you_want.manage.com.quanlyanything.R;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.BillImportProduct;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter.ProductImportAdapter;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
+import quanly_anything_you_want.manage.com.quanlyanything.utils.DateUtils;
 
 public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdapter.ViewItemHolder> {
     private Context context;
@@ -77,7 +80,7 @@ public class ImportHistoryAdapter extends RecyclerView.Adapter<ImportHistoryAdap
 
         void setUpData(BillImportProduct data) {
             itemBill = data;
-            tvDate.setText(itemBill.date != null ? itemBill.date : "");
+            tvDate.setText(DateUtils.formatFullDateVN(new Date(itemBill.id)));
             tvNameSeller.setText(itemBill.nameSeller != null ? itemBill.nameSeller : "");
             tvTotalNameProduct.setText(itemBill.getNameTotalProduct());
             tvTotalAmount.setText(itemBill.getTotalAmountProduct());

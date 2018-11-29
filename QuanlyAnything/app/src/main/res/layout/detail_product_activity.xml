@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/transparent_dialog"
     android:gravity="center"
-    android:paddingEnd="6dp"
-    android:paddingStart="6dp">
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/white_color"
             android:orientation="vertical">
 
@@ -113,8 +113,9 @@
                     android:gravity="center_vertical"
                     android:imeOptions="actionDone"
                     android:inputType="textCapSentences"
-                    android:paddingEnd="10dp"
                     android:paddingStart="10dp"
+                    android:textStyle="bold"
+                    android:paddingEnd="10dp"
                     android:scrollbars="horizontal"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
@@ -146,8 +147,9 @@
                     android:layout_weight="1"
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
-                    android:paddingEnd="10dp"
+                    android:layout_marginStart="60dp"
                     android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:singleLine="true"
                     android:textAllCaps="true"
                     android:textColor="@color/black_color"
@@ -159,9 +161,9 @@
                     android:id="@+id/btn_choose_unit_purchase"
                     android:layout_width="@dimen/with_btn_choose"
                     android:layout_height="30dp"
-                    android:layout_marginStart="60dp"
                     android:background="@drawable/bg_btn_pressed_blue_bluetrans"
                     android:gravity="center"
+                    android:layout_marginStart="6dp"
                     android:text="@string/text_choose"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
@@ -195,8 +197,9 @@
                     android:hint="@string/text_hint_total_quantity"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
-                    android:paddingEnd="10dp"
                     android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textStyle="bold"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
@@ -207,19 +210,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingEnd="4dp"
                     android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
+                     />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_top_item_product"
                 android:layout_marginTop="@dimen/margin_top_item_product"
+                android:layout_marginBottom="@dimen/margin_top_item_product"
                 android:focusableInTouchMode="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -239,10 +242,11 @@
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
                     android:hint="@string/text_hint_price"
+                    android:textStyle="bold"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
-                    android:paddingEnd="4dp"
                     android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
@@ -250,22 +254,12 @@
 
                 <TextView
                     android:id="@+id/tv_unit_currency_wholesale"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:text="VND/1"
                     android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="center"
-                    android:text="/ 1"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
                     android:id="@+id/tv_unit_of_wholesale"
@@ -274,6 +268,7 @@
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
                     android:hint="@string/text_hint_unit"
+                    android:textStyle="bold"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -315,8 +310,9 @@
                     android:hint="@string/text_hint_price"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
-                    android:paddingEnd="4dp"
+                    android:textStyle="bold"
                     android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
@@ -324,22 +320,12 @@
 
                 <TextView
                     android:id="@+id/tv_unit_currency_retail"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:text="VND/1"
                     android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="center"
-                    android:text="/ 1"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/text_size_normal_default"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_size_normal_default" />
 
                 <TextView
                     android:id="@+id/tv_unit_of_retail"
@@ -348,6 +334,7 @@
                     android:background="@drawable/bg_edt_input_product"
                     android:gravity="center"
                     android:hint="@string/text_hint_unit"
+                    android:textStyle="bold"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"
                     android:textSize="@dimen/text_size_normal_default" />
@@ -390,8 +377,8 @@
                     android:gravity="center"
                     android:imeOptions="actionDone"
                     android:inputType="number"
-                    android:paddingEnd="10dp"
                     android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:singleLine="true"
                     android:textColor="@color/black_color"
                     android:textColorHint="@color/transparent_dialog"

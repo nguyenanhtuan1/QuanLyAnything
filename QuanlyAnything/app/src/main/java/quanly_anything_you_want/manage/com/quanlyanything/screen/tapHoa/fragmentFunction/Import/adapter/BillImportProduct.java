@@ -1,22 +1,32 @@
 package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmentFunction.Import.adapter;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.AppConstants;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
-public class BillImportProduct {
-    public String date;
+public class BillImportProduct extends RealmObject implements Serializable {
+    @PrimaryKey
+    @SerializedName("id")
+    public long id;
+
     public String nameSeller;
-    private List<ProductChooseDto> listProduct;
+
+    private RealmList<ProductChooseDto> listProduct;
     public boolean isShowProduct;
 
     public BillImportProduct(BillImportProduct data) {
-        this.date = data.date;
+        this.id = data.id;
         this.nameSeller = data.nameSeller;
-        this.listProduct = new ArrayList<>();
+        this.listProduct = new RealmList<>();
         this.listProduct.addAll(data.listProduct);
     }
 
@@ -25,7 +35,7 @@ public class BillImportProduct {
     }
 
     public List<ProductChooseDto> getListProduct() {
-        if (listProduct == null) listProduct = new ArrayList<>();
+        if (listProduct == null) listProduct = new RealmList<>();
         return listProduct;
     }
 
@@ -52,7 +62,7 @@ public class BillImportProduct {
         for (ProductChooseDto item : getListProduct()) {
             amount = amount + (item.quantityImport * item.priceImport);
         }
-        return CommonUtil.showPriceHasCurrency(amount, AppConstants.CURRENCY_DEFAULT);
+        return CommonUtil.showPriceHasCurrency(amount);
     }
 
 }

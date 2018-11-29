@@ -38,7 +38,6 @@ public class ChooseProductActivity extends BaseActivity implements ChooseProduct
     PickProductAdapter adapter;
     ChooseProductPresenter mPresenter;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.choose_product_activity);

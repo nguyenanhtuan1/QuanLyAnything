@@ -24,14 +24,4 @@ public class ImageLoader {
 
     }
 
-    public static void loadImagePhoto2(Context context, File file, ImageView imageView) {
-        if (file != null) {
-            RequestOptions options = new RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .error(R.mipmap.ic_launcher_round);
-            Glide.with(context).load(file.getPath()).apply(options).into(imageView);
-        }
-
-    }
 }

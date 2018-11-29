@@ -93,14 +93,14 @@ public class ChooseProductImportActivity extends BaseActivity implements ChooseP
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null && result.getContents() != null) {
-            edtSearch.setText(result.getContents());
-        }
-
         if (resultCode == RESULT_OK && requestCode == AppConstants.REQUEST_NEW_PRODUCT) {
             ProductTapHoa tapHoa = (ProductTapHoa) data.getSerializableExtra(AppConstants.KEY_DETAIL_PRODUCT);
             mPresenter.addMoreProduct(tapHoa);
+        } else {
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            if (result != null && result.getContents() != null) {
+                edtSearch.setText(result.getContents());
+            }
         }
     }
 

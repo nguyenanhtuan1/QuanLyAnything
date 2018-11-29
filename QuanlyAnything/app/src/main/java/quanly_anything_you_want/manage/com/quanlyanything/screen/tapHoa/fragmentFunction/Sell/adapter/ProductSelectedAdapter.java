@@ -87,21 +87,21 @@ public class ProductSelectedAdapter extends RecyclerView.Adapter<ProductSelected
 //            ImageLoader.loadImagePhoto(context, data.photo, imvPhoto);
             ImageLoader.loadImagePhoto(context, "https://taphoahoanganh.com/wp-content/uploads/2017/08/sua-dac-ong-tho-3.jpg", imvPhoto);
             tvName.setText(data.name != null ? data.name : "");
-            tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.priceWholesale, data.currency) + " / 1 " + data.unitWholesale : "");
-            tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.priceRetail, data.currency) + " / 1 " + data.unitRetail : "");
+            tvPriceWholesale.setText(data.priceWholesale != 0 ? CommonUtil.showPriceHasCurrency(data.priceWholesale) + " / 1 " + data.unitWholesale : "");
+            tvPriceRetail.setText(data.priceRetail != 0 ? CommonUtil.showPriceHasCurrency(data.priceRetail) + " / 1 " + data.unitRetail : "");
 
             StringBuilder stringWholesale = new StringBuilder();
             stringWholesale.append(data.quantityWholesale);
             stringWholesale.append(data.unitWholesale);
             stringWholesale.append(" = ");
-            stringWholesale.append(CommonUtil.showPriceHasCurrency(data.quantityWholesale * data.priceWholesale, data.currency));
+            stringWholesale.append(CommonUtil.showPriceHasCurrency(data.quantityWholesale * data.priceWholesale));
             tvQuantityWholesale.setText(data.quantityWholesale != 0 ? stringWholesale : "");
 
             StringBuilder stringRetail = new StringBuilder();
             stringRetail.append(data.quantityRetail);
             stringRetail.append(data.unitRetail);
             stringRetail.append(" = ");
-            stringRetail.append(CommonUtil.showPriceHasCurrency(data.quantityRetail * data.priceRetail, data.currency));
+            stringRetail.append(CommonUtil.showPriceHasCurrency(data.quantityRetail * data.priceRetail));
             tvQuantityRetail.setText(data.quantityRetail != 0 ? stringRetail : "");
 
             if (isShowHistory){

@@ -32,42 +32,24 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     }
 
     public void getAllProductFromServer() {
-        getView().showLoading();
-        getApiManager().getAllProduct(getPreferManager().getUser()._id, new ApiCallback<AllProductTapHoaResponse>() {
-            @Override
-            public void success(AllProductTapHoaResponse res) {
-                listStore.addAll(res.results);
-                listDisplay.addAll(listStore);
-                Collections.sort(listDisplay, new CustomComparator());
-                getView().onNotifyAdapterProduct();
-                getView().hideLoading();
-            }
-
-            @Override
-            public void failure(RestError error) {
-                getView().hideLoading();
-                getView().onFail(error);
-            }
-        });
+        listStore.addAll(getCachesManager().getListProduct());
+        listDisplay.addAll(listStore);
+        Collections.sort(listDisplay, new CustomComparator());
+        getView().onNotifyAdapterProduct();
     }
 
     @Override
     public void addItemProduct(ProductTapHoa product) {
-        listStore.add(0, product);
-        if (textSearch.isEmpty()) {
-            listDisplay.add(0,product);
-            getView().onNotifyAdapterProduct();
-        } else {
-            onSearchProduct(textSearch);
-        }
-        onSaveCacheProduct();
+        listStore.add(product);
+        listDisplay.add(0, product);
+        getView().onNotifyAdapterProduct();
     }
 
     @Override
     public void setUpdateChangeProduct(int position, ProductTapHoa product) {
         listDisplay.set(position, product);
         getView().onNotifyAdapterProductAtPosition(position);
-        onSaveCacheProduct();
+//        onSaveCacheProduct();
     }
 
     @Override
@@ -79,7 +61,7 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
                 break;
             }
         }
-        onSaveCacheProduct();
+//        onSaveCacheProduct();
         getView().onNotifyAdapterProduct();
     }
 
@@ -118,20 +100,20 @@ public class StoreShopTapHoaPresenter extends BasePresenter implements StoreShop
     void onReloadProduct(ReloadListProduct data) {
         if (data != null && data.product != null) {
             listStore.add(data.product);
-            onSearchProduct(textSearch);
+            if (textSearch.isEmpty()) {
+                listDisplay.add(0, data.product);
+                getView().onNotifyAdapterProduct();
+            } else {
+                onSearchProduct(textSearch);
+            }
         }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         getEventManager().unRegister(this);
-    }
-
-    @Override
-    public void onSaveCacheProduct() {
-        getCachesManager().getListProduct().clear();
-        getCachesManager().getListProduct().addAll(listStore);
     }
 
 }

@@ -3,6 +3,7 @@ package quanly_anything_you_want.manage.com.quanlyanything.screen.tapHoa.fragmen
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import quanly_anything_you_want.manage.com.quanlyanything.base.BasePresenter;
 import quanly_anything_you_want.manage.com.quanlyanything.base.IBaseView;
@@ -51,8 +52,8 @@ public class ImportTapHoaFragmentPresenter extends BasePresenter implements Impo
     @Override
     public void completeImportProduct(String seller) {
         billImportProduct.nameSeller = seller;
-        billImportProduct.date = DateUtils.formatFullDateVN(Calendar.getInstance().getTime());
-        getCachesManager().getListBillImport().add(0,new BillImportProduct(billImportProduct));
+        billImportProduct.id = new Date().getTime();
+        getCachesManager().addMoreBIllImport(new BillImportProduct(billImportProduct));
         getEventManager().sendEvent(new ReloadImportHistory(new BillImportProduct(billImportProduct)));
         resetData();
     }

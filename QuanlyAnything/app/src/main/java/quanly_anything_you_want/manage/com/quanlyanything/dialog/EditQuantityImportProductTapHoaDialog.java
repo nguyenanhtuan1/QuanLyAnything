@@ -65,8 +65,7 @@ public class EditQuantityImportProductTapHoaDialog extends BaseDialogFragment {
         tvUnitQuantity.setText(mProduct.unitImport != null ? mProduct.unitImport : "");
         edtQuantity.setText(String.valueOf(mProduct.quantityImport));
         edtPriceProduct.setText(CommonUtil.showPriceNotCurrency(mProduct.priceImport));
-        tvCurrency.setText(mProduct.currency != null ? mProduct.currency : "");
-        tvTotalPrice.setText(CommonUtil.showPriceHasCurrency(mProduct.priceImport * mProduct.quantityImport, mProduct.currency));
+        tvTotalPrice.setText(CommonUtil.showPriceHasCurrency(mProduct.priceImport * mProduct.quantityImport));
     }
 
     @Override
@@ -90,7 +89,7 @@ public class EditQuantityImportProductTapHoaDialog extends BaseDialogFragment {
         int quantity = edtQuantity.getValueInt();
         double eachPrice = edtPriceProduct.getValueDoubleForVND();
         double total = eachPrice * quantity;
-        tvTotalPrice.setText(CommonUtil.showPriceHasCurrency(total, mProduct.currency));
+        tvTotalPrice.setText(CommonUtil.showPriceHasCurrency(total));
     }
 
     @OnClick(R.id.btn_cancel)

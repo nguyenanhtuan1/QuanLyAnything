@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import quanly_anything_you_want.manage.com.quanlyanything.R;
+import quanly_anything_you_want.manage.com.quanlyanything.images.ImageLoader;
 import quanly_anything_you_want.manage.com.quanlyanything.screen.chooseProduct.adapter.ProductChooseDto;
 import quanly_anything_you_want.manage.com.quanlyanything.utils.CommonUtil;
 
@@ -79,10 +80,11 @@ public class ProductImportAdapter extends RecyclerView.Adapter<ProductImportAdap
 
         @SuppressLint("SetTextI18n")
         void setUpData(ProductChooseDto data) {
+            ImageLoader.loadImagePhoto(itemView.getContext(), data.photo, imvProduct);
             tvNameProduct.setText(data.name != null ? data.name : "");
             tvQuantityProduct.setText(CommonUtil.showQuantityHasUnit(data.quantityImport, data.unitImport));
-            tvPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.priceImport, data.currency) + " / " + data.unitImport);
-            tvTotalPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport, data.currency));
+            tvPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.priceImport) + " / " + data.unitImport);
+            tvTotalPriceProduct.setText(CommonUtil.showPriceHasCurrency(data.quantityImport * data.priceImport));
             if (isHistory) {
                 btnDelete.setVisibility(View.GONE);
                 btnEdit.setVisibility(View.GONE);

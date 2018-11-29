@@ -52,7 +52,7 @@ public class BillSellProduct implements Serializable {
         for (ProductChooseDto item : getListProduct()) {
             amount = amount + (item.quantityWholesale * item.priceWholesale) + (item.quantityRetail * item.priceRetail);
         }
-        return CommonUtil.showPriceHasCurrency(amount, AppConstants.CURRENCY_DEFAULT);
+        return CommonUtil.showPriceHasCurrency(amount);
     }
 
 
